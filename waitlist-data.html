@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Regrade — Waitlist signups</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --navy:#0A1F44; --cyan:#4FA8E0; --cream:#F2EDE0; --ink40:rgba(10,31,68,.45); }
+    body { margin:0; font-family:Geist,system-ui,sans-serif; background:var(--cream); color:var(--navy); padding:24px; line-height:1.5; }
+    h1 { font-size:1.35rem; font-weight:600; margin:0 0 8px; }
+    .note { font-size:14px; color:var(--ink40); max-width:720px; margin-bottom:24px; }
+    .note a { color:var(--cyan); font-weight:500; }
+    .card { background:#fff; border:1px solid rgba(10,31,68,.12); border-radius:12px; padding:20px; max-width:960px; }
+    table { width:100%; border-collapse:collapse; font-size:14px; margin-top:12px; }
+    th, td { text-align:left; padding:10px 12px; border-bottom:1px solid rgba(10,31,68,.08); }
+    th { font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink40); }
+    .row-actions { margin-top:16px; display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+    button {
+      font:inherit; font-weight:500; cursor:pointer; border-radius:999px; padding:10px 18px;
+      border:1px solid rgba(10,31,68,.15); background:var(--navy); color:var(--cream);
+    }
+    button.secondary { background:transparent; color:var(--navy); }
+    .empty { color:var(--ink40); font-size:14px; padding:16px 0; }
+    code { font-size:12px; background:rgba(10,31,68,.06); padding:2px 6px; border-radius:4px; }
+  </style>
+  <script src="site-config.js"></script>
+</head>
+<body>
+  <h1>Waitlist signups</h1>
+  <p class="note">
+    <strong>Production data:</strong> Static sites cannot read signups from visitors’ browsers.
+    Add a free <a href="https://web3forms.com" target="_blank" rel="noopener">Web3Forms</a> access key to
+    <code>site-config.js</code> (<code>web3formsAccessKey</code>), then open your
+    <a href="https://web3forms.com" target="_blank" rel="noopener">Web3Forms dashboard</a> to see every submission.
+  </p>
+  <p class="note" style="margin-top:-12px">
+    <strong>This page only:</strong> shows entries saved in <em>this browser</em> (helpful when you test the form yourself).
+    Storage key: <code id="ls-key"></code>
+  </p>
+
+  <div class="card">
+    <div id="summary"></div>
+    <div id="table-wrap"></div>
+    <div class="row-actions">
+      <button type="button" id="btn-csv">Download CSV (this browser)</button>
+      <button type="button" class="secondary" id="btn-json">Copy JSON</button>
+      <button type="button" class="secondary" id="btn-clear">Clear this browser’s log</button>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'regrade_waitlist_v1';
+      document.getElementById('ls-key').textContent = KEY;
+
+      function read() {
+        try {
+          var raw = localStorage.getItem(KEY);
+          var arr = JSON.parse(raw || '[]');
+          return Array.isArray(arr) ? arr : [];
+        } catch (e) {
+          return [];
+        }
+      }
+
+      function escHtml(s) {
+        if (s == null) return '';
+        return String(s)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+
+      function esc(s) {
+        if (s == null) return '';
+        return String(s).replace(/"/g, '""');
+      }
+
+      function render() {
+        var rows = read();
+        var sum = document.getElementById('summary');
+        sum.textContent = rows.length + ' entr' + (rows.length === 1 ? 'y' : 'ies') + ' in this browser.';
+
+        var wrap = document.getElementById('table-wrap');
+        if (!rows.length) {
+          wrap.innerHTML = '<p class="empty">No local entries yet. Submit the waitlist on the main site from this device, or configure Web3Forms for full capture.</p>';
+          return;
+        }
+        var h = '<table><thead><tr><th>Time (UTC)</th><th>Name</th><th>Email</th><th>Source</th></tr></thead><tbody>';
+        for (var i = rows.length - 1; i >= 0; i--) {
+          var r = rows[i];
+          h += '<tr><td>' + escHtml(r.ts) + '</td><td>' + escHtml(r.name) + '</td><td>' + escHtml(r.email) + '</td><td>' + escHtml(r.source) + '</td></tr>';
+        }
+        h += '</tbody></table>';
+        wrap.innerHTML = h;
+      }
+
+      document.getElementById('btn-csv').onclick = function () {
+        var rows = read();
+        var lines = ['timestamp,name,email,source'];
+        for (var i = 0; i < rows.length; i++) {
+          var r = rows[i];
+          lines.push(['"' + esc(r.ts) + '"', '"' + esc(r.name) + '"', '"' + esc(r.email) + '"', '"' + esc(r.source) + '"'].join(','));
+        }
+        var blob = new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8' });
+        var a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'regrade-waitlist-local.csv';
+        a.click();
+        URL.revokeObjectURL(a.href);
+      };
+
+      document.getElementById('btn-json').onclick = function () {
+        var text = JSON.stringify(read(), null, 2);
+        navigator.clipboard.writeText(text).then(function () {
+          alert('JSON copied to clipboard.');
+        }).catch(function () {
+          prompt('Copy:', text);
+        });
+      };
+
+      document.getElementById('btn-clear').onclick = function () {
+        if (!confirm('Remove all waitlist entries stored in this browser?')) return;
+        localStorage.removeItem(KEY);
+        render();
+      };
+
+      render();
+    })();
+  </script>
+</body>
+</html>

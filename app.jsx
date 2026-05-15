@@ -51,7 +51,6 @@ function App() {
       <Nav />
       <HeroWithLoop words={loopWords.length ? loopWords : ['60 seconds']} />
       <ScrollHint />
-      <TrustStrip />
       <InteractiveDemo />
       <StreamingSampler />
       <div id="why"><WhyRegrade auroraIntensity={t.auroraIntensity} /></div>
@@ -121,15 +120,7 @@ function HeroParameterized({ words }) {
 
             <div className="mt-7 flex items-center gap-4">
               <AvatarStack />
-              <div>
-                <div className="flex items-center gap-1 mb-0.5" aria-hidden>
-                  {[0,1,2,3,4].map(i => (
-                    <svg key={i} width="14" height="14" viewBox="0 0 24 24" fill="#E2A93B"><path d="M12 2l2.9 6.4 6.9.6-5.2 4.7 1.6 6.8L12 17.3 5.8 20.5l1.6-6.8L2.2 9l6.9-.6L12 2z"/></svg>
-                  ))}
-                  <span className="text-[12px] text-navy/65 ml-1.5"><CountUp to={2843} className="font-medium text-navy/85" /> students waiting</span>
-                </div>
-                <div className="text-[12.5px] text-navy/55">Community college · first-gen · international students first.</div>
-              </div>
+              <div className="text-[12.5px] text-navy/55">Community college · first-gen · international students first.</div>
             </div>
           </div>
 
@@ -181,7 +172,7 @@ function FloatingBadge({ children, style }) {
 function PaperPeek() {
   return (
     <div className="absolute -left-12 top-24 -rotate-[10deg] w-[280px] rounded-md hair smooth-shadow"
-      style={{background:'#F2EBD8'}}>
+      style={{background:'#ffffff'}}>
       <div className="p-4">
         <div className="mono text-[10px] text-navy/70 tracking-wide">PROBLEM SET 4 — CALCULUS II — FALL 2026</div>
         <div className="mt-2 serif text-navy text-[15px] leading-snug">

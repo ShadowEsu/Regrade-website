@@ -1,62 +1,7 @@
-// Beautification additions: trust strip, floating nav, scroll indicator,
+// Beautification additions: floating nav, scroll indicator,
 // scroll-discover hint, ambient mesh.
 
 const { useState, useEffect } = React;
-
-// ─── Trust strip: rotating quotes + live counters ────────────────────
-const TRUST_QUOTES = [
-  "Got my Pell standing back in one email.",
-  "Wrote the email I rewrote seven times.",
-  "She apologized. That's never happened.",
-  "Sixty seconds on the bus. +12 points.",
-  "First time school felt like it was on my side.",
-  "Calibrated the tone in a way I couldn't.",
-];
-
-function TrustStrip() {
-  const items = [...TRUST_QUOTES, ...TRUST_QUOTES];
-  return (
-    <section data-screen-label="01b Trust" className="relative" style={{
-      borderTop:'1px solid var(--ink-10)', borderBottom:'1px solid var(--ink-10)',
-      background:'linear-gradient(180deg, rgba(242,237,224,.5), rgba(237,227,207,.5))',
-    }}>
-      <div className="max-w-[1280px] mx-auto px-6 lg:px-10 py-8 grid lg:grid-cols-[1fr_auto] gap-8 items-center">
-        <div className="overflow-hidden relative" style={{maskImage:'linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent)', WebkitMaskImage:'linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent)'}}>
-          <div className="flex gap-12 whitespace-nowrap" style={{animation:'scrollX 48s linear infinite', width:'max-content'}}>
-            {items.map((q,i) => (
-              <span key={i} className="serif italic text-navy/70 text-[20px] inline-flex items-center gap-3">
-                <span className="inline-block w-1 h-1 rounded-full" style={{background:'var(--cyan)'}}></span>
-                "{q}"
-              </span>
-            ))}
-          </div>
-        </div>
-        <div className="flex items-center gap-8 lg:gap-10 justify-center lg:justify-end">
-          <Counter to={2843} label="on the waitlist" />
-          <Divider />
-          <Counter to={127} label="appeals won this week" />
-          <Divider />
-          <Counter to={91} suffix="%" label="success rate" />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Counter({ to, suffix='', label }) {
-  return (
-    <div className="text-center lg:text-left">
-      <div className="serif text-navy text-[28px] md:text-[32px] tracking-[-0.02em] leading-none">
-        <CountUp to={to} suffix={suffix} />
-      </div>
-      <div className="eyebrow text-navy/55 mt-1.5 whitespace-nowrap">{label}</div>
-    </div>
-  );
-}
-
-function Divider() {
-  return <div className="hidden md:block w-px h-9 self-center" style={{background:'linear-gradient(180deg,transparent,rgba(10,31,68,.18),transparent)'}}></div>;
-}
 
 // ─── Floating frosted nav pill on scroll ─────────────────────────────
 function FloatingNav() {
@@ -76,7 +21,7 @@ function FloatingNav() {
       }}>
       <div className="pointer-events-auto hair-cyan rounded-full px-2 py-2 flex items-center gap-2"
         style={{
-          background:'rgba(242,237,224,.7)',
+          background:'rgba(255,255,255,.92)',
           backdropFilter:'blur(20px) saturate(180%)',
           WebkitBackdropFilter:'blur(20px) saturate(180%)',
           boxShadow:'0 1px 0 rgba(255,255,255,.6) inset, 0 12px 40px -10px rgba(10,31,68,.18)',
@@ -183,7 +128,7 @@ function HeroMesh() {
       }}></div>
       <div className="absolute" style={{
         right:'-10%', top:'10%', width:'60%', height:'70%', borderRadius:'50%',
-        background:'radial-gradient(closest-side, rgba(226,169,59,.14), transparent 70%)',
+        background:'radial-gradient(closest-side, rgba(125,211,252,.12), transparent 70%)',
         filter:'blur(70px)',
         animation:'floatBlob 28s ease-in-out infinite reverse',
       }}></div>
@@ -198,4 +143,4 @@ function HeroMesh() {
   );
 }
 
-Object.assign(window, { TrustStrip, FloatingNav, SideRail, ScrollHint, HeroMesh });
+Object.assign(window, { FloatingNav, SideRail, ScrollHint, HeroMesh });

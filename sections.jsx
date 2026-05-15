@@ -53,7 +53,7 @@ function SnapArt() {
       {items.map((it, i) => (
         <div key={i} className="absolute hair rounded-md p-3 w-[140px] h-[170px]"
           style={{
-            background:'#F2EBD8',
+            background:'#ffffff',
             left: 8 + i*36,
             top: 4 + i*8,
             transform:`rotate(${(i-1)*-4}deg)`,

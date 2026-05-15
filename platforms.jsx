@@ -84,7 +84,7 @@ function AiPanel() {
           <div className="relative p-10 md:p-14 grid lg:grid-cols-[auto_1fr] gap-10 items-start">
             <AiIcon />
             <div>
-              <Eyebrow color="rgba(248,245,238,.6)">Powered by the best AI on the planet</Eyebrow>
+              <Eyebrow color="rgba(255,255,255,.6)">Powered by AI</Eyebrow>
               <h2 className="serif text-[34px] md:text-[48px] leading-[1.05] tracking-[-0.02em] mt-3 max-w-[820px]">
                 A vision model that reads handwriting like a TA, and a writer that <Em>knows your teacher</Em>.
               </h2>
@@ -96,7 +96,7 @@ function AiPanel() {
                 {pills.map((p,i) => (
                   <div key={p} className="hair-cyan rounded-full px-4 h-9 inline-flex items-center text-[13px] text-cream/95"
                     style={{
-                      background:'rgba(248,245,238,.06)',
+                      background:'rgba(255,255,255,.06)',
                       opacity: seen ? 1 : 0,
                       transform: seen ? 'translateY(0)' : 'translateY(6px)',
                       transition:`opacity .5s ease ${i*0.12}s, transform .5s ease ${i*0.12}s`,

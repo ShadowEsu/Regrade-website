@@ -55,16 +55,16 @@ const VERDICT_BLOCKS = [
 ];
 
 const PLATFORMS = [
-  { id: 'gradescope', name: 'Gradescope', where: 'Blue bubbles · rubric panel · score summary' },
-  { id: 'canvas', name: 'Canvas', where: 'SpeedGrader pins · rubric grid · assessment comment' },
-  { id: 'moodle', name: 'Moodle', where: 'Feedback table · rubric levels · annotated PDF' },
-  { id: 'blackboard', name: 'Blackboard', where: 'Inline bubbles · rubric scorecard' },
-  { id: 'brightspace', name: 'D2L Brightspace', where: 'Evaluation panel · achievement rubric' },
-  { id: 'google_classroom', name: 'Google Classroom', where: 'Margin chips · grading panel' },
-  { id: 'turnitin', name: 'Turnitin', where: 'QuickMarks + rubric — not similarity % alone' },
-  { id: 'paper', name: 'Marked paper', where: 'Pen marks · circled scores · margin handwriting' },
-  { id: 'schoology', name: 'Schoology', where: 'Checklist rubric · feedback text' },
-  { id: 'teams', name: 'Microsoft Teams', where: 'Assignment feedback · rubric checklist' },
+  { id: 'gradescope', name: 'Gradescope', cat: 'LMS', where: 'Blue comment bubbles, rubric panel, and score summary on your PDF.' },
+  { id: 'canvas', name: 'Canvas', cat: 'LMS', where: 'SpeedGrader pins, rubric grid, and assessment comments.' },
+  { id: 'moodle', name: 'Moodle', cat: 'LMS', where: 'Feedback table, rubric levels, and annotated PDFs.' },
+  { id: 'blackboard', name: 'Blackboard', cat: 'LMS', where: 'Inline grading bubbles and rubric scorecards.' },
+  { id: 'brightspace', name: 'D2L Brightspace', cat: 'LMS', where: 'Evaluation panel and achievement rubric.' },
+  { id: 'google_classroom', name: 'Google Classroom', cat: 'LMS', where: 'Margin chips on returned files and the grading panel.' },
+  { id: 'turnitin', name: 'Turnitin', cat: 'Feedback', where: 'QuickMarks and rubric scoring — not similarity % alone.' },
+  { id: 'paper', name: 'Marked paper', cat: 'Photo', where: 'Pen marks, circled scores, and margin handwriting.' },
+  { id: 'schoology', name: 'Schoology', cat: 'LMS', where: 'Checklist rubric and written feedback.' },
+  { id: 'teams', name: 'Microsoft Teams', cat: 'LMS', where: 'Assignment feedback and rubric checklist.' },
 ];
 
 const TRUST_SIGNALS = [
@@ -229,24 +229,41 @@ function VerdictPreview() {
   );
 }
 
+function PlatformIcon({ name }) {
+  const letter = (name || '?')[0];
+  return (
+    <div className="platform-card-icon" aria-hidden>
+      <span className="serif text-[15px] font-medium">{letter}</span>
+    </div>
+  );
+}
+
 function PlatformMatrix() {
   return (
     <div className="mt-14">
-      <Eyebrow>Supported sources</Eyebrow>
-      <p className="text-[14px] text-navy/60 mt-2 mb-5 max-w-[560px]">
-        Reader detects <span className="mono text-[12px] text-navy/80">source_platform</span> and reads where professors actually leave marks.
+      <Eyebrow>Where we read your grades</Eyebrow>
+      <p className="text-[15px] text-navy/65 mt-2 mb-6 max-w-[560px] leading-relaxed">
+        Upload a graded PDF or clear photos. Regrade finds the marks, rubric lines, and professor comments — not just the final score.
       </p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
         {PLATFORMS.map((p) => (
-          <div key={p.id} className="tech-platform-row rounded-xl px-4 py-3 flex gap-3 items-start">
-            <span className="mono text-[10px] text-cyanglow/80 shrink-0 pt-0.5 w-[108px]">{p.id}</span>
-            <div className="min-w-0">
-              <div className="text-[14px] font-semibold text-navy">{p.name}</div>
-              <div className="text-[12px] text-navy/58 mt-0.5 leading-snug">{p.where}</div>
+          <div key={p.id} className="platform-card">
+            <div className="flex items-start gap-3">
+              <PlatformIcon name={p.name} />
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <div className="text-[15px] font-semibold text-navy leading-tight">{p.name}</div>
+                  <span className="platform-card-tag">{p.cat}</span>
+                </div>
+                <p className="text-[13px] text-navy/60 mt-1.5 leading-snug">{p.where}</p>
+              </div>
             </div>
           </div>
         ))}
       </div>
+      <p className="mt-5 text-[13px] text-navy/50 max-w-[520px]">
+        Best upload: graded copy with <span className="text-navy/70">both</span> your work and the rubric visible — e.g. Gradescope “Download Graded Copy.”
+      </p>
     </div>
   );
 }

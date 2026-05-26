@@ -104,7 +104,7 @@ function PlatformCard({ name, when, icon, accent }) {
   return (
     <div ref={ref} className="tilt-card group relative hair rounded-2xl px-5 py-5 transition-all"
       style={{
-        background:'rgba(248,245,238,.6)',
+        background:'rgba(255,255,255,.65)',
         backdropFilter:'blur(8px)',
         boxShadow:'0 1px 0 rgba(255,255,255,.5) inset, 0 14px 32px -16px rgba(10,31,68,.18)',
       }}>
@@ -112,7 +112,7 @@ function PlatformCard({ name, when, icon, accent }) {
         style={{boxShadow:'0 0 0 1.5px rgba(125,211,252,.55), 0 24px 60px -20px rgba(125,211,252,.6)'}}></div>
       <div className="relative flex items-center gap-3">
         <div className="w-11 h-11 rounded-xl grid place-items-center"
-          style={{background:'linear-gradient(160deg,#0A1F44,#1B3464)', color:'#F2EDE0', boxShadow:'0 6px 16px -8px rgba(10,31,68,.5)'}}>{icon}</div>
+          style={{background:'linear-gradient(160deg,#0A1F44,#1B3464)', color:'#FFFFFF', boxShadow:'0 6px 16px -8px rgba(10,31,68,.5)'}}>{icon}</div>
         <div>
           <div className="serif text-navy text-[18px] leading-tight">{name}</div>
           <div className="eyebrow text-navy/55 mt-1">{when}</div>
@@ -160,7 +160,7 @@ function FinalCTA() {
         }}></div>
         <div className="absolute" style={{
           right:'-10%', bottom:'10%', width:'70%', height:'70%', borderRadius:'50%',
-          background:'radial-gradient(closest-side, rgba(226,169,59,.12), transparent 70%)',
+          background:'radial-gradient(closest-side, rgba(79,168,224,.12), transparent 70%)',
           filter:'blur(90px)', animation:'floatBlob 28s ease-in-out infinite reverse',
         }}></div>
       </div>
@@ -188,7 +188,7 @@ function FinalCTA() {
               <div className="hair-cyan rounded-full px-7 min-h-16 py-3 inline-flex items-center gap-3 bg-cream2/70 backdrop-blur glow-ring"
                 style={{boxShadow:'0 0 0 1.5px rgba(79,168,224,.4), 0 0 60px rgba(125,211,252,.35)'}}>
                 <span className="w-7 h-7 shrink-0 rounded-full grid place-items-center" style={{background:'linear-gradient(180deg,#7DD3FC,#4FA8E0)', boxShadow:'0 0 16px rgba(125,211,252,.6)'}}>
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5 12 4" stroke="#F2EDE0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5 12 4" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                 </span>
                 <span className="serif italic text-navy text-[19px] text-left">
                   {confirmText.split(/\s+/).map((w,i) => (
@@ -211,7 +211,6 @@ function FinalCTA() {
         </div>
 
         <CtaTrustLine />
-
         <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-[860px] mx-auto text-left">
           <PlatformCard name="App Store" when="Summer 2026" icon={
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 12.4c0-2.4 2-3.6 2.1-3.6-1.1-1.6-2.9-1.8-3.5-1.9-1.5-.15-2.9.9-3.7.9-.8 0-1.95-.85-3.2-.83-1.65.03-3.18.95-4.03 2.43-1.72 2.98-.44 7.4 1.24 9.82.82 1.18 1.8 2.5 3.07 2.46 1.24-.05 1.7-.8 3.2-.8 1.5 0 1.92.8 3.22.78 1.33-.02 2.18-1.2 3-2.39.94-1.36 1.33-2.68 1.35-2.75-.03-.01-2.59-.99-2.62-3.95zM14.1 5.1c.66-.8 1.11-1.92.98-3.03-.95.04-2.1.63-2.79 1.43-.61.7-1.16 1.85-1.01 2.94 1.06.08 2.16-.54 2.82-1.34z"/></svg>
@@ -290,7 +289,7 @@ function Wordmark({ className = '' }) {
 
 function Nav() {
   return (
-    <header className="sticky top-0 z-40 nav-blur" style={{background:'rgba(248,245,238,.65)',borderBottom:'1px solid var(--ink-10)'}}>
+    <header className="sticky top-0 z-40 nav-blur" style={{background:'rgba(255,255,255,.92)',borderBottom:'1px solid var(--ink-10)'}}>
       <div className="max-w-[1280px] mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
         <Wordmark />
         <nav className="hidden md:flex items-center gap-8 text-[13px] text-navy/70">

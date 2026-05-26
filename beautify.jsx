@@ -1,4 +1,4 @@
-// Beautification additions: trust strip, floating nav, scroll indicator,
+// Beautification additions: floating nav, scroll indicator,
 // scroll-discover hint, ambient mesh.
 
 const { useState, useEffect } = React;
@@ -62,7 +62,7 @@ function FloatingNav() {
       }}>
       <div className="pointer-events-auto hair-cyan rounded-full px-2 py-2 flex items-center gap-2"
         style={{
-          background:'rgba(242,237,224,.7)',
+          background:'rgba(255,255,255,.92)',
           backdropFilter:'blur(20px) saturate(180%)',
           WebkitBackdropFilter:'blur(20px) saturate(180%)',
           boxShadow:'0 1px 0 rgba(255,255,255,.6) inset, 0 12px 40px -10px rgba(10,31,68,.18)',
@@ -169,7 +169,7 @@ function HeroMesh() {
       }}></div>
       <div className="absolute" style={{
         right:'-10%', top:'10%', width:'60%', height:'70%', borderRadius:'50%',
-        background:'radial-gradient(closest-side, rgba(226,169,59,.14), transparent 70%)',
+        background:'radial-gradient(closest-side, rgba(125,211,252,.12), transparent 70%)',
         filter:'blur(70px)',
         animation:'floatBlob 28s ease-in-out infinite reverse',
       }}></div>
@@ -184,4 +184,4 @@ function HeroMesh() {
   );
 }
 
-Object.assign(window, { TrustStrip, FloatingNav, SideRail, ScrollHint, HeroMesh });
+Object.assign(window, { FloatingNav, SideRail, ScrollHint, HeroMesh });

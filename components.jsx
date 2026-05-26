@@ -294,7 +294,7 @@ function GlowButton({ children, onClick, type = 'button', className = '', disabl
       className={"relative inline-flex items-center justify-center gap-1.5 px-6 h-12 rounded-full text-cream font-medium tracking-tight disabled:opacity-55 disabled:cursor-not-allowed " + className}
       style={{
         background:'linear-gradient(180deg,#4FA8E0,#2C7FB8)',
-        color:'#F8F5EE',
+        color:'#FFFFFF',
         boxShadow:'0 8px 22px rgba(79,168,224,.32), 0 1px 0 rgba(255,255,255,.22) inset',
       }}>
       <span className="relative z-10 text-[14px]">{children}</span>

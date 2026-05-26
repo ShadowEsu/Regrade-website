@@ -37,7 +37,7 @@ function StreamCell({ children, label, q }) {
           style={{boxShadow:'inset 0 0 80px rgba(79,168,224,.18)',animation:'breath 5s ease-in-out infinite'}}></div>
         <div className="relative p-5 h-full flex flex-col">
           <div className="serif italic text-cream/85 text-[13.5px] leading-snug">"{q}"</div>
-          <div className="mt-3 h-px w-full" style={{background:'rgba(248,245,238,.12)'}}></div>
+          <div className="mt-3 h-px w-full" style={{background:'rgba(255,255,255,.12)'}}></div>
           <div className="mt-3 flex-1 text-cream/85 text-[12.5px] leading-snug">
             {children}
           </div>
@@ -214,7 +214,7 @@ function WhyRegrade() {
       </div>
 
       <div className="relative max-w-[1280px] mx-auto px-6 lg:px-10 py-24 lg:py-32">
-        <Eyebrow color="rgba(248,245,238,.55)">Why Regrade exists</Eyebrow>
+        <Eyebrow color="rgba(255,255,255,.55)">Why Regrade exists</Eyebrow>
         <h2 className="serif text-[52px] md:text-[88px] leading-[1.0] tracking-[-0.025em] mt-4 max-w-[1180px]">
           <DancyHeading text="Every student has been failed" />
           <br/>
@@ -237,7 +237,7 @@ function WhyRegrade() {
 }
 
 function Divider() {
-  return <div className="hidden md:block w-px h-32 self-center mx-auto" style={{background:'linear-gradient(180deg,transparent,rgba(248,245,238,.18),transparent)'}}></div>;
+  return <div className="hidden md:block w-px h-32 self-center mx-auto" style={{background:'linear-gradient(180deg,transparent,rgba(255,255,255,.18),transparent)'}}></div>;
 }
 
 function Stat({to, suffix, caption}) {

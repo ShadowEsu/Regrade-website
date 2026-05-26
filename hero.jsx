@@ -46,7 +46,7 @@ function PhoneMockup() {
             <Row k="Likely outcome" v="Partial regrade" tone="neutral" />
           </div>
 
-          <div className="mx-5 mt-4 rounded-2xl p-3 hair-cyan" style={{background:'rgba(248,245,238,.06)'}}>
+          <div className="mx-5 mt-4 rounded-2xl p-3 hair-cyan" style={{background:'rgba(255,255,255,.06)'}}>
             <div className="eyebrow text-cream/55 mb-1.5">Draft email</div>
             <div className="text-cream/90 text-[11.5px] leading-snug whitespace-pre-wrap mono" style={{minHeight:160,maxHeight:170,overflow:'hidden'}}>
               {composing}<span className="caret" style={{height:'1em'}}></span>
@@ -67,7 +67,7 @@ function PhoneMockup() {
 }
 
 function Row({k,v,tone}) {
-  const color = tone==='cyan' ? '#7DD3FC' : tone==='coral' ? '#E27D6B' : '#F8F5EE';
+  const color = tone==='cyan' ? '#7DD3FC' : tone==='coral' ? '#E27D6B' : '#FFFFFF';
   return (
     <div className="flex items-center justify-between text-[12.5px]">
       <span className="text-cream/65">{k}</span>
@@ -79,7 +79,7 @@ function Row({k,v,tone}) {
 function PaperPeek() {
   return (
     <div className="absolute -left-12 top-24 -rotate-[10deg] w-[280px] rounded-md hair smooth-shadow"
-      style={{background:'#F2EBD8'}}>
+      style={{background:'#ffffff'}}>
       <div className="p-4">
         <div className="mono text-[10px] text-navy/70 tracking-wide">PROBLEM SET 4 — CALCULUS II — FALL 2026</div>
         <div className="mt-2 serif text-navy text-[15px] leading-snug">

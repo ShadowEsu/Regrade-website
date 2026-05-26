@@ -67,7 +67,7 @@ function InteractiveDemo() {
       <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_1fr] gap-8">
         {/* graded paper */}
         <div className="relative">
-          <div className="hair rounded-2xl smooth-shadow overflow-hidden" style={{background:'#F4EDDA'}}>
+          <div className="hair rounded-2xl smooth-shadow overflow-hidden" style={{background:'#ffffff'}}>
             <div className="px-6 pt-6 pb-2 flex items-center justify-between">
               <div>
                 <div className="mono text-[10.5px] tracking-[0.18em] text-navy/55">PROBLEM SET 4 · CALCULUS II · FALL 2026</div>
@@ -121,7 +121,7 @@ function InteractiveDemo() {
               <CitationLine label="Your work shows" body={mark.yourWork} tone="cream" />
             </div>
 
-            <div className="mx-6 mt-5 rounded-xl p-4 hair-cyan" style={{background:'rgba(248,245,238,.06)'}}>
+            <div className="mx-6 mt-5 rounded-xl p-4 hair-cyan" style={{background:'rgba(255,255,255,.06)'}}>
               <div className="eyebrow text-cream/55 mb-2">Draft to send</div>
               <div className="text-cream/92 text-[13px] leading-relaxed whitespace-pre-wrap mono" style={{minHeight:200}}>
                 {typed}<span className="caret" style={{height:'1em'}}></span>
@@ -137,7 +137,7 @@ function InteractiveDemo() {
                 if (window.openMailtoUrl) window.openMailtoUrl(href);
                 else window.location.assign(href);
               }}>Open in Mail</GlowButton>
-              <button type="button" className="h-12 px-5 rounded-full hair-cyan text-cream/90 text-[13px]" style={{background:'rgba(248,245,238,.04)'}}>Refine tone</button>
+              <button type="button" className="h-12 px-5 rounded-full hair-cyan text-cream/90 text-[13px]" style={{background:'rgba(255,255,255,.04)'}}>Refine tone</button>
             </div>
           </div>
         </div>
@@ -182,12 +182,12 @@ function MarkClicker({ id, active, onClick, label, note }) {
 }
 
 function CitationLine({ label, body, tone = 'cream' }) {
-  const accent = tone === 'cyan' ? '#7DD3FC' : '#F8F5EE';
+  const accent = tone === 'cyan' ? '#7DD3FC' : '#FFFFFF';
   return (
     <div className="flex gap-3">
       <div className="w-[2px] rounded-full shrink-0" style={{background:accent,opacity:.5,marginTop:6,marginBottom:6}}></div>
       <div>
-        <div className="eyebrow" style={{color:'rgba(248,245,238,.55)'}}>{label}</div>
+        <div className="eyebrow" style={{color:'rgba(255,255,255,.55)'}}>{label}</div>
         <div className="text-cream/90 text-[13.5px] leading-snug mt-1">{body}</div>
       </div>
     </div>
@@ -300,7 +300,7 @@ function StoriesCarousel() {
 
   return (
     <section data-screen-label="04 Stories" className="relative overflow-hidden py-24 lg:py-28"
-      style={{background:'linear-gradient(180deg,#F8F5EE 0%,#EFEAE0 100%)'}}>
+      style={{background:'#ffffff'}}>
       <div className="max-w-[1280px] mx-auto px-6 lg:px-10 flex items-end justify-between flex-wrap gap-6 mb-10">
         <div>
           <Eyebrow>Stories from the inbox</Eyebrow>
@@ -362,7 +362,7 @@ function StoryCard({ s, active, onClick }) {
       className={"shrink-0 w-[340px] md:w-[400px] text-left hair rounded-2xl smooth-shadow transition-all duration-500 relative"}
       style={{
         scrollSnapAlign:'center',
-        background:'rgba(248,245,238,.85)',
+        background:'rgba(255,255,255,.92)',
         transform: active ? 'translateY(-6px) scale(1.0)' : 'translateY(0) scale(.96)',
         boxShadow: active
           ? '0 1px 0 rgba(255,255,255,.6) inset, 0 30px 60px -30px rgba(10,31,68,.28), 0 0 0 1.5px '+s.color

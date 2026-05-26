@@ -51,7 +51,6 @@ function App() {
       <Nav />
       <HeroWithLoop words={loopWords.length ? loopWords : ['60 seconds']} />
       <ScrollHint />
-      <TrustStrip />
       <InteractiveDemo />
       <ImpactSection />
       <div id="why"><WhyRegrade auroraIntensity={t.auroraIntensity} /></div>
@@ -154,7 +153,7 @@ function FloatingBadge({ children, style }) {
 function PaperPeek() {
   return (
     <div className="absolute -left-12 top-24 -rotate-[10deg] w-[280px] rounded-md hair smooth-shadow"
-      style={{background:'#F2EBD8'}}>
+      style={{background:'#ffffff'}}>
       <div className="p-4">
         <div className="mono text-[10px] text-navy/70 tracking-wide">PROBLEM SET 4 — CALCULUS II — FALL 2026</div>
         <div className="mt-2 serif text-navy text-[15px] leading-snug">

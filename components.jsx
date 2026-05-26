@@ -2,6 +2,48 @@
 
 const { useState, useEffect, useRef, useMemo, useCallback } = React;
 
+const REGRADE_LOGO_SRC = 'logo.png';
+
+const REGRADE_LOGO_SIZES = {
+  icon: { h: 28, radius: 8 },
+  sm: { h: 32, radius: 9 },
+  nav: { h: 38, radius: 10 },
+  md: { h: 44, radius: 12 },
+  lg: { h: 52, radius: 14 },
+};
+
+function RegradeLogo({ size = 'nav', className = '', asLink = true }) {
+  const s = REGRADE_LOGO_SIZES[size] || REGRADE_LOGO_SIZES.nav;
+  const img = (
+    <img
+      src={REGRADE_LOGO_SRC}
+      alt="Regrade"
+      className={'regrade-logo ' + (className || '')}
+      style={{ height: s.h, width: 'auto', borderRadius: s.radius, display: 'block' }}
+      width={s.h}
+      height={s.h}
+      decoding="async"
+    />
+  );
+  if (!asLink) return img;
+  return (
+    <a
+      href="#"
+      className="inline-flex shrink-0 items-center"
+      aria-label="Regrade home"
+      onClick={(e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }}>
+      {img}
+    </a>
+  );
+}
+
+function Wordmark({ className = '', size = 'nav' }) {
+  return <RegradeLogo size={size} className={className} />;
+}
+
 const REGRADE_WAITLIST_LS = 'regrade_waitlist_v1';
 
 function getWaitlistEmail() {
@@ -496,4 +538,5 @@ Object.assign(window, {
   getWaitlistEmail, openWaitlistMailto, openMailtoUrl, buildWaitlistMailtoHref,
   recordWaitlistEntry, submitWaitlistSignup, REGRADE_WAITLIST_LS,
   FoundingPerks, PerkChip, TrustValueRow, CtaTrustLine,
+  RegradeLogo, Wordmark,
 });

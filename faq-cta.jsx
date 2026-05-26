@@ -279,14 +279,6 @@ function BigEmailPill({ onSubmit }) {
 
 // Footer & Nav ───────────────────────────────────────────────────────
 
-function Wordmark({ className = '' }) {
-  return (
-    <div className={"serif text-navy text-[22px] tracking-[-0.01em] " + className}>
-      Regrade<span style={{color:'var(--cyan)'}}>.</span>
-    </div>
-  );
-}
-
 function Nav() {
   return (
     <header className="sticky top-0 z-40 nav-blur" style={{background:'rgba(255,255,255,.92)',borderBottom:'1px solid var(--ink-10)'}}>

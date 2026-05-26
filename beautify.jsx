@@ -5,12 +5,12 @@ const { useState, useEffect } = React;
 
 // ─── Trust strip: rotating quotes + live counters ────────────────────
 const TRUST_QUOTES = [
-  "Got my Pell standing back in one email.",
-  "Wrote the email I rewrote seven times.",
-  "She apologized. That's never happened.",
-  "Sixty seconds on the bus. +12 points.",
-  "First time school felt like it was on my side.",
-  "Calibrated the tone in a way I couldn't.",
+  "The rubric already says you earned those points.",
+  "A fair appeal shouldn't take forty-five minutes.",
+  "You shouldn't need a lawyer parent to get heard.",
+  "One polite email can change a transcript line.",
+  "First-gen students deserve the same draft quality.",
+  "Your professor still hears your voice — not ours.",
 ];
 
 function TrustStrip() {
@@ -18,44 +18,30 @@ function TrustStrip() {
   return (
     <section data-screen-label="01b Trust" className="relative" style={{
       borderTop:'1px solid var(--ink-10)', borderBottom:'1px solid var(--ink-10)',
-      background:'linear-gradient(180deg, rgba(242,237,224,.5), rgba(237,227,207,.5))',
+      background:'linear-gradient(180deg, rgba(125,211,252,.08), rgba(242,237,224,.55) 40%, rgba(237,227,207,.65))',
     }}>
-      <div className="max-w-[1280px] mx-auto px-6 lg:px-10 py-8 grid lg:grid-cols-[1fr_auto] gap-8 items-center">
-        <div className="overflow-hidden relative" style={{maskImage:'linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent)', WebkitMaskImage:'linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent)'}}>
-          <div className="flex gap-12 whitespace-nowrap" style={{animation:'scrollX 48s linear infinite', width:'max-content'}}>
-            {items.map((q,i) => (
-              <span key={i} className="serif italic text-navy/70 text-[20px] inline-flex items-center gap-3">
-                <span className="inline-block w-1 h-1 rounded-full" style={{background:'var(--cyan)'}}></span>
-                "{q}"
-              </span>
-            ))}
+      <div className="max-w-[1280px] mx-auto px-6 lg:px-10 py-10 lg:py-12 grid lg:grid-cols-[1fr_1.05fr] gap-10 items-center">
+        <div>
+          <div className="eyebrow text-navy/55 mb-3">Why students are signing up</div>
+          <div className="overflow-hidden relative rounded-2xl hair py-1" style={{
+            maskImage:'linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent)',
+            WebkitMaskImage:'linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent)',
+            background:'rgba(255,255,255,.35)',
+          }}>
+            <div className="flex gap-10 whitespace-nowrap py-3 px-2" style={{animation:'scrollX 42s linear infinite', width:'max-content'}}>
+              {items.map((q,i) => (
+                <span key={i} className="serif italic text-navy/75 text-[19px] md:text-[21px] inline-flex items-center gap-3">
+                  <span className="inline-block w-1.5 h-1.5 rounded-full" style={{background:'var(--cyan)', boxShadow:'0 0 8px var(--cyan)'}}></span>
+                  "{q}"
+                </span>
+              ))}
+            </div>
           </div>
         </div>
-        <div className="flex items-center gap-8 lg:gap-10 justify-center lg:justify-end">
-          <Counter to={2843} label="on the waitlist" />
-          <Divider />
-          <Counter to={127} label="appeals won this week" />
-          <Divider />
-          <Counter to={91} suffix="%" label="success rate" />
-        </div>
+        <TrustValueRow />
       </div>
     </section>
   );
-}
-
-function Counter({ to, suffix='', label }) {
-  return (
-    <div className="text-center lg:text-left">
-      <div className="serif text-navy text-[28px] md:text-[32px] tracking-[-0.02em] leading-none">
-        <CountUp to={to} suffix={suffix} />
-      </div>
-      <div className="eyebrow text-navy/55 mt-1.5 whitespace-nowrap">{label}</div>
-    </div>
-  );
-}
-
-function Divider() {
-  return <div className="hidden md:block w-px h-9 self-center" style={{background:'linear-gradient(180deg,transparent,rgba(10,31,68,.18),transparent)'}}></div>;
 }
 
 // ─── Floating frosted nav pill on scroll ─────────────────────────────
@@ -83,9 +69,9 @@ function FloatingNav() {
         }}>
         <div className="px-4 serif text-navy text-[17px] tracking-[-0.01em]">Regrade<span style={{color:'var(--cyan)'}}>.</span></div>
         <div className="hidden md:flex items-center gap-1 text-[12px] text-navy/70 pr-2">
+          <a href="#impact" className="px-2.5 py-1 rounded-full hover:bg-navy/5">Impact</a>
           <a href="#how" className="px-2.5 py-1 rounded-full hover:bg-navy/5">How</a>
-          <a href="#why" className="px-2.5 py-1 rounded-full hover:bg-navy/5">Why</a>
-          <a href="#platforms" className="px-2.5 py-1 rounded-full hover:bg-navy/5">Platforms</a>
+          <a href="#intelligence" className="px-2.5 py-1 rounded-full hover:bg-navy/5">Technology</a>
           <a href="#faq" className="px-2.5 py-1 rounded-full hover:bg-navy/5">FAQ</a>
         </div>
         <a href="#cta-section" className="group relative overflow-hidden rounded-full px-4 h-9 inline-flex items-center gap-1.5 text-[12.5px] font-medium text-cream"

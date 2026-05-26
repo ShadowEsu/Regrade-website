@@ -15,6 +15,7 @@ Quick deploy (GitHub Pages + optional custom domain)
    - For all visitors’ signups, use Web3Forms (step 1b).
 
 2) Create the GitHub repo and push (this folder is already a git repo on branch main)
+   Use a **public** repository so GitHub Pages works on a normal free account and your site URL stays simple.
 
    Option A — GitHub CLI (recommended; gh was installed if you did not have it)
    - Open PowerShell in this folder:
@@ -32,6 +33,7 @@ Quick deploy (GitHub Pages + optional custom domain)
        git push -u origin main
 
    Your first commit is already on branch main locally.
+   Note: A public repo means anyone can read files like site-config.js (email / Web3Forms key). That is normal for static sites; rotate the Web3Forms key if it is ever abused.
 
 3) Enable Pages
    - Repo → Settings → Pages → Build and deployment → Source: Deploy from a branch.

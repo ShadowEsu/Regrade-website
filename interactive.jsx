@@ -137,7 +137,7 @@ function InteractiveDemo() {
                 if (window.openMailtoUrl) window.openMailtoUrl(href);
                 else window.location.assign(href);
               }}>Open in Mail</GlowButton>
-              <button className="h-12 px-5 rounded-full hair-cyan text-cream/90 text-[13px]" style={{background:'rgba(248,245,238,.04)'}}>Refine tone</button>
+              <button type="button" className="h-12 px-5 rounded-full hair-cyan text-cream/90 text-[13px]" style={{background:'rgba(248,245,238,.04)'}}>Refine tone</button>
             </div>
           </div>
         </div>
@@ -344,7 +344,7 @@ function StoriesCarousel() {
 
 function NavBtn({ dir, onClick }) {
   return (
-    <button onClick={onClick}
+    <button type="button" onClick={onClick}
       className="w-11 h-11 rounded-full hair-cyan grid place-items-center bg-cream2/70 backdrop-blur"
       aria-label={dir === 'left' ? 'Previous story' : 'Next story'}>
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none">

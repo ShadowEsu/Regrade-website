@@ -57,7 +57,7 @@ function PhoneMockup() {
             <button type="button" className="flex-1 h-11 rounded-full text-navy font-semibold text-[13px] tracking-tight"
               style={{background:'linear-gradient(180deg,#7DD3FC,#4FA8E0)',boxShadow:'0 8px 24px rgba(79,168,224,.45)'}}
               onClick={() => { window.location.href = '#cta-section'; }}>SEND EMAIL</button>
-            <button className="w-11 h-11 rounded-full hair-cyan text-cream/80 grid place-items-center">↻</button>
+            <button type="button" className="w-11 h-11 rounded-full hair-cyan text-cream/80 grid place-items-center">↻</button>
           </div>
           <div className="px-5 mt-2 text-center mono text-[10px] text-cream/50">142 words · Calibrated to Prof. Ramirez</div>
         </div>

@@ -210,6 +210,83 @@ function Dot() {
   return <span className="pulse-dot inline-block" style={{width:8,height:8,borderRadius:99,background:'var(--cyan)'}}></span>;
 }
 
+const FOUNDING_PERKS = [
+  { icon: '60s', title: 'Appeals in about a minute', sub: 'Snap rubric + feedback → draft email' },
+  { icon: 'Free', title: 'Waitlist costs nothing', sub: 'One ping when your platform opens' },
+  { icon: 'You', title: 'You hit send', sub: 'We never mail your professor for you' },
+];
+
+function PerkChip({ icon, title, sub, vivid = false }) {
+  return (
+    <div className={'perk-chip ' + (vivid ? 'perk-chip-vivid' : '')}>
+      <div className="perk-chip-icon mono text-[11px] tracking-tight">{icon}</div>
+      <div>
+        <div className="text-[14px] font-medium text-navy leading-snug">{title}</div>
+        <div className="text-[12.5px] text-navy/60 mt-0.5 leading-snug">{sub}</div>
+      </div>
+    </div>
+  );
+}
+
+/** Hero / trust area — honest value props, no inflated waitlist numbers */
+function FoundingPerks({ compact = false }) {
+  if (compact) {
+    return (
+      <div className="flex flex-wrap gap-2.5">
+        {FOUNDING_PERKS.map((p) => (
+          <span key={p.title} className="inline-flex items-center gap-2 hair-cyan rounded-full pl-2 pr-3.5 py-1.5 bg-cream2/80 text-[12.5px] text-navy/80">
+            <span className="w-6 h-6 rounded-full grid place-items-center mono text-[9px] font-medium text-cream"
+              style={{ background: 'linear-gradient(145deg,#7DD3FC,#4FA8E0)' }}>{p.icon}</span>
+            {p.title}
+          </span>
+        ))}
+      </div>
+    );
+  }
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+      {FOUNDING_PERKS.map((p, i) => (
+        <PerkChip key={p.title} {...p} vivid={i === 0} />
+      ))}
+    </div>
+  );
+}
+
+const TRUST_VALUE_CHIPS = [
+  { k: 'Rubric-first', v: 'Every line tied to how you were graded' },
+  { k: 'Your voice', v: 'Sounds like you — not a template' },
+  { k: 'Summer 2026', v: 'iOS early access opens first' },
+];
+
+function TrustValueRow() {
+  return (
+    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-end w-full lg:max-w-[520px]">
+      {TRUST_VALUE_CHIPS.map((c, i) => (
+        <div key={c.k} className="perk-chip perk-chip-vivid flex-1 min-w-[140px]"
+          style={{ opacity: 1, transform: 'none' }}>
+          <div className="perk-chip-icon serif text-[14px]">{i + 1}</div>
+          <div>
+            <div className="text-[13px] font-semibold text-navy tracking-tight">{c.k}</div>
+            <div className="text-[11.5px] text-navy/60 mt-0.5 leading-snug">{c.v}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function CtaTrustLine() {
+  return (
+    <p className="mt-7 inline-flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-[14px] text-navy/70">
+      <span className="inline-flex items-center gap-2 hair-cyan rounded-full pl-2.5 pr-3 py-1 bg-cream2/70">
+        <Dot />
+        <span className="font-medium text-navy/85">Founding waitlist — be first in line</span>
+      </span>
+      <span className="text-navy/50">Free · No spam · iOS Summer 2026</span>
+    </p>
+  );
+}
+
 // Primary CTA — static (no magnetic follow, breathing shadow, shimmer, or ripple)
 function GlowButton({ children, onClick, type = 'button', className = '', disabled = false }) {
   return (
@@ -418,4 +495,5 @@ Object.assign(window, {
   CursorBlob, ScrollProgress, DancyHeading, RiseWords,
   getWaitlistEmail, openWaitlistMailto, openMailtoUrl, buildWaitlistMailtoHref,
   recordWaitlistEntry, submitWaitlistSignup, REGRADE_WAITLIST_LS,
+  FoundingPerks, PerkChip, TrustValueRow, CtaTrustLine,
 });

@@ -3,18 +3,18 @@
 function HowItWorks() {
   const cards = [
     {
-      n: '01', title: 'Snap three photos.',
-      body: "Assignment, rubric, and the graded feedback. Photos, screenshots, PDFs — Regrade reads handwriting and math notation too.",
+      n: '01', title: 'Upload graded work.',
+      body: "PDF export or photos from Gradescope, Canvas, Moodle, Brightspace, Turnitin, Teams, Schoology, or marked paper — with rubric and feedback visible.",
       art: <SnapArt />,
     },
     {
-      n: '02', title: 'Review what we found.',
-      body: "We line your work up against the rubric and surface the points worth fighting for. You decide what to keep.",
+      n: '02', title: 'Get your Verdict.',
+      body: "AI reads every mark and comment, builds a teacher grading profile, flags unfair deductions, and shows where it's confident vs. where you should double-check.",
       art: <RubricArt />,
     },
     {
-      n: '03', title: 'Send the email.',
-      body: "A polite, specific, professional draft, written in the voice that actually works on your teacher.",
+      n: '03', title: 'Send your appeal.',
+      body: "Evidence summary and a respectful draft in your voice. Edit everything, then send from your own inbox — Regrade never sends for you.",
       art: <DraftArt />,
     },
   ];
@@ -22,10 +22,10 @@ function HowItWorks() {
     <section data-screen-label="04 How it works" className="relative max-w-[1280px] mx-auto px-6 lg:px-10 py-24 lg:py-32">
       <Eyebrow>How it works</Eyebrow>
       <h2 className="serif text-navy text-[48px] md:text-[80px] leading-[1.0] tracking-[-0.025em] mt-3 max-w-[1100px]">
-        <DancyHeading text="Three photos." /> <DancyHeading text="Sixty seconds." /> <br/><Em>A better grade.</Em>
+        <DancyHeading text="Upload." /> <DancyHeading text="Understand." /> <br/><Em>Appeal fairly.</Em>
       </h2>
       <p className="mt-5 max-w-[640px] text-[16px] text-navy/65 leading-relaxed">
-        No paperwork. No awkward office hours. No asking your friend's parent who happens to be a lawyer.
+        Rubric-aware analysis and an appeal draft — not a generic chatbot reply. Built for students who want evidence, not hype.
       </p>
 
       <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -178,7 +178,7 @@ function PlatformsMarquee() {
       <div className="max-w-[1280px] mx-auto px-6 lg:px-10 mb-6">
         <Eyebrow>Works with what you already use</Eyebrow>
       </div>
-      <Marquee items={["Gradescope","Canvas","Moodle","Blackboard","Google Classroom","D2L Brightspace","Turnitin","Handwritten"]} />
+      <Marquee items={["Gradescope","Canvas","Moodle","Blackboard","Brightspace","Google Classroom","Turnitin","Schoology","Teams","Marked paper"]} />
     </section>
   );
 }

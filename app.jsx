@@ -53,13 +53,11 @@ function App() {
       <ScrollHint />
       <TrustStrip />
       <InteractiveDemo />
-      <StreamingSampler />
+      <ImpactSection />
       <div id="why"><WhyRegrade auroraIntensity={t.auroraIntensity} /></div>
       <div id="how"><HowItWorks /></div>
       <PlatformsMarquee />
-      <StoriesCarousel />
-      <div id="platforms"><PlatformsGrid /></div>
-      <AiPanel />
+      <IntelligenceSection />
       <div id="faq"><FAQ /></div>
       <FinalCTA />
       <Footer />
@@ -112,24 +110,18 @@ function HeroParameterized({ words }) {
             </h1>
 
             <p className="mt-8 max-w-[560px] text-[18px] leading-relaxed text-navy/75">
-              Snap your assignment, your rubric, and your teacher's feedback. Regrade weighs your case against the rubric and writes the polite, professional email a <span className="serif italic text-navy">lawyer parent</span> would write — in your voice, calibrated to your teacher's tone.
+              Upload graded coursework from Gradescope, Canvas, Moodle, or marked paper. Regrade reads every rubric line and professor comment, surfaces what's worth appealing, and drafts the respectful email — in your voice, calibrated to how your teacher actually grades.
             </p>
 
             <div className="mt-9 flex flex-col sm:flex-row gap-3 items-start sm:items-center">
               <EmailPill cta="Get Early Access" />
             </div>
 
-            <div className="mt-7 flex items-center gap-4">
-              <AvatarStack />
-              <div>
-                <div className="flex items-center gap-1 mb-0.5" aria-hidden>
-                  {[0,1,2,3,4].map(i => (
-                    <svg key={i} width="14" height="14" viewBox="0 0 24 24" fill="#E2A93B"><path d="M12 2l2.9 6.4 6.9.6-5.2 4.7 1.6 6.8L12 17.3 5.8 20.5l1.6-6.8L2.2 9l6.9-.6L12 2z"/></svg>
-                  ))}
-                  <span className="text-[12px] text-navy/65 ml-1.5"><CountUp to={2843} className="font-medium text-navy/85" /> students waiting</span>
-                </div>
-                <div className="text-[12.5px] text-navy/55">Community college · first-gen · international students first.</div>
-              </div>
+            <div className="mt-8">
+              <p className="text-[13px] font-medium text-navy/70 mb-3">
+                Built for community college, first-gen, and international students — <span className="serif italic text-navy">no fake hype, just a fair shot.</span>
+              </p>
+              <FoundingPerks />
             </div>
           </div>
 
@@ -148,25 +140,6 @@ function HeroParameterized({ words }) {
       <div className="pointer-events-none absolute -bottom-40 -right-40 w-[680px] h-[680px] rounded-full"
         style={{background:'radial-gradient(closest-side, rgba(125,211,252,.22), rgba(79,168,224,0) 70%)'}}></div>
     </section>
-  );
-}
-
-function AvatarStack() {
-  const avs = [
-    { i:'M', g:['#0A1F44','#1B3464'] },
-    { i:'A', g:['#1B3464','#2E5BA8'] },
-    { i:'J', g:['#2A4A88','#4FA8E0'] },
-    { i:'P', g:['#0E2350','#3D5CB8'] },
-  ];
-  return (
-    <div className="flex -space-x-2">
-      {avs.map((a,i) => (
-        <div key={i} className="w-8 h-8 rounded-full grid place-items-center serif text-cream text-[12px]"
-          style={{background:`linear-gradient(135deg,${a.g[0]},${a.g[1]})`, boxShadow:'0 0 0 2px var(--cream)'}}>{a.i}</div>
-      ))}
-      <div className="w-8 h-8 rounded-full grid place-items-center mono text-[10px] text-navy/70"
-        style={{background:'var(--cream2)', boxShadow:'0 0 0 2px var(--cream)'}}>+2K</div>
-    </div>
   );
 }
 

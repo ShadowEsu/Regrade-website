@@ -4,15 +4,17 @@ const { useState, useEffect, useMemo } = React;
 
 const FAQS = [
   { q: 'When does Regrade launch?',
-    a: "iOS first, summer 2026. Android and Web later in 2026. Sign up for the waitlist and we will email you the moment your platform opens — one email, never more." },
+    a: "iOS first, summer 2026. Android and Web later in 2026. One waitlist email when your platform opens — no spam." },
+  { q: 'What can I upload?',
+    a: "Graded PDFs and photos from Gradescope, Canvas, Moodle, Blackboard, D2L Brightspace, Google Classroom, Turnitin, Schoology, Microsoft Teams Education, or marked paper. Best results: a graded copy with both your work and the rubric visible (e.g. Gradescope Download Graded Copy)." },
   { q: 'Does Regrade send the email for me?',
-    a: "Never. Regrade writes the draft and hands it back to you. You read it, edit it, and hit send from your own inbox. We never sign for you and we never have your password." },
-  { q: 'Will my teacher know I used an AI?',
-    a: "Regrade writes in your voice, calibrated to how your teacher writes back. The draft avoids the giveaway phrases AI detectors flag, and every sentence is yours to edit before sending." },
-  { q: 'Is this just for college students?',
-    a: "Regrade was built for community college, first generation, and international students first — but it works for any student with an assignment, a rubric, and a grade. High school welcome." },
+    a: "Never. You get an evidence summary and appeal draft to edit. You send from your own inbox — we never have your email password." },
+  { q: 'How does the AI work?',
+    a: "Hybrid mode (default): Gemini reads marks and comments into an evidence ledger; Claude reasons over fairness and your teacher's grading pattern; a cross-check flags disagreements before you see the Verdict. You choose hybrid, Gemini-only, or Claude-only in Profile before your first analysis. API keys stay on the server." },
+  { q: 'Is my coursework private?',
+    a: "You sign in with Firebase. Cases are stored per account under Firestore security rules. Uploads are scanned for safety before analysis. We don't train models on your files." },
   { q: 'What does it cost?',
-    a: "The waitlist is free. Pricing at launch is a small monthly fee, with a free tier for students on financial aid. We will publish exact pricing when iOS opens — early access members are grandfathered in." },
+    a: "Waitlist is free. Launch pricing will be a small monthly fee with a financial-aid tier — details when iOS opens." },
 ];
 
 function StreamAnswer({ text, run }) {
@@ -208,13 +210,7 @@ function FinalCTA() {
           )}
         </div>
 
-        {/* Live stats below pill */}
-        <div className="mt-7 inline-flex items-center gap-2 text-[13px]">
-          <span className="relative inline-block w-2 h-2 rounded-full" style={{background:'var(--cyan)'}}>
-            <span className="absolute inset-0 rounded-full" style={{background:'var(--cyan)',animation:'pulseDot 1.6s ease-out infinite'}}></span>
-          </span>
-          <span className="serif italic text-navy/75"><CountUp to={2843} /> students waiting · <CountUp to={127} /> appeals won this week</span>
-        </div>
+        <CtaTrustLine />
 
         <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-[860px] mx-auto text-left">
           <PlatformCard name="App Store" when="Summer 2026" icon={
@@ -298,9 +294,9 @@ function Nav() {
       <div className="max-w-[1280px] mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
         <Wordmark />
         <nav className="hidden md:flex items-center gap-8 text-[13px] text-navy/70">
+          <a href="#impact" className="hover:text-navy">Impact</a>
           <a href="#how" className="hover:text-navy">How it works</a>
-          <a href="#why" className="hover:text-navy">Why Regrade</a>
-          <a href="#platforms" className="hover:text-navy">Platforms</a>
+          <a href="#intelligence" className="hover:text-navy">Technology</a>
           <a href="#faq" className="hover:text-navy">FAQ</a>
         </nav>
         <a href="#cta-section" className="group relative overflow-hidden hair-cyan rounded-full px-5 h-10 inline-flex items-center gap-2 text-[13px] font-medium text-navy bg-cream2/60 transition-all hover:bg-navy hover:text-cream"

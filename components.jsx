@@ -2,14 +2,14 @@
 
 const { useState, useEffect, useRef, useMemo, useCallback } = React;
 
-const REGRADE_LOGO_SRC = 'logo.png';
+const REGRADE_LOGO_SRC = 'logo-mark.png';
 
 const REGRADE_LOGO_SIZES = {
-  icon: { h: 28, radius: 8 },
-  sm: { h: 32, radius: 9 },
-  nav: { h: 38, radius: 10 },
-  md: { h: 44, radius: 12 },
-  lg: { h: 52, radius: 14 },
+  icon: { h: 34 },
+  sm: { h: 40 },
+  nav: { h: 52 },
+  md: { h: 58 },
+  lg: { h: 68 },
 };
 
 function RegradeLogo({ size = 'nav', className = '', asLink = true }) {
@@ -19,9 +19,7 @@ function RegradeLogo({ size = 'nav', className = '', asLink = true }) {
       src={REGRADE_LOGO_SRC}
       alt="Regrade"
       className={'regrade-logo ' + (className || '')}
-      style={{ height: s.h, width: 'auto', borderRadius: s.radius, display: 'block' }}
-      width={s.h}
-      height={s.h}
+      style={{ height: s.h, width: 'auto', display: 'block' }}
       decoding="async"
     />
   );

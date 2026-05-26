@@ -67,7 +67,7 @@ function FloatingNav() {
           WebkitBackdropFilter:'blur(20px) saturate(180%)',
           boxShadow:'0 1px 0 rgba(255,255,255,.6) inset, 0 12px 40px -10px rgba(10,31,68,.18)',
         }}>
-        <div className="pl-2 pr-1"><RegradeLogo size="icon" /></div>
+        <div className="pl-2 pr-1 shrink-0"><RegradeLogo size="nav" /></div>
         <div className="hidden md:flex items-center gap-1 text-[12px] text-navy/70 pr-2">
           <a href="#impact" className="px-2.5 py-1 rounded-full hover:bg-navy/5">Impact</a>
           <a href="#how" className="px-2.5 py-1 rounded-full hover:bg-navy/5">How</a>

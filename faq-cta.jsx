@@ -282,8 +282,8 @@ function BigEmailPill({ onSubmit }) {
 function Nav() {
   return (
     <header className="sticky top-0 z-40 nav-blur" style={{background:'rgba(255,255,255,.92)',borderBottom:'1px solid var(--ink-10)'}}>
-      <div className="max-w-[1280px] mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
-        <Wordmark />
+      <div className="max-w-[1280px] mx-auto px-6 lg:px-10 h-[72px] flex items-center justify-between">
+        <Wordmark size="nav" />
         <nav className="hidden md:flex items-center gap-8 text-[13px] text-navy/70">
           <a href="#impact" className="hover:text-navy">Impact</a>
           <a href="#how" className="hover:text-navy">How it works</a>
@@ -306,7 +306,7 @@ function Footer() {
   return (
     <footer className="relative border-t" style={{borderColor:'var(--ink-10)'}}>
       <div className="max-w-[1280px] mx-auto px-6 lg:px-10 py-10 flex flex-wrap items-center justify-between gap-6">
-        <Wordmark />
+        <Wordmark size="lg" />
         <div className="flex items-center gap-7 text-[13px] text-navy/65">
           <a href="#">Privacy</a><a href="#">Terms</a><a href="#">Press</a>
           <a href={'mailto:' + (typeof window !== 'undefined' && window.getWaitlistEmail ? window.getWaitlistEmail() : 'hello@regrade.app')}>Contact</a>

@@ -31,7 +31,7 @@ function PhoneMockup() {
         <div className="relative rounded-[34px] h-full overflow-hidden" style={{background:'#0E2350'}}>
           <div className="px-5 pt-10 pb-4 flex items-center justify-between text-cream/80 text-[11px] mono">
             <span>9:41</span>
-            <img src="logo.png" alt="Regrade" className="regrade-logo" style={{ height: 18, width: 'auto', borderRadius: 5, opacity: 0.9 }} />
+            <img src="logo-mark.png" alt="Regrade" className="regrade-logo" style={{ height: 22, width: 'auto', opacity: 0.95 }} />
             <span>100%</span>
           </div>
           <div className="px-5 pt-3">

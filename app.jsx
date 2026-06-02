@@ -48,15 +48,17 @@ function App() {
       <FloatingNav />
       <SideRail />
       <CursorBlob />
-      <Nav />
+      <WaitlistTopBanner />
       <HeroWithLoop words={loopWords.length ? loopWords : ['60 seconds']} />
+      <HeroStats />
       <ScrollHint />
-      <InteractiveDemo />
-      <ImpactSection />
-      <div id="why"><WhyRegrade auroraIntensity={t.auroraIntensity} /></div>
       <div id="how"><HowItWorks /></div>
+      <ComparisonSection />
+      <InteractiveDemo />
+      <WhyDifferentSection />
       <PlatformsMarquee />
-      <IntelligenceSection />
+      <WaitlistFormSection />
+      <JoinMovementSection />
       <div id="faq"><FAQ /></div>
       <FinalCTA />
       <Footer />
@@ -93,48 +95,59 @@ function HeroWithLoop({ words }) {
 }
 
 function HeroParameterized({ words }) {
+  const platforms = ['Gradescope', 'Canvas', 'Moodle', 'Blackboard', 'Brightspace', 'Turnitin', 'Teams', 'Paper'];
   return (
     <section data-screen-label="01 Hero" className="relative overflow-hidden">
       <HeroMesh />
-      <div className="relative max-w-[1280px] mx-auto px-6 lg:px-10 pt-10 pb-24 lg:pt-16 lg:pb-32 z-10">
-        <div className="grid lg:grid-cols-[1.05fr_1fr] gap-12 lg:gap-20 items-center">
-          <div>
-            <div className="inline-flex items-center gap-2 hair-cyan rounded-full pl-3 pr-4 h-8 bg-cream2/70 backdrop-blur">
-              <Dot />
-              <span className="text-[12px] tracking-tight text-navy/75">Coming soon · iOS first · Android & Web later 2026</span>
-            </div>
+      <div className="relative max-w-[1280px] mx-auto px-6 lg:px-10 pt-8 pb-16 lg:pt-12 lg:pb-20 z-10">
+        <div className="max-w-[820px] mx-auto text-center">
+          <div className="flex justify-center mb-6 lg:mb-8">
+            <RegradeLogo size="hero" showHalo className="hero-logo-single" />
+          </div>
+          <h1 className="serif text-[48px] sm:text-[64px] md:text-[80px] lg:text-[92px] leading-[0.96] tracking-[-0.025em] text-navy">
+            Appeal unfair grades in{' '}
+            <span className="block mt-1">
+              <Em className="italic"><LoopType words={words.length ? words : ['60 seconds']} /></Em>.
+            </span>
+          </h1>
 
-            <h1 className="serif mt-7 text-[58px] sm:text-[72px] md:text-[88px] leading-[0.96] tracking-[-0.025em] text-navy">
-              Appeal an unfair grade in <Em className="italic">{words[0] || '60 seconds'}</Em>.
-            </h1>
-
-            <p className="mt-8 max-w-[560px] text-[18px] leading-relaxed text-navy/75">
-              Upload graded coursework from Gradescope, Canvas, Moodle, or marked paper. Regrade reads every rubric line and professor comment, surfaces what's worth appealing, and drafts the respectful email — in your voice, calibrated to how your teacher actually grades.
-            </p>
-
-            <div className="mt-9 flex flex-col sm:flex-row gap-3 items-start sm:items-center">
-              <EmailPill cta="Get Early Access" />
-            </div>
-
-            <div className="mt-8">
-              <p className="text-[13px] font-medium text-navy/70 mb-3">
-                Built for community college, first-gen, and international students — <span className="serif italic text-navy">no fake hype, just a fair shot.</span>
-              </p>
-              <FoundingPerks />
-            </div>
+          <div className="mt-6 flex flex-wrap justify-center gap-2">
+            {platforms.map((p) => (
+              <span key={p} className="inline-flex items-center hair rounded-full px-3 py-1 text-[12px] text-navy/70 bg-cream2/70">
+                {p}
+              </span>
+            ))}
           </div>
 
-          <div className="relative h-[640px] hidden lg:block">
-            <PaperPeek />
-            <div className="absolute right-4 top-2"><PhoneMockup /></div>
-            <GradeChip />
-            <FloatingBadge style={{left:-30, bottom:30, transform:'rotate(-8deg)'}}>
-              <div className="eyebrow text-navy/55 mb-0.5">Calibrated to</div>
-              <div className="serif text-navy text-[14px]">Prof. Ramirez · 11 yrs</div>
-            </FloatingBadge>
+          <p className="mt-8 max-w-[580px] mx-auto text-[18px] leading-relaxed text-navy/75">
+            Upload graded coursework from any LMS. Regrade reads every rubric line, surfaces what's worth appealing, and drafts the email — in your voice.
+          </p>
+
+          <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center items-center">
+            <JoinWaitlistButton size="lg">Join the Waitlist</JoinWaitlistButton>
+            <a href="#how" className="cta-outline cta-glow--lg">
+              See How It Works
+              <svg width="15" height="15" viewBox="0 0 14 14" fill="none" aria-hidden>
+                <path d="M2 7h10m-4-4 4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </a>
           </div>
-          <div className="lg:hidden flex justify-center"><PhoneMockup /></div>
+
+          <p className="mt-6 text-[13px] text-navy/50">
+            Free to join · No credit card · Summer 2026 iOS launch
+          </p>
         </div>
+
+        <div className="relative mt-16 hidden lg:block h-[420px] max-w-[900px] mx-auto">
+          <PaperPeek />
+          <div className="absolute right-4 top-2"><PhoneMockup /></div>
+          <GradeChip />
+          <FloatingBadge style={{left: 0, bottom: 20, transform: 'rotate(-8deg)'}}>
+            <div className="eyebrow text-navy/55 mb-0.5">Calibrated to</div>
+            <div className="serif text-navy text-[14px]">Prof. Ramirez · 11 yrs</div>
+          </FloatingBadge>
+        </div>
+        <div className="lg:hidden flex justify-center mt-10"><PhoneMockup /></div>
       </div>
       <div className="pointer-events-none absolute -bottom-40 -right-40 w-[680px] h-[680px] rounded-full"
         style={{background:'radial-gradient(closest-side, rgba(125,211,252,.22), rgba(79,168,224,0) 70%)'}}></div>

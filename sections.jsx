@@ -3,40 +3,43 @@
 function HowItWorks() {
   const cards = [
     {
-      n: '01', title: 'Upload graded work.',
-      body: "PDF export or photos from Gradescope, Canvas, Moodle, Brightspace, Turnitin, Teams, Schoology, or marked paper — with rubric and feedback visible.",
-      art: <SnapArt />,
+      n: '01', title: 'Upload graded work',
+      body: "PDF or photos from Gradescope, Canvas, Moodle, or marked paper — with rubric and feedback visible.",
     },
     {
-      n: '02', title: 'Get your Verdict.',
-      body: "AI reads every mark and comment, builds a teacher grading profile, flags unfair deductions, and shows where it's confident vs. where you should double-check.",
-      art: <RubricArt />,
+      n: '02', title: 'Get your Verdict',
+      body: "AI reads every mark and comment, flags unfair deductions, and shows where it's confident vs. where to double-check.",
     },
     {
-      n: '03', title: 'Send your appeal.',
-      body: "Evidence summary and a respectful draft in your voice. Edit everything, then send from your own inbox — Regrade never sends for you.",
-      art: <DraftArt />,
+      n: '03', title: 'Send your appeal',
+      body: "Evidence summary and a respectful draft in your voice. Edit everything, then send from your own inbox.",
     },
   ];
   return (
-    <section data-screen-label="04 How it works" className="relative max-w-[1280px] mx-auto px-6 lg:px-10 py-24 lg:py-32">
-      <Eyebrow>How it works</Eyebrow>
-      <h2 className="serif text-navy text-[48px] md:text-[80px] leading-[1.0] tracking-[-0.025em] mt-3 max-w-[1100px]">
-        <DancyHeading text="Upload." /> <DancyHeading text="Understand." /> <br/><Em>Appeal fairly.</Em>
+    <section data-screen-label="03 How it works" className="relative max-w-[1280px] mx-auto px-6 lg:px-10 py-24 lg:py-32">
+      <Eyebrow>Simple process</Eyebrow>
+      <h2 className="serif text-navy text-[44px] md:text-[64px] leading-[1.02] tracking-[-0.025em] mt-3 max-w-[900px]">
+        How it <Em>works</Em>
       </h2>
-      <p className="mt-5 max-w-[640px] text-[16px] text-navy/65 leading-relaxed">
-        Rubric-aware analysis and an appeal draft — not a generic chatbot reply. Built for students who want evidence, not hype.
+      <p className="mt-5 max-w-[560px] text-[16px] text-navy/65 leading-relaxed">
+        Three simple steps to start appealing fairly
       </p>
 
-      <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
-        {cards.map((c, i) => (
-          <Glass key={c.n} className="p-7 relative tilt-card" style={{transform:`translateY(${i*-14}px)`}}>
-            <div className="serif italic text-[60px] leading-none" style={{color:'var(--cyan)'}}>{c.n}</div>
-            <h3 className="serif text-navy text-[26px] leading-tight mt-3">{c.title}</h3>
+      <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-8">
+        {cards.map((c) => (
+          <div key={c.n} className="text-center md:text-left">
+            <div className="inline-flex items-center justify-center w-12 h-12 rounded-full mb-4"
+              style={{ background: 'linear-gradient(145deg,#7DD3FC,#4FA8E0)', boxShadow: '0 4px 16px rgba(79,168,224,.3)' }}>
+              <span className="serif text-cream text-[18px] font-medium">{c.n.replace('0','')}</span>
+            </div>
+            <h3 className="serif text-navy text-[22px] leading-tight">{c.title}</h3>
             <p className="text-[14.5px] text-navy/65 mt-2 leading-relaxed">{c.body}</p>
-            <div className="mt-6">{c.art}</div>
-          </Glass>
+          </div>
         ))}
+      </div>
+
+      <div className="mt-12 flex justify-center">
+        <JoinWaitlistButton size="lg">Join the Waitlist</JoinWaitlistButton>
       </div>
     </section>
   );

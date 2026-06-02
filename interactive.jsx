@@ -142,6 +142,13 @@ function InteractiveDemo() {
           </div>
         </div>
       </div>
+      <div className="mt-14 flex flex-col items-center text-center">
+        <p className="serif text-navy text-[24px] md:text-[32px] tracking-[-0.02em]">Ready to try it for real?</p>
+        <p className="mt-2 text-[15px] text-navy/65">Join the waitlist — free, Summer 2026.</p>
+        <div className="mt-6">
+          <JoinWaitlistButton size="lg">Join the Waitlist</JoinWaitlistButton>
+        </div>
+      </div>
     </section>
   );
 }

@@ -67,18 +67,17 @@ function FloatingNav() {
           WebkitBackdropFilter:'blur(20px) saturate(180%)',
           boxShadow:'0 1px 0 rgba(255,255,255,.6) inset, 0 12px 40px -10px rgba(10,31,68,.18)',
         }}>
-        <div className="pl-2 pr-1 shrink-0"><RegradeLogo size="nav" /></div>
-        <div className="hidden md:flex items-center gap-1 text-[12px] text-navy/70 pr-2">
-          <a href="#impact" className="px-2.5 py-1 rounded-full hover:bg-navy/5">Impact</a>
+        <div className="hidden md:flex items-center gap-1 text-[12px] text-navy/70 pl-2 pr-2">
           <a href="#how" className="px-2.5 py-1 rounded-full hover:bg-navy/5">How</a>
-          <a href="#intelligence" className="px-2.5 py-1 rounded-full hover:bg-navy/5">Technology</a>
+          <a href="#compare" className="px-2.5 py-1 rounded-full hover:bg-navy/5">Why</a>
+          <a href="#waitlist-form" className="px-2.5 py-1 rounded-full hover:bg-navy/5">Waitlist</a>
           <a href="#faq" className="px-2.5 py-1 rounded-full hover:bg-navy/5">FAQ</a>
         </div>
-        <a href="#cta-section" className="group relative overflow-hidden rounded-full px-4 h-9 inline-flex items-center gap-1.5 text-[12.5px] font-medium text-cream"
-          style={{background:'linear-gradient(180deg,#4FA8E0,#2C7FB8)', boxShadow:'0 0 0 1px rgba(125,211,252,.4), 0 8px 20px -8px rgba(79,168,224,.5)'}}>
-          <span>Join waitlist</span>
-          <svg width="11" height="11" viewBox="0 0 14 14" fill="none">
-            <path d="M2 7h10m-4-4 4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+        <a href="#waitlist-form" className="cta-glow cta-glow--sm !h-9 !px-4 !text-[12px]">
+          <span className="cta-glow-shine" aria-hidden />
+          <span className="relative z-10">Join waitlist</span>
+          <svg width="11" height="11" viewBox="0 0 14 14" fill="none" aria-hidden>
+            <path d="M2 7h10m-4-4 4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </a>
       </div>

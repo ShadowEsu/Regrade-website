@@ -94,10 +94,10 @@
           wrap.innerHTML = '<p class="empty">No local entries yet. Submit the waitlist on the main site from this device, or configure Web3Forms for full capture.</p>';
           return;
         }
-        var h = '<table><thead><tr><th>Time (UTC)</th><th>Name</th><th>Email</th><th>Source</th></tr></thead><tbody>';
+        var h = '<table><thead><tr><th>Time (UTC)</th><th>Name</th><th>Email</th><th>Phone</th><th>Interested</th><th>Referral</th><th>Source</th></tr></thead><tbody>';
         for (var i = rows.length - 1; i >= 0; i--) {
           var r = rows[i];
-          h += '<tr><td>' + escHtml(r.ts) + '</td><td>' + escHtml(r.name) + '</td><td>' + escHtml(r.email) + '</td><td>' + escHtml(r.source) + '</td></tr>';
+          h += '<tr><td>' + escHtml(r.ts) + '</td><td>' + escHtml(r.name) + '</td><td>' + escHtml(r.email) + '</td><td>' + escHtml(r.phone) + '</td><td>' + escHtml(r.interestedTime) + '</td><td>' + escHtml(r.referral) + '</td><td>' + escHtml(r.source) + '</td></tr>';
         }
         h += '</tbody></table>';
         wrap.innerHTML = h;
@@ -105,10 +105,10 @@
 
       document.getElementById('btn-csv').onclick = function () {
         var rows = read();
-        var lines = ['timestamp,name,email,source'];
+        var lines = ['timestamp,name,email,phone,interestedTime,referral,source'];
         for (var i = 0; i < rows.length; i++) {
           var r = rows[i];
-          lines.push(['"' + esc(r.ts) + '"', '"' + esc(r.name) + '"', '"' + esc(r.email) + '"', '"' + esc(r.source) + '"'].join(','));
+          lines.push(['"' + esc(r.ts) + '"', '"' + esc(r.name) + '"', '"' + esc(r.email) + '"', '"' + esc(r.phone) + '"', '"' + esc(r.interestedTime) + '"', '"' + esc(r.referral) + '"', '"' + esc(r.source) + '"'].join(','));
         }
         var blob = new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8' });
         var a = document.createElement('a');

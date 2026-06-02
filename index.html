@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Regrade — Appeal an unfair grade in 60 seconds</title>
+<title>Regrade — Join the Waitlist | Appeal Unfair Grades with AI</title>
 <link rel="icon" href="logo.png" type="image/png" />
 <link rel="apple-touch-icon" href="logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,9 +31,64 @@
     --cream-40:rgba(255,255,255,.4);
   }
   html,body{margin:0;padding:0;color:var(--ink);font-family:"Geist","Inter",ui-sans-serif,system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-  .regrade-logo{object-fit:contain;vertical-align:middle;max-width:none}
-  header .regrade-logo{height:52px}
-  @media (min-width:768px){header .regrade-logo{height:56px}}
+  .regrade-logo{object-fit:contain;vertical-align:middle;max-width:none;filter:drop-shadow(0 4px 12px rgba(10,31,68,.12))}
+  .regrade-logo-halo{
+    filter:drop-shadow(0 0 28px rgba(125,211,252,.45)) drop-shadow(0 8px 24px rgba(10,31,68,.15));
+  }
+  .hero-logo-single{height:clamp(80px,14vw,112px)!important}
+  header .regrade-logo{height:64px}
+  @media (min-width:768px){header .regrade-logo{height:72px}}
+  .cta-glow{
+    position:relative;overflow:hidden;
+    height:48px;padding:0 1.5rem;border-radius:999px;
+    font-size:14px;color:#fff;
+    background:linear-gradient(135deg,#7DD3FC 0%,#4FA8E0 42%,#2C7FB8 100%);
+    border:1px solid rgba(255,255,255,.35);
+    box-shadow:
+      0 0 0 1px rgba(79,168,224,.25),
+      0 1px 0 rgba(255,255,255,.4) inset,
+      0 4px 14px rgba(79,168,224,.35),
+      0 12px 32px -8px rgba(79,168,224,.45);
+    transition:transform .25s ease,box-shadow .25s ease,filter .25s ease;
+  }
+  .cta-glow--sm{height:40px;padding:0 1.15rem;font-size:13px}
+  .cta-glow--lg{height:56px;padding:0 2rem;font-size:16px}
+  .cta-glow.w-full{width:100%}
+  a.cta-glow{text-decoration:none}
+  .cta-glow:hover:not(:disabled){
+    transform:translateY(-2px);
+    filter:brightness(1.06);
+    box-shadow:
+      0 0 0 1px rgba(125,211,252,.5),
+      0 1px 0 rgba(255,255,255,.5) inset,
+      0 8px 20px rgba(79,168,224,.45),
+      0 20px 48px -12px rgba(79,168,224,.55),
+      0 0 40px rgba(125,211,252,.35);
+  }
+  .cta-glow:active:not(:disabled){transform:translateY(0)}
+  .cta-glow-shine{
+    position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.35) 50%,transparent 65%);
+    transform:translateX(-120%);
+    transition:transform .55s ease;
+  }
+  .cta-glow:hover:not(:disabled) .cta-glow-shine{transform:translateX(120%)}
+  .cta-outline{
+    display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+    height:48px;padding:0 1.75rem;border-radius:999px;
+    font-size:14px;font-weight:600;color:var(--navy);
+    background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(248,250,252,.9));
+    border:1.5px solid rgba(79,168,224,.45);
+    box-shadow:0 1px 0 rgba(255,255,255,.8) inset,0 6px 20px -8px rgba(10,31,68,.12);
+    transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease,background .25s ease;
+  }
+  .cta-outline.cta-glow--lg{height:56px;padding:0 2rem;font-size:16px}
+  .cta-outline:hover{
+    transform:translateY(-2px);
+    border-color:rgba(79,168,224,.75);
+    box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 8px 28px -10px rgba(79,168,224,.35);
+    background:#fff;
+  }
   html{scroll-behavior:smooth}
   body{
     background:
@@ -266,6 +321,12 @@
     background:linear-gradient(120deg,rgba(79,168,224,.12),rgba(248,245,238,.88));
     border:1px solid rgba(79,168,224,.22);
   }
+  .comparison-table{border-collapse:separate;border-spacing:0;border-radius:16px;overflow:hidden;border:1px solid var(--ink-10)}
+  .comparison-table th,.comparison-table td{padding:14px 16px;border-bottom:1px solid var(--ink-10);background:#fff}
+  .comparison-table thead th{font-size:12px;font-weight:600;color:var(--ink-60);text-transform:uppercase;letter-spacing:.06em;background:#F8F9FB}
+  .comparison-table tbody tr:last-child td{border-bottom:none}
+  .comparison-table .comparison-highlight{background:rgba(125,211,252,.08);border-left:2px solid var(--cyan);border-right:2px solid var(--cyan)}
+  .comparison-table-wrap{border-radius:16px;box-shadow:0 8px 32px -12px rgba(10,31,68,.12)}
 </style>
 
 <script src="https://cdn.tailwindcss.com"></script>
@@ -303,6 +364,7 @@
 <script src="site-config.js"></script>
 <script type="text/babel" src="tweaks-panel.jsx"></script>
 <script type="text/babel" src="components.jsx"></script>
+<script type="text/babel" src="waitlist-sections.jsx"></script>
 <script type="text/babel" src="beautify.jsx"></script>
 <script type="text/babel" src="hero.jsx"></script>
 <script type="text/babel" src="streaming.jsx"></script>

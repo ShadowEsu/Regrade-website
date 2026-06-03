@@ -2,378 +2,904 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Regrade — Join the Waitlist | Appeal Unfair Grades with AI</title>
-<link rel="icon" href="logo.png" type="image/png" />
-<link rel="apple-touch-icon" href="logo.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600;1,9..144,700&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --navy:#0A1F44;
-    --navy-2:#1B3464;
-    --navy-deep:#06163A;
-    --cyan:#4FA8E0;
-    --cyan-bright:#7DD3FC;
-    --cream:#FFFFFF;
-    --cream-2:#FFFFFF;
-    --cream-3:#FFFFFF;
-    --cream-warm:#FFFFFF;
-    --coral:#E27D6B;
-    --ink:#0A1F44;
-    --ink-60:rgba(10,31,68,.6);
-    --ink-40:rgba(10,31,68,.4);
-    --ink-20:rgba(10,31,68,.18);
-    --ink-10:rgba(10,31,68,.1);
-    --ink-06:rgba(10,31,68,.06);
-    --cream-60:rgba(255,255,255,.6);
-    --cream-40:rgba(255,255,255,.4);
-  }
-  html,body{margin:0;padding:0;color:var(--ink);font-family:"Geist","Inter",ui-sans-serif,system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-  .regrade-logo{object-fit:contain;vertical-align:middle;max-width:none;filter:drop-shadow(0 4px 12px rgba(10,31,68,.12))}
-  .regrade-logo-halo{
-    filter:drop-shadow(0 0 28px rgba(125,211,252,.45)) drop-shadow(0 8px 24px rgba(10,31,68,.15));
-  }
-  .hero-logo-single{height:clamp(80px,14vw,112px)!important}
-  header .regrade-logo{height:64px}
-  @media (min-width:768px){header .regrade-logo{height:72px}}
-  .cta-glow{
-    position:relative;overflow:hidden;
-    height:48px;padding:0 1.5rem;border-radius:999px;
-    font-size:14px;color:#fff;
-    background:linear-gradient(135deg,#7DD3FC 0%,#4FA8E0 42%,#2C7FB8 100%);
-    border:1px solid rgba(255,255,255,.35);
-    box-shadow:
-      0 0 0 1px rgba(79,168,224,.25),
-      0 1px 0 rgba(255,255,255,.4) inset,
-      0 4px 14px rgba(79,168,224,.35),
-      0 12px 32px -8px rgba(79,168,224,.45);
-    transition:transform .25s ease,box-shadow .25s ease,filter .25s ease;
-  }
-  .cta-glow--sm{height:40px;padding:0 1.15rem;font-size:13px}
-  .cta-glow--lg{height:56px;padding:0 2rem;font-size:16px}
-  .cta-glow.w-full{width:100%}
-  a.cta-glow{text-decoration:none}
-  .cta-glow:hover:not(:disabled){
-    transform:translateY(-2px);
-    filter:brightness(1.06);
-    box-shadow:
-      0 0 0 1px rgba(125,211,252,.5),
-      0 1px 0 rgba(255,255,255,.5) inset,
-      0 8px 20px rgba(79,168,224,.45),
-      0 20px 48px -12px rgba(79,168,224,.55),
-      0 0 40px rgba(125,211,252,.35);
-  }
-  .cta-glow:active:not(:disabled){transform:translateY(0)}
-  .cta-glow-shine{
-    position:absolute;inset:0;pointer-events:none;
-    background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.35) 50%,transparent 65%);
-    transform:translateX(-120%);
-    transition:transform .55s ease;
-  }
-  .cta-glow:hover:not(:disabled) .cta-glow-shine{transform:translateX(120%)}
-  .cta-outline{
-    display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
-    height:48px;padding:0 1.75rem;border-radius:999px;
-    font-size:14px;font-weight:600;color:var(--navy);
-    background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(248,250,252,.9));
-    border:1.5px solid rgba(79,168,224,.45);
-    box-shadow:0 1px 0 rgba(255,255,255,.8) inset,0 6px 20px -8px rgba(10,31,68,.12);
-    transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease,background .25s ease;
-  }
-  .cta-outline.cta-glow--lg{height:56px;padding:0 2rem;font-size:16px}
-  .cta-outline:hover{
-    transform:translateY(-2px);
-    border-color:rgba(79,168,224,.75);
-    box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 8px 28px -10px rgba(79,168,224,.35);
-    background:#fff;
-  }
-  html{scroll-behavior:smooth}
-  body{
-    background:
-      radial-gradient(1200px 800px at 80% -10%, rgba(125,211,252,.06), transparent 60%),
-      #ffffff;
-    background-attachment:fixed;
-  }
-  body{overflow-x:hidden}
-  .serif{font-family:"Fraunces",ui-serif,Georgia,serif;font-feature-settings:"ss01","ss02"}
-  .mono{font-family:"Geist Mono",ui-monospace,monospace}
-  .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:500}
-  .tnum{font-variant-numeric:tabular-nums}
-  .grain::before{
-    content:"";position:absolute;inset:0;pointer-events:none;opacity:.32;mix-blend-mode:multiply;
-    background-image:url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.04  0 0 0 0 0.12  0 0 0 0 0.27  0 0 0 .35 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    background-size:160px 160px;
-    animation:grain 8s steps(8) infinite;
-  }
-  .grain-fixed{
-    position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.06;mix-blend-mode:multiply;
-    background-image:url("data:image/svg+xml;utf8,<svg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.04  0 0 0 0 0.12  0 0 0 0 0.27  0 0 0 .4 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    background-size:200px 200px;
-    animation:grainDrift 14s linear infinite;
-  }
-  @keyframes grain{
-    0%{transform:translate(0,0)}10%{transform:translate(-5%,-2%)}20%{transform:translate(-10%,2%)}
-    30%{transform:translate(3%,-3%)}40%{transform:translate(-2%,4%)}50%{transform:translate(-4%,-2%)}
-    60%{transform:translate(4%,3%)}70%{transform:translate(-3%,2%)}80%{transform:translate(2%,-3%)}
-    90%{transform:translate(-2%,-4%)}100%{transform:translate(0,0)}
-  }
-  @keyframes grainDrift{
-    0%{background-position:0 0}100%{background-position:0 -200px}
-  }
-  .aurora{position:absolute;inset:-20%;pointer-events:none;filter:blur(80px);opacity:.55;mix-blend-mode:screen}
-  .aurora .blob{position:absolute;border-radius:50%;animation:floatBlob 22s ease-in-out infinite}
-  @keyframes floatBlob{
-    0%,100%{transform:translate(0,0) scale(1)}
-    33%{transform:translate(40px,-30px) scale(1.1)}
-    66%{transform:translate(-30px,40px) scale(.95)}
-  }
-  .hair{box-shadow:inset 0 0 0 1px var(--ink-20)}
-  .hair-cyan{box-shadow:inset 0 0 0 1px rgba(79,168,224,.35)}
-  .pulse-dot{position:relative}
-  .pulse-dot::before{
-    content:"";position:absolute;inset:0;border-radius:50%;background:var(--cyan);
-    animation:pulseDot 1.8s ease-out infinite;opacity:.7
-  }
-  @keyframes pulseDot{
-    0%{transform:scale(1);opacity:.7}
-    100%{transform:scale(2.6);opacity:0}
-  }
-  .breath{animation:breath 3.4s ease-in-out infinite}
-  @keyframes breath{
-    0%,100%{box-shadow:0 0 0 0 rgba(79,168,224,.35),0 8px 24px rgba(10,31,68,.18)}
-    50%{box-shadow:0 0 0 8px rgba(79,168,224,0),0 8px 30px rgba(10,31,68,.25)}
-  }
-  .caret{display:inline-block;width:.08em;background:var(--cyan);margin-left:.04em;animation:caret 1s steps(2) infinite;vertical-align:-.06em}
-  @keyframes caret{0%,49%{opacity:1}50%,100%{opacity:0}}
-  .tilt-card{transition:transform .6s cubic-bezier(.2,.7,.2,1),box-shadow .4s ease;transform-style:preserve-3d;will-change:transform}
-  .tile-flip{perspective:1200px}
-  .tile-flip .inner{position:relative;width:100%;height:100%;transition:transform .7s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d}
-  .tile-flip:hover .inner{transform:rotateY(180deg)}
-  .tile-flip .face{position:absolute;inset:0;backface-visibility:hidden;display:flex;flex-direction:column;padding:22px}
-  .tile-flip .back{transform:rotateY(180deg)}
-  .marquee{display:flex;gap:64px;animation:scrollX 38s linear infinite;width:max-content}
-  .marquee-mask{mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
-  @keyframes scrollX{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-  .scrollglow{position:absolute;width:560px;height:560px;border-radius:50%;pointer-events:none;
-    background:radial-gradient(closest-side,rgba(125,211,252,.22),rgba(79,168,224,0) 65%);
-    filter:blur(8px);left:var(--mx,50%);top:var(--my,50%);transform:translate(-50%,-50%);
-    transition:opacity .3s;opacity:0;mix-blend-mode:screen;z-index:1}
-  .cell:hover .scrollglow{opacity:1}
-  /* Pulsing cyan italic emphasis */
-  .pulse-em{position:relative;display:inline-block;color:var(--cyan)}
-  .pulse-em::after{
-    content:"";position:absolute;left:-.04em;right:-.04em;top:-.06em;bottom:-.04em;border-radius:6px;z-index:-1;
-    background:radial-gradient(closest-side, rgba(125,211,252,.35), rgba(125,211,252,0) 70%);
-    filter:blur(6px);animation:pulseEm 3.6s ease-in-out infinite;
-  }
-  @keyframes pulseEm{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:.95;transform:scale(1.05)}}
-  .underline-cyan{position:relative;display:inline-block}
-  .underline-cyan::after{
-    content:"";position:absolute;left:0;right:0;bottom:-.18em;height:.18em;border-radius:2px;
-    background:linear-gradient(90deg,transparent, rgba(79,168,224,.0) 8%, rgba(79,168,224,.7), rgba(79,168,224,.0) 92%, transparent);
-    filter:blur(2px)
-  }
-  .glow-ring{box-shadow:0 0 0 1px rgba(79,168,224,.4),0 0 30px rgba(79,168,224,.35),0 0 60px rgba(79,168,224,.18)}
-  .smooth-shadow{box-shadow:0 1px 0 rgba(255,255,255,.6) inset, 0 1px 2px rgba(10,31,68,.04), 0 18px 44px -18px rgba(10,31,68,.18)}
-  .nav-blur{backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%)}
-  ::selection{background:rgba(79,168,224,.35);color:var(--ink)}
-  /* Hide stream caret when reduced motion preferred */
-  @media (prefers-reduced-motion: reduce){
-    *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
-  }
-  /* Magnetic button shimmer + ripple (unused — buttons stay static) */
-  @keyframes shimmerMove{0%{background-position:200% 0}100%{background-position:-100% 0}}
-  @keyframes rippleOut{0%{transform:scale(1);opacity:.55}100%{transform:scale(28);opacity:0}}
-  .magnetic-btn{transition:transform .18s cubic-bezier(.2,.7,.2,1), box-shadow .3s ease}
-
-  /* Value perk chips — scannable, no fake social counts */
-  .perk-chip{
-    display:flex;align-items:flex-start;gap:12px;padding:14px 16px;border-radius:16px;
-    background:linear-gradient(145deg, rgba(255,255,255,.72), rgba(248,245,238,.5));
-    border:1px solid rgba(79,168,224,.22);
-    box-shadow:0 1px 0 rgba(255,255,255,.8) inset, 0 10px 28px -16px rgba(10,31,68,.12);
-  }
-  .perk-chip-icon{
-    width:36px;height:36px;border-radius:12px;flex-shrink:0;
-    display:grid;place-items:center;
-    background:linear-gradient(145deg,#7DD3FC,#4FA8E0);
-    color:#F8F5EE;font-size:15px;font-weight:600;
-    box-shadow:0 4px 14px -4px rgba(79,168,224,.55);
-  }
-  .perk-chip-vivid{
-    background:linear-gradient(120deg, rgba(125,211,252,.18), rgba(242,237,224,.85));
-    border-color:rgba(125,211,252,.45);
-  }
-
-  /* Cursor blob */
-  .cursor-blob{position:fixed;width:520px;height:520px;border-radius:50%;pointer-events:none;
-    left:0;top:0;transform:translate(-50%,-50%);z-index:1;mix-blend-mode:screen;
-    background:radial-gradient(closest-side,rgba(125,211,252,.28),rgba(79,168,224,0) 70%);
-    filter:blur(8px);transition:opacity .4s ease;will-change:transform}
-
-  /* Scroll progress bar */
-  .scrollbar{position:fixed;top:0;left:0;height:2px;z-index:50;
-    background:linear-gradient(90deg,#7DD3FC,#4FA8E0);
-    box-shadow:0 0 12px rgba(125,211,252,.6);transform-origin:left;transform:scaleX(0);
-    transition:transform .12s linear}
-
-  /* Letter dance on headline hover */
-  .word-hover .letter{display:inline-block;transition:transform .35s cubic-bezier(.2,.7,.2,1), color .35s ease}
-  .word-hover:hover .letter{color:var(--cyan)}
-  .word-hover:hover .letter:nth-child(3n){transform:translateY(-6px)}
-  .word-hover:hover .letter:nth-child(3n+1){transform:translateY(4px)}
-  .word-hover:hover .letter:nth-child(3n+2){transform:translateY(-2px) rotate(-3deg)}
-
-  /* Whole-hero soft entrance — opt-in, JS-controlled */
-  .hero-fadein{animation:heroFade .9s ease-out both}
-  @keyframes heroFade{0%{opacity:0;transform:translateY(14px)}100%{opacity:1;transform:translateY(0)}}
-
-  /* Hero entrance */
-  @keyframes riseIn{
-    0%{opacity:0;transform:translateY(28px) skewY(2deg);filter:blur(8px)}
-    100%{opacity:1;transform:translateY(0) skewY(0);filter:blur(0)}
-  }
-  .rise-word{display:inline-block;animation:riseIn .9s cubic-bezier(.2,.7,.2,1) both}
-  @media (prefers-reduced-motion: reduce){
-    .rise-word{animation:none !important;opacity:1 !important;transform:none !important;filter:none !important}
-  }
-
-  /* Drag carousel */
-  .drag-zone{cursor:grab;user-select:none}
-  .drag-zone:active{cursor:grabbing}
-
-  @keyframes scrollHintDot{0%{transform:translateY(-100%)}100%{transform:translateY(250%)}}
-
-  /* Confetti */
-  .conf{position:fixed;pointer-events:none;inset:0;z-index:2147483640}
-  .conf span{position:absolute;width:8px;height:14px;top:50%;left:50%;border-radius:2px;opacity:0;
-    animation:confFly 1.4s cubic-bezier(.2,.7,.2,1) forwards}
-  @keyframes confFly{
-    0%{opacity:1;transform:translate(0,0) rotate(0)}
-    100%{opacity:0;transform:translate(var(--dx),var(--dy)) rotate(var(--rot))}
-  }
-
-  /* Technology section — terminal / console aesthetic */
-  .tech-section{
-    border-top:1px solid var(--ink-10);
-    background:linear-gradient(180deg,#EDE8DC 0%,#E4DDD0 45%,#F0EBE2 100%);
-  }
-  .tech-section-grid{
-    background-image:
-      linear-gradient(rgba(10,31,68,.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(10,31,68,.04) 1px, transparent 1px);
-    background-size:32px 32px;
-    opacity:.6;
-  }
-  .tech-panel{
-    background:linear-gradient(165deg,#0E2350 0%,#0A1F44 55%,#081A38 100%);
-    border:1px solid rgba(125,211,252,.22);
-    border-radius:16px;
-    box-shadow:0 1px 0 rgba(255,255,255,.06) inset, 0 28px 64px -32px rgba(10,31,68,.55);
-  }
-  .tech-panel-glow{box-shadow:0 0 0 1px rgba(125,211,252,.15), 0 24px 56px -24px rgba(79,168,224,.35), inset 0 1px 0 rgba(255,255,255,.05)}
-  .tech-step{
-    background:rgba(248,245,238,.04);
-    border:1px solid rgba(125,211,252,.14);
-    transition:border-color .2s ease, background .2s ease;
-  }
-  .tech-step:hover{border-color:rgba(125,211,252,.35);background:rgba(125,211,252,.06)}
-  .tech-pipeline-btn{
-    background:rgba(248,245,238,.03);
-    border:1px solid rgba(248,245,238,.08);
-  }
-  .tech-pipeline-btn[data-active="true"]{
-    background:rgba(125,211,252,.12);
-    border-color:rgba(125,211,252,.45);
-    box-shadow:0 0 24px -8px rgba(125,211,252,.35);
-  }
-  .tech-mode-chip{
-    background:linear-gradient(145deg,rgba(255,255,255,.75),rgba(248,245,238,.5));
-    border:1px solid rgba(79,168,224,.18);
-  }
-  .platform-card{
-    padding:16px 18px;border-radius:16px;
-    background:linear-gradient(145deg,rgba(255,255,255,.92),rgba(248,245,238,.55));
-    border:1px solid rgba(79,168,224,.16);
-    box-shadow:0 1px 0 rgba(255,255,255,.85) inset, 0 12px 28px -18px rgba(10,31,68,.12);
-    transition:border-color .2s ease, box-shadow .2s ease;
-  }
-  .platform-card:hover{
-    border-color:rgba(125,211,252,.45);
-    box-shadow:0 1px 0 rgba(255,255,255,.9) inset, 0 16px 36px -16px rgba(79,168,224,.2);
-  }
-  .platform-card-icon{
-    width:40px;height:40px;border-radius:12px;flex-shrink:0;
-    display:grid;place-items:center;color:#F8F5EE;
-    background:linear-gradient(145deg,#0E2350,#1B3464);
-    box-shadow:0 4px 12px -4px rgba(10,31,68,.35);
-  }
-  .platform-card-tag{
-    font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;
-    padding:2px 8px;border-radius:999px;
-    color:rgba(10,31,68,.55);
-    background:rgba(125,211,252,.12);
-    border:1px solid rgba(79,168,224,.2);
-  }
-  .tech-cta-bar{
-    background:linear-gradient(120deg,rgba(79,168,224,.12),rgba(248,245,238,.88));
-    border:1px solid rgba(79,168,224,.22);
-  }
-  .comparison-table{border-collapse:separate;border-spacing:0;border-radius:16px;overflow:hidden;border:1px solid var(--ink-10)}
-  .comparison-table th,.comparison-table td{padding:14px 16px;border-bottom:1px solid var(--ink-10);background:#fff}
-  .comparison-table thead th{font-size:12px;font-weight:600;color:var(--ink-60);text-transform:uppercase;letter-spacing:.06em;background:#F8F9FB}
-  .comparison-table tbody tr:last-child td{border-bottom:none}
-  .comparison-table .comparison-highlight{background:rgba(125,211,252,.08);border-left:2px solid var(--cyan);border-right:2px solid var(--cyan)}
-  .comparison-table-wrap{border-radius:16px;box-shadow:0 8px 32px -12px rgba(10,31,68,.12)}
-</style>
-
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          navy: "#0A1F44",
-          navy2: "#1B3464",
-          cyan2: "#4FA8E0",
-          cyanglow: "#7DD3FC",
-          cream: "#FFFFFF",
-          cream2: "#FFFFFF",
-          coral: "#E27D6B",
-        },
-        fontFamily: {
-          serif: ["Fraunces","ui-serif","Georgia","serif"],
-          sans: ["Geist","ui-sans-serif","system-ui","sans-serif"],
-          mono: ["Geist Mono","ui-monospace","monospace"],
-        }
-      }
-    }
-  }
-</script>
-
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Regrade — Appeal an unfair grade in sixty seconds.</title>
+<meta name="description" content="Regrade reads your graded work against the rubric and drafts a professional grade appeal in sixty seconds." />
+<link rel="icon" type="image/png" href="/favicon.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="regrade.css?v=1" />
+  <script type="module" crossorigin src="/assets/main-DQjP1BOY.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/index.esm-BI2hndO1.js">
 </head>
 <body>
-<div class="grain-fixed"></div>
-<div id="root"></div>
+<a class="skip" href="#main">Skip to main content</a>
 
-<script src="site-config.js"></script>
-<script type="text/babel" src="tweaks-panel.jsx"></script>
-<script type="text/babel" src="components.jsx"></script>
-<script type="text/babel" src="waitlist-sections.jsx"></script>
-<script type="text/babel" src="beautify.jsx"></script>
-<script type="text/babel" src="hero.jsx"></script>
-<script type="text/babel" src="streaming.jsx"></script>
-<script type="text/babel" src="sections.jsx"></script>
-<script type="text/babel" src="platforms.jsx"></script>
-<script type="text/babel" src="engine.jsx"></script>
-<script type="text/babel" src="interactive.jsx"></script>
-<script type="text/babel" src="impact.jsx"></script>
-<script type="text/babel" src="faq-cta.jsx"></script>
-<script type="text/babel" src="app.jsx"></script>
+<!-- ============ NAV (single, frosted) ============ -->
+<header class="subnav" id="nav">
+  <div class="subnav-inner">
+    <a class="cat" href="#top" aria-label="Regrade home">
+      <img src="/logo-wordmark.png" alt="Regrade" class="nav-logo" width="160" height="44" />
+    </a>
+    <div class="links">
+      <a href="#how">How it works</a>
+      <a href="#why">Why Regrade</a>
+      <a href="#features">Features</a>
+      <a href="#stories">Stories</a>
+      <a href="#pricing">Pricing</a>
+      <a class="keep" href="/app">Sign in</a>
+      <a class="btn btn-primary keep" href="#cta">Join waitlist</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<section class="tile light hero" id="top">
+  <div class="container">
+    <span class="eyebrow reveal"><span class="dot"></span>now in private beta · iOS first</span>
+    <h1 class="t-hero reveal" style="transition-delay:.06s">Appeal an unfair grade.<br />In sixty&nbsp;seconds.</h1>
+    <p class="t-lead reveal" style="transition-delay:.12s">Regrade reads your work against the rubric and writes the email that wins the points back.</p>
+    <div class="hero-ctas reveal" style="transition-delay:.18s">
+      <a class="btn btn-primary" href="#cta">Get early access</a>
+      <a class="text-link" href="#features" style="font-size:18px">Watch it work <span class="chev" aria-hidden="true">›</span></a>
+    </div>
+
+    <div class="artifact-wrap reveal" style="transition-delay:.26s">
+      <div class="console" id="console">
+        <div class="console-bar">
+          <span class="dots"><i></i><i></i><i></i></span>
+          <span class="addr">regrade.app / appeal / draft</span>
+          <span class="live">live</span>
+        </div>
+        <div class="console-body">
+          <div class="console-left">
+            <div class="con-label">Teacher's feedback</div>
+            <div class="con-prompt">“<span id="typed"></span><span class="cursor" id="caret"></span>”</div>
+            <div class="con-meta">
+              <div>
+                <div class="k">Words</div>
+                <div class="v" id="tokCount">0</div>
+              </div>
+              <div>
+                <div class="k">Rubric scan</div>
+                <div class="v">2.1 ms</div>
+              </div>
+              <div>
+                <div class="k">Tone</div>
+                <div class="v">respectful</div>
+              </div>
+            </div>
+            <div class="route-row">
+              <button class="route-btn" id="routeBtn" type="button"><span class="rb-label">Draft appeal</span></button>
+              <span class="route-hint"><span class="kbd">⌘</span><span class="kbd">↵</span></span>
+            </div>
+          </div>
+          <div class="console-right idle" id="consoleRight">
+            <div class="con-label">Case strength <span class="tier-status" id="tierStatus">awaiting feedback</span></div>
+            <div class="tier-bar">
+              <i class="cheap" id="segCheap" style="flex:0"></i>
+              <i class="mid" id="segMid" style="flex:0"></i>
+              <i class="prem" id="segPrem" style="flex:0"></i>
+            </div>
+            <div class="tier-legend" id="tierLegend"><span>weak</span><span>fair</span><span>strong</span></div>
+
+            <div class="pick">
+              <div class="routed">Recommended outcome</div>
+              <div class="model" id="pickModel">—</div>
+              <div class="row">
+                <span id="pickCost">—</span>
+                <span id="pickLat">—</span>
+                <span class="delta" id="pickDelta">—</span>
+              </div>
+            </div>
+
+            <div class="con-foot">
+              <span class="ok" id="conFootOk">awaiting draft</span>
+              <span id="conFootReq">—</span>
+            </div>
+          </div>
+        </div>
+        <div class="demo-cursor" id="demoCursor" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 3l14 7-6 1.5L9.5 18 5 3z" fill="#1d1d1f" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ONE UPLOAD — kinetic platform wall (dark) ============ -->
+<section class="tile dark on-dark" id="how">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow"><span class="dot"></span>one upload</span>
+      <h2 class="t-display">Every gradebook. One photo.</h2>
+    </div>
+
+    <div class="endpoint reveal" style="transition-delay:.1s">
+      <div class="mwall" aria-hidden="true">
+        <div class="mwall-lanes" id="mwallLanes"></div>
+        <div class="mwall-well"></div>
+      </div>
+
+      <div class="oneline">
+        <span class="ol-kicker">snap it — any format</span>
+        <div class="ol-code"><span class="k">input</span><span class="eq">=</span><span class="str">"a photo"</span><span class="ol-caret"></span></div>
+        <div class="ol-sub">screenshots · PDFs · handwriting · math · red pen</div>
+      </div>
+    </div>
+
+    <div class="endpoint-stats reveal" style="transition-delay:.2s" aria-hidden="true">
+      <div><span class="es-num accent" data-target="12" data-suffix="+">0</span><span class="es-lbl">platforms read</span></div>
+      <div class="es-div"></div>
+      <div><span class="es-num">30+</span><span class="es-lbl">languages supported</span></div>
+      <div class="es-div"></div>
+      <div><span class="es-num">60s</span><span class="es-lbl">to a first draft</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESULT (parchment) ============ -->
+<section class="tile parchment" id="savings">
+  <div class="container" style="text-align:center">
+    <span class="eyebrow reveal"><span class="dot"></span>average result</span>
+    <div class="bignum reveal" id="savBig" style="margin:18px auto 0"><span class="num" id="savNum" data-target="73">0</span><span class="unit">%</span></div>
+    <p class="t-lead reveal" style="margin:8px auto 0;color:var(--ink-80);max-width:18ch">of appeals win points back.</p>
+  </div>
+</section>
+
+<!-- ============ WHY REGRADE ============ -->
+<section class="tile dark on-dark" id="why">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow on-dark-eyebrow"><span class="dot"></span>Why Regrade</span>
+      <h2 class="t-display on-dark">Every student deserves an advocate in the room.</h2>
+      <p class="t-lead-airy muted" style="max-width:42rem;margin-top:1rem">
+        Well-funded students have parents and advisors who know how to write the appeal email.
+        Community college, first-gen, and international students often have nobody. Regrade is that advocate — rubric-aware, polite, and fast.
+      </p>
+    </div>
+    <div class="why-stats reveal" style="transition-delay:.12s">
+      <div class="why-stat">
+        <div class="why-stat-num"><span class="why-num" data-target="73">0</span><span class="why-suf">%</span></div>
+        <p class="why-stat-cap">of students never appeal a grade they believe is unfair.</p>
+      </div>
+      <div class="why-stat">
+        <div class="why-stat-num"><span class="why-num" data-target="9">0</span><span class="why-suf">%</span></div>
+        <p class="why-stat-cap">of those who appeal do it without help from a parent or advisor.</p>
+      </div>
+      <div class="why-stat">
+        <div class="why-stat-num"><span class="why-num" data-target="60">0</span><span class="why-suf">s</span></div>
+        <p class="why-stat-cap">is all Regrade needs to read your work and draft the email.</p>
+      </div>
+    </div>
+    <div class="reveal" style="margin-top:2.5rem;text-align:center">
+      <a class="btn btn-ghost" href="#cta">Join the waitlist</a>
+      <a class="text-link on-dark" href="/app" style="margin-left:1.25rem;font-size:17px">Sign in to the app <span class="chev" aria-hidden="true">›</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURE 1 — recovery dashboard (light) ============ -->
+<section class="tile light" id="features">
+  <div class="container">
+    <div class="split reveal">
+      <div class="copy">
+        <span class="eyebrow"><span class="dot"></span>your record</span>
+        <h2 class="t-display">See every point.</h2>
+        <p class="t-lead-airy muted">Live recovery, win rate, and tone mix — down to a single appeal.</p>
+        <a class="text-link" href="#cta">Start your record <span class="chev" aria-hidden="true">›</span></a>
+      </div>
+      <div class="visual">
+        <div class="vcard cost-card" id="costCard">
+          <div class="vc-head cost-head">
+            <div>
+              <span class="vc-title">Points recovered</span>
+              <div class="cost-total"><span class="ct-cur">+</span><span id="costTotal">0</span></div>
+            </div>
+            <span class="cost-badge">▲ <span id="costBadge">0</span>% win rate</span>
+          </div>
+
+          <div class="chart2">
+            <div class="chart2-y"><span>120</span><span>80</span><span>40</span><span>0</span></div>
+            <div class="chart2-main">
+              <div class="chart2-plot" id="costPlot">
+                <span class="gridline" style="top:0"></span>
+                <span class="gridline" style="top:33.3%"></span>
+                <span class="gridline" style="top:66.6%"></span>
+                <span class="gridline" style="top:100%"></span>
+                <div class="c2col"><span class="c2base"></span><span class="c2spend" style="--h:18%"></span><span class="c2val">22</span></div>
+                <div class="c2col"><span class="c2base"></span><span class="c2spend" style="--h:33%"></span><span class="c2val">41</span></div>
+                <div class="c2col"><span class="c2base"></span><span class="c2spend" style="--h:46%"></span><span class="c2val">58</span></div>
+                <div class="c2col"><span class="c2base"></span><span class="c2spend" style="--h:56%"></span><span class="c2val">70</span></div>
+                <div class="c2col"><span class="c2base"></span><span class="c2spend" style="--h:77%"></span><span class="c2val">96</span></div>
+                <div class="c2col current"><span class="c2base"></span><span class="c2spend" style="--h:92%"></span><span class="c2val accent">125</span></div>
+              </div>
+              <div class="chart2-x"><span>Dec</span><span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span></div>
+            </div>
+          </div>
+
+          <div class="cost-foot">
+            <div class="cost-saved"><span class="cf-num"><span id="costSaved">0</span></span><span class="cf-lbl">appeals won this term</span></div>
+            <div class="chart-key">
+              <span class="k-spend"><i></i>recovered</span>
+              <span class="k-base"><i></i>at stake</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURE 2 — appeal ledger (dark) ============ -->
+<section class="tile dark on-dark">
+  <div class="container">
+    <div class="split rev reveal">
+      <div class="copy">
+        <span class="eyebrow"><span class="dot"></span>transparency</span>
+        <h2 class="t-display">Replay any appeal.</h2>
+        <p class="t-lead-airy muted">Every appeal, its rubric basis, the email sent, and the points you won.</p>
+        <a class="text-link" href="#cta">See the appeal log <span class="chev" aria-hidden="true">›</span></a>
+      </div>
+      <div class="visual">
+        <div class="tilt-wrap">
+        <div class="vcard dark tilt" id="routeCard">
+          <div class="tilt-glare" aria-hidden="true"></div>
+          <div class="vc-head"><span class="vc-title">Recent appeals</span><span class="vc-title" style="color:#54c98a">live</span></div>
+          <div class="ledger">
+            <div class="lrow"><span class="task"><span class="tdot mid"></span>Calc II · PS4</span><span class="model">regraded</span><span class="delta">+<span class="dv" data-val="8">0</span> pts</span></div>
+            <div class="lrow"><span class="task"><span class="tdot prem"></span>Orgo · Exam 2</span><span class="model">partial</span><span class="delta">+<span class="dv" data-val="5">0</span> pts</span></div>
+            <div class="lrow"><span class="task"><span class="tdot cheap"></span>Stats · HW3</span><span class="model">regraded</span><span class="delta">+<span class="dv" data-val="6">0</span> pts</span></div>
+            <div class="lrow"><span class="task"><span class="tdot mid"></span>English · Essay</span><span class="model">second read</span><span class="delta">+<span class="dv" data-val="4">0</span> pts</span></div>
+            <div class="lrow"><span class="task"><span class="tdot cheap"></span>Discrete · PS2</span><span class="model">regraded</span><span class="delta">+<span class="dv" data-val="12">0</span> pts</span></div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURE 3 — tone guardrail (full-bleed scroll scene) ============ -->
+<section class="gr-scroll" id="grScroll">
+  <div class="gr-pin on-dark">
+    <div class="gr-bg"></div>
+    <div class="gr-grid"></div>
+    <div class="gr-glow" id="grGlow"></div>
+    <div class="gr-vignette"></div>
+
+    <div class="gr-head">
+      <span class="eyebrow on-dark-eyebrow"><span class="dot"></span>tone guardrail</span>
+    </div>
+
+    <!-- PROMPT — origin at the left edge -->
+    <div class="gr-prompt" id="grPrompt">
+      <div class="gr-prompt-head"><span class="gr-mono">YOUR FIRST INSTINCT</span><span class="gr-mono dim">38 words</span></div>
+      <p class="gr-prompt-text">“This grade is completely unfair and I demand you regrade it. I clearly answered the question and you took points for no reason.”</p>
+      <div class="gr-prompt-tags"><span class="gr-tag">draft</span><span class="gr-tag">emotional</span><span class="gr-tag warn">high-stakes</span></div>
+    </div>
+
+    <!-- SMALL MODEL carrier -->
+    <div class="gr-carrier sm" id="grSm">
+      <span class="gr-mono gr-carrier-cap">first draft</span>
+      <div class="gr-chip cheap">
+        <span class="gr-chip-node"><i></i><i></i></span>
+        <span class="gr-chip-text"><span class="gr-chip-name">angry-draft</span><span class="gr-mono gr-chip-tier">RAW · too hot to send</span></span>
+      </div>
+      <span class="gr-answer">unsent</span>
+    </div>
+
+    <!-- BIG MODEL carrier -->
+    <div class="gr-carrier lg" id="grLg">
+      <span class="gr-mono gr-carrier-cap">recalibrated</span>
+      <div class="gr-chip prem">
+        <span class="gr-chip-node big"><i></i><i></i><i></i><i></i></span>
+        <span class="gr-chip-text"><span class="gr-chip-name">calibrated-v3</span><span class="gr-mono gr-chip-tier">READY · respectful &amp; rubric-cited</span></span>
+      </div>
+      <span class="gr-answer">ready to send</span>
+    </div>
+
+    <!-- GUARDRAIL — full-height barrier near the right edge -->
+    <div class="gr-gate" id="grGate">
+      <div class="gr-gate-plate">
+        <span class="gr-mono gr-gate-title">TONE GUARDRAIL</span>
+        <span class="gr-mono gr-gate-thresh">send&nbsp;≥&nbsp;0.85</span>
+        <span class="gr-gate-score">
+          <span class="gr-gate-fail">0.62</span>
+          <span class="gr-gate-pass">0.94</span>
+        </span>
+      </div>
+      <span class="gr-beam top"></span>
+      <span class="gr-beam bot"></span>
+      <span class="gr-seam"></span>
+    </div>
+
+    <div class="gr-cap" id="grCap"><span class="gr-cap-text"></span></div>
+
+    <div class="gr-rail" aria-hidden="true"><span class="gr-rail-fill" id="grRailFill"></span></div>
+    <span class="gr-scrollhint" id="grHint">scroll to play <span class="gr-chev">↓</span></span>
+  </div>
+</section>
+
+<!-- ============ STUDENT STORY (dark) ============ -->
+<section class="tile dark on-dark" id="stories">
+  <div class="container">
+    <div class="quote-block reveal">
+      <span class="eyebrow"><span class="dot"></span>student story</span>
+      <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+      <blockquote class="quote-big">I knew the grade was wrong. I just didn&rsquo;t know how to <span class="hl">say it</span>. Regrade said it for me — and I got the points back.</blockquote>
+      <div class="quote-by">
+        <span class="avatar" aria-hidden="true">MR</span>
+        <span class="meta">
+          <span class="nm">Maya Rivera</span>
+          <span class="rl">Sophomore · first-gen · Bio major</span>
+        </span>
+      </div>
+      <div class="quote-stats">
+        <div><span class="qs-num blue">+8 pts</span><span class="qs-lbl">recovered on PS4</span></div>
+        <div><span class="qs-num">1</span><span class="qs-lbl">email sent</span></div>
+        <div><span class="qs-num">2 days</span><span class="qs-lbl">to the regrade</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE EMAIL, WRITTEN FOR YOU (darker) ============ -->
+<section class="tile darker on-dark" id="email">
+  <div class="container">
+    <div class="code-grid">
+      <div class="section-head reveal">
+        <span class="eyebrow"><span class="dot"></span>in your voice</span>
+        <h2 class="t-display">The email, written for you.</h2>
+        <p class="t-lead-airy muted">Polite, specific, rubric-cited. Yours to read and edit before it sends.</p>
+        <a class="btn btn-ghost" href="#cta" style="margin-top:24px">Get early access <span aria-hidden="true">›</span></a>
+      </div>
+      <div class="code-card reveal" style="transition-delay:.1s">
+        <div class="code-head"><i></i><i></i><i></i><span class="f">To: prof.ramirez@university.edu</span></div>
+        <pre class="code-body"><span class="cmt">Subject: Quick question on PS4 — Q2</span>
+
+Hi Professor Ramirez,
+
+Thank you for the detailed feedback on Problem
+Set 4. I wanted to ask about Q2.
+
+<span class="hl">The rubric awards full credit for a correct
+chain-rule setup, and I do show that work in
+step 3</span> — I think it may have been overlooked.
+
+Would you be open to a second look? Happy to
+stop by office hours.
+
+Thanks so much for your time,
+Maya
+
+<span class="cmt"># 142 words · tone: respectful · rubric §2 cited</span></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING (light) ============ -->
+<section class="tile light" id="pricing">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow"><span class="dot"></span>pricing</span>
+      <h2 class="t-display">Free while in beta.</h2>
+      <p class="t-lead-airy muted">Later, a small monthly fee — always free for students on aid.</p>
+    </div>
+    <div class="plan-chips">
+      <div class="plan reveal">
+        <div class="name">Student</div>
+        <div class="price">$0<span> / mo</span></div>
+        <ul>
+          <li><span class="ck">✓</span> 5 appeals a month</li>
+          <li><span class="ck">✓</span> Every platform &amp; format</li>
+        </ul>
+        <a class="btn btn-ghost" href="#cta">Join waitlist</a>
+      </div>
+      <div class="plan featured reveal" style="transition-delay:.08s">
+        <div class="name">Unlimited</div>
+        <div class="price">$6<span> / mo</span></div>
+        <ul>
+          <li><span class="ck">✓</span> Unlimited appeals</li>
+          <li><span class="ck">✓</span> Tone calibration &amp; rubric matching</li>
+        </ul>
+        <a class="btn btn-primary" href="#cta">Join waitlist</a>
+      </div>
+      <div class="plan reveal" style="transition-delay:.16s">
+        <div class="name">On aid</div>
+        <div class="price">$0</div>
+        <ul>
+          <li><span class="ck">✓</span> Everything in Unlimited</li>
+          <li><span class="ck">✓</span> Free with financial-aid status</li>
+        </ul>
+        <a class="btn btn-ghost" href="#cta">Verify &amp; join</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA BAND (parchment) ============ -->
+<section class="tile parchment cta-band" id="cta">
+  <div class="container reveal">
+    <span class="eyebrow"><span class="dot"></span>get started</span>
+    <h2 class="t-display" style="margin-top:16px">Stop accepting grades that aren&rsquo;t yours.</h2>
+    <form class="signup" id="signup">
+      <input type="email" id="signupEmail" placeholder="you@school.edu" required aria-label="Email address" />
+      <button class="btn btn-primary" type="submit">Reserve my spot</button>
+    </form>
+    <div class="cta-sub"><span class="live-dot"></span><span id="ctaCount">0</span>&nbsp;students waiting · one email when iOS opens</div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-cols">
+      <div class="brand">
+        <a href="#top" class="wordmark footer-logo-link" aria-label="Regrade home">
+          <img src="/logo-wordmark.png" alt="Regrade" class="footer-logo" width="140" height="36" />
+        </a>
+        <p>An advocate for every student. Snap your work, the rubric, and the feedback — Regrade writes the appeal a lawyer parent would.</p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <ul><li><a href="#how">How it works</a></li><li><a href="#why">Why Regrade</a></li><li><a href="#features">Features</a></li><li><a href="#pricing">Pricing</a></li><li><a href="/app">Sign in</a></li></ul>
+      </div>
+      <div>
+        <h4>Get started</h4>
+        <ul><li><a href="#cta">Join waitlist</a></li><li><a href="/app">Open app</a></li><li><a href="#stories">Student stories</a></li></ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul><li><a href="/legal/privacy.html">Privacy</a></li><li><a href="/legal/terms.html">Terms</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <span>© 2026 Regrade, Inc. Beta software — figures are illustrative.</span>
+      <span class="links"><a href="/legal/privacy.html">Privacy</a><a href="/legal/terms.html">Terms</a><a href="/app">App</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Reveal on scroll
+  (function () {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+  })();
+
+  // Re-playable count helper
+  function countTo(el, target, dur, fmt) {
+    if (!el) return;
+    fmt = fmt || function (v) { return String(v); };
+    if (el.__raf) cancelAnimationFrame(el.__raf);
+    var start = null;
+    function frame(t) {
+      if (start === null) start = t;
+      var p = Math.min(1, (t - start) / dur);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = fmt(Math.round(eased * target));
+      if (p < 1) { el.__raf = requestAnimationFrame(frame); }
+      else { el.textContent = fmt(target); el.__raf = null; }
+    }
+    el.__raf = requestAnimationFrame(frame);
+  }
+  function stopCount(el) { if (el && el.__raf) { cancelAnimationFrame(el.__raf); el.__raf = null; } }
+
+  // One upload — drifting platform-name lanes + count the stat strip
+  (function () {
+    var lanes = document.getElementById('mwallLanes');
+    if (!lanes) return;
+
+    // Platforms & formats Regrade reads. tier just tints the dot for rhythm.
+    var PLATFORMS = [
+      ['Canvas','mid'], ['Gradescope','prem'], ['Google Classroom','cheap'], ['Moodle','mid'],
+      ['Blackboard','prem'], ['D2L Brightspace','mid'], ['Turnitin','prem'], ['Schoology','cheap'],
+      ['PowerSchool','mid'], ['Sakai','cheap'], ['SpeedGrader','mid'], ['Handwritten','cheap'],
+      ['Scanned PDF','mid'], ['Screenshot','cheap'], ['Math notation','prem'], ['Cursive','cheap'],
+      ['Red-pen markup','prem'], ['Voice comments','mid'], ['Rubric tiles','mid'], ['QuickMarks','prem'],
+      ['Marking guide','cheap'], ['Annotated PDF','mid'], ['Photo','cheap'], ['Exam booklet','prem'],
+      ['Problem set','mid'], ['Lab report','cheap'], ['Essay feedback','mid'], ['Margin notes','prem'],
+      ['Comment thread','cheap'], ['Outcome rubric','mid'], ['Competencies','prem'], ['Late penalty','cheap'],
+      ['Participation','mid'], ['Group grade','cheap'], ['Curve sheet','prem'], ['Answer key','mid'],
+      ['Email feedback','cheap'], ['Office-hours note','mid'], ['Peer review','prem'], ['Self-assessment','cheap']
+    ];
+
+    var LANE_CFG = [
+      { dir: 'l', dur: 96 }, { dir: 'r', dur: 118 }, { dir: 'l', dur: 104 }, { dir: 'r', dur: 126 }
+    ];
+    var NL = LANE_CFG.length;
+    var buckets = LANE_CFG.map(function () { return ''; });
+    PLATFORMS.forEach(function (m, i) {
+      buckets[i % NL] += '<span class="m-chip ' + m[1] + '"><i></i>' + m[0] + '</span>';
+    });
+    LANE_CFG.forEach(function (cfg, i) {
+      var row = document.createElement('div');
+      row.className = 'mlane ' + cfg.dir;
+      row.style.animationDuration = cfg.dur + 's';
+      row.innerHTML = buckets[i] + buckets[i];
+      lanes.appendChild(row);
+    });
+
+    var strip = document.querySelector('.endpoint-stats');
+    if (!strip) return;
+    var num = strip.querySelector('.es-num[data-target]');
+    var target = num ? parseInt(num.getAttribute('data-target'), 10) : 0;
+    var suffix = num ? (num.getAttribute('data-suffix') || '') : '';
+    var fmt = function (v) { return v + suffix; };
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      if (num) num.textContent = fmt(target);
+      return;
+    }
+    var shown = false;
+    new IntersectionObserver(function (entries) {
+      var vis = entries[0].isIntersecting;
+      if (vis && !shown) { shown = true; if (num) countTo(num, target, 1100, fmt); }
+      else if (!vis && shown) { shown = false; if (num) { stopCount(num); num.textContent = fmt(0); } }
+    }, { threshold: 0.5 }).observe(strip);
+  })();
+
+  // Appeal ledger — 3D mouse parallax tilt + animated point deltas
+  (function () {
+    var card = document.getElementById('routeCard');
+    if (!card) return;
+    var wrap = card.parentElement;
+    var hoverable = window.matchMedia('(hover: hover)').matches;
+    var MAX = 9;
+    if (hoverable) {
+      wrap.addEventListener('mousemove', function (e) {
+        var r = card.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - 0.5;
+        var py = (e.clientY - r.top) / r.height - 0.5;
+        card.classList.add('tilting');
+        card.style.transform = 'rotateX(' + (-py * MAX).toFixed(2) + 'deg) rotateY(' + (px * MAX).toFixed(2) + 'deg)';
+        card.style.setProperty('--gx', ((px + 0.5) * 100).toFixed(1) + '%');
+        card.style.setProperty('--gy', ((py + 0.5) * 100).toFixed(1) + '%');
+      });
+      wrap.addEventListener('mouseleave', function () {
+        card.classList.remove('tilting');
+        card.style.transform = '';
+      });
+    }
+
+    var dvs = card.querySelectorAll('.dv');
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      dvs.forEach(function (d) { d.textContent = d.getAttribute('data-val'); });
+      return;
+    }
+    var shown = false;
+    new IntersectionObserver(function (entries) {
+      var vis = entries[0].isIntersecting;
+      if (vis && !shown) {
+        shown = true;
+        dvs.forEach(function (d, i) { countTo(d, parseInt(d.getAttribute('data-val'), 10), 850 + i * 70); });
+      } else if (!vis && shown) {
+        shown = false;
+        dvs.forEach(function (d) { stopCount(d); d.textContent = '0'; });
+      }
+    }, { threshold: 0.4 }).observe(card);
+  })();
+
+  // Result figure — counts to 73% every time it enters view
+  (function () {
+    var num = document.getElementById('savNum');
+    var big = document.getElementById('savBig');
+    if (!num || !big) return;
+    var target = parseInt(num.getAttribute('data-target'), 10) || 73;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { num.textContent = String(target); return; }
+    var shown = false;
+    new IntersectionObserver(function (entries) {
+      var vis = entries[0].isIntersecting;
+      if (vis && !shown) { shown = true; countTo(num, target, 1300); }
+      else if (!vis && shown) { shown = false; stopCount(num); num.textContent = '0'; }
+    }, { threshold: 0.55 }).observe(big);
+  })();
+
+  // Recovery dashboard — bars grow + figures count on entry
+  (function () {
+    var card = document.getElementById('costCard');
+    if (!card) return;
+    var badge = document.getElementById('costBadge');
+    var total = document.getElementById('costTotal');
+    var saved = document.getElementById('costSaved');
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      card.classList.add('in-view'); badge.textContent = '73'; total.textContent = '412'; saved.textContent = '37'; return;
+    }
+    var comma = function (v) { return v.toLocaleString('en-US'); };
+    var shown = false;
+    new IntersectionObserver(function (entries) {
+      var vis = entries[0].isIntersecting;
+      if (vis && !shown) {
+        shown = true;
+        card.classList.add('in-view');
+        countTo(badge, 73, 1100); countTo(total, 412, 1200, comma); countTo(saved, 37, 1400);
+      } else if (!vis && shown) {
+        shown = false;
+        card.classList.remove('in-view');
+        stopCount(badge); stopCount(total); stopCount(saved);
+        badge.textContent = '0'; total.textContent = '0'; saved.textContent = '0';
+      }
+    }, { threshold: 0.35 }).observe(card);
+  })();
+
+  // Hero console — typewriter + animated appeal-drafting demo
+  (function () {
+    var typed = document.getElementById('typed');
+    var caret = document.getElementById('caret');
+    var tok = document.getElementById('tokCount');
+    var right = document.getElementById('consoleRight');
+    var btn = document.getElementById('routeBtn');
+    var status = document.getElementById('tierStatus');
+    var legend = document.getElementById('tierLegend');
+    var segC = document.getElementById('segCheap');
+    var segM = document.getElementById('segMid');
+    var segP = document.getElementById('segPrem');
+    var cursor = document.getElementById('demoCursor');
+    var consoleEl = document.getElementById('console');
+    if (!typed || !btn) return;
+
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // tiers here = case strength distribution [weak, fair, strong]
+    var SCENES = [
+      { prompt: "Q2: −3. Show your work in step 3.",
+        tiers: [0.08, 0.22, 0.70], model: 'Partial regrade',
+        cost: '+3 pts', lat: 'respectful', delta: 'rubric §2 cited', req: 'draft_3b1f…a7' },
+      { prompt: "Marked late, but I submitted before midnight per the syllabus.",
+        tiers: [0.05, 0.18, 0.77], model: 'Full regrade',
+        cost: '+12 pts', lat: 'firm, kind', delta: 'syllabus cited', req: 'draft_8f2a…c4' },
+      { prompt: "Essay scored ‘off-topic’ — my thesis is in paragraph one.",
+        tiers: [0.12, 0.34, 0.54], model: 'Second read',
+        cost: '+5 pts', lat: 'respectful', delta: 'thesis quoted', req: 'draft_d70c…12' }
+    ];
+
+    var sleep = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
+    var pct = function (n) { return Math.round(n * 100); };
+
+    function tierLabels(t) {
+      legend.innerHTML =
+        '<span>weak · ' + pct(t[0]) + '%</span>' +
+        '<span>fair · ' + pct(t[1]) + '%</span>' +
+        '<span>strong · ' + pct(t[2]) + '%</span>';
+    }
+
+    function moveCursorTo(el, parkOffset) {
+      var cb = consoleEl.getBoundingClientRect();
+      var tb = el.getBoundingClientRect();
+      var x = tb.left - cb.left + tb.width / 2 - 4;
+      var y = tb.top - cb.top + tb.height / 2 - 2 + (parkOffset || 0);
+      cursor.style.left = x + 'px';
+      cursor.style.top = y + 'px';
+    }
+
+    function reset(scene) {
+      right.className = 'console-right idle';
+      typed.textContent = '';
+      tok.textContent = '0';
+      status.textContent = 'awaiting feedback';
+      segC.style.flex = '0'; segM.style.flex = '0'; segP.style.flex = '0';
+      legend.innerHTML = '<span>weak</span><span>fair</span><span>strong</span>';
+      document.getElementById('pickModel').textContent = '—';
+      document.getElementById('pickCost').textContent = '—';
+      document.getElementById('pickLat').textContent = '—';
+      document.getElementById('pickDelta').textContent = '—';
+      document.getElementById('conFootOk').textContent = 'awaiting draft';
+      document.getElementById('conFootReq').textContent = '—';
+      btn.querySelector('.rb-label').textContent = 'Draft appeal';
+      caret.style.display = 'inline-block';
+    }
+
+    function type(text) {
+      return new Promise(function (resolve) {
+        var i = 0;
+        (function step() {
+          if (i <= text.length) {
+            typed.textContent = text.slice(0, i);
+            tok.textContent = Math.max(0, text.slice(0, i).trim().split(/\s+/).filter(Boolean).length);
+            i++;
+            setTimeout(step, 22 + Math.random() * 34);
+          } else { resolve(); }
+        })();
+      });
+    }
+
+    function ripple() {
+      var r = document.createElement('span');
+      r.className = 'rb-ripple';
+      btn.appendChild(r);
+      btn.classList.add('rippling');
+      setTimeout(function () { btn.classList.remove('rippling'); r.remove(); }, 560);
+    }
+
+    async function runScene(scene) {
+      reset(scene);
+      moveCursorTo(btn, 60);
+      await sleep(450);
+      await type(scene.prompt);
+      caret.style.display = 'none';
+      await sleep(360);
+      cursor.classList.add('show');
+      moveCursorTo(btn);
+      await sleep(760);
+      cursor.classList.add('tap');
+      btn.classList.add('pressed');
+      ripple();
+      await sleep(150);
+      btn.classList.remove('pressed');
+      cursor.classList.remove('tap');
+      btn.querySelector('.rb-label').textContent = 'Reading…';
+      right.className = 'console-right scoring';
+      status.textContent = 'weighing rubric…';
+      cursor.classList.remove('show');
+      await sleep(720);
+      right.className = 'console-right done';
+      status.textContent = '✓ case built';
+      segC.style.flex = String(scene.tiers[0]);
+      segM.style.flex = String(scene.tiers[1]);
+      segP.style.flex = String(scene.tiers[2]);
+      tierLabels(scene.tiers);
+      document.getElementById('pickModel').textContent = scene.model;
+      document.getElementById('pickCost').textContent = scene.cost;
+      document.getElementById('pickLat').textContent = scene.lat;
+      document.getElementById('pickDelta').textContent = scene.delta;
+      document.getElementById('conFootOk').textContent = '✓ rubric-cited · ready to send';
+      document.getElementById('conFootReq').textContent = scene.req;
+      btn.querySelector('.rb-label').textContent = 'Drafted ✓';
+      await sleep(2800);
+    }
+
+    if (reduce) {
+      var s = SCENES[0];
+      typed.textContent = s.prompt;
+      caret.style.display = 'none';
+      tok.textContent = s.prompt.trim().split(/\s+/).length;
+      right.className = 'console-right done';
+      status.textContent = '✓ case built';
+      segC.style.flex = String(s.tiers[0]); segM.style.flex = String(s.tiers[1]); segP.style.flex = String(s.tiers[2]);
+      tierLabels(s.tiers);
+      document.getElementById('pickModel').textContent = s.model;
+      document.getElementById('pickCost').textContent = s.cost;
+      document.getElementById('pickLat').textContent = s.lat;
+      document.getElementById('pickDelta').textContent = s.delta;
+      document.getElementById('conFootOk').textContent = '✓ rubric-cited · ready to send';
+      document.getElementById('conFootReq').textContent = s.req;
+      btn.querySelector('.rb-label').textContent = 'Drafted ✓';
+      return;
+    }
+
+    var visible = false, running = false;
+    new IntersectionObserver(function (entries) {
+      visible = entries[0].isIntersecting;
+      if (visible && !running) loop();
+    }, { threshold: 0.25 }).observe(consoleEl);
+
+    async function loop() {
+      running = true;
+      var i = 0;
+      while (visible) {
+        await runScene(SCENES[i % SCENES.length]);
+        i++;
+      }
+      running = false;
+    }
+  })();
+
+  // Tone guardrail — scroll-scrubbed scene
+  (function () {
+    var scroll = document.getElementById('grScroll');
+    if (!scroll) return;
+    var pin = scroll.querySelector('.gr-pin');
+    var prompt = document.getElementById('grPrompt');
+    var sm = document.getElementById('grSm');
+    var lg = document.getElementById('grLg');
+    var cap = document.getElementById('grCap');
+    var capText = cap.querySelector('.gr-cap-text');
+    var railFill = document.getElementById('grRailFill');
+    var hint = document.getElementById('grHint');
+
+    var clamp = function (v, a, b) { return Math.max(a, Math.min(b, v)); };
+    var seg = function (p, a, b) { return clamp((p - a) / (b - a), 0, 1); };
+    var smooth = function (t) { return t * t * (3 - 2 * t); };
+    var lerp = function (a, b, t) { return a + (b - a) * t; };
+
+    var SM_STOP = 66, LG_STOP = 66, EXIT = 118;
+
+    var caps = [
+      { t: 'An unfair grade lights a fire', c: '' },
+      { t: 'The first thing you want to send is angry', c: '' },
+      { t: 'It scores 0.62 \u2014 too hot to send', c: 'warn' },
+      { t: 'So Regrade recalibrates the tone', c: '' },
+      { t: 'It clears the bar at 0.94 \u2014 sent', c: 'ok' }
+    ];
+    var lastCap = -1;
+    function setCap(i) {
+      if (i === lastCap) return;
+      lastCap = i;
+      cap.classList.remove('show');
+      clearTimeout(cap.__t);
+      cap.__t = setTimeout(function () {
+        capText.textContent = caps[i].t;
+        cap.className = 'gr-cap show' + (caps[i].c ? ' ' + caps[i].c : '');
+      }, 120);
+    }
+
+    function render(p) {
+      var ci = p < 0.16 ? 0 : p < 0.40 ? 1 : p < 0.58 ? 2 : p < 0.82 ? 3 : 4;
+      var phase = (p >= 0.82) ? 'pass' : (p >= 0.40) ? 'block' : 'idle';
+      if (pin.dataset.phase !== phase) pin.dataset.phase = phase;
+      setCap(ci);
+
+      var pLeft = lerp(-20, 6, smooth(seg(p, 0.0, 0.13)));
+      var pFade = seg(p, 0.24, 0.34);
+      var pOpa = seg(p, 0.02, 0.11) * (1 - pFade);
+      prompt.style.left = pLeft + '%';
+      prompt.style.opacity = pOpa;
+      prompt.style.transform = 'translateY(-50%) scale(' + lerp(1, 0.92, pFade) + ')';
+
+      var smTravel = smooth(seg(p, 0.22, 0.42));
+      var smX = lerp(18, SM_STOP, smTravel) + Math.sin(seg(p, 0.42, 0.54) * Math.PI) * -5;
+      var smOut = seg(p, 0.54, 0.62);
+      sm.style.left = smX + '%';
+      sm.style.opacity = seg(p, 0.18, 0.24) * (1 - smOut);
+      sm.style.transform = 'translate(-50%,-50%) scale(' + lerp(1, 0.86, smOut) + ')';
+
+      var lgX = lerp(40, LG_STOP, smooth(seg(p, 0.62, 0.82)));
+      lgX = lerp(lgX, EXIT, smooth(seg(p, 0.82, 1.0)));
+      lg.style.left = lgX + '%';
+      lg.style.opacity = seg(p, 0.60, 0.68);
+      lg.style.transform = 'translate(-50%,-50%) scale(1.06)';
+
+      railFill.style.width = (p * 100) + '%';
+      hint.style.opacity = String(clamp(1 - p / 0.05, 0, 1));
+    }
+
+    var ticking = false;
+    function onScroll() {
+      var total = scroll.offsetHeight - window.innerHeight;
+      var p = total > 0 ? clamp(-scroll.getBoundingClientRect().top / total, 0, 1) : 0;
+      render(p);
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { requestAnimationFrame(function () { onScroll(); ticking = false; }); ticking = true; }
+    }, { passive: true });
+    window.addEventListener('resize', onScroll);
+    onScroll();
+  })();
+
+  // Why Regrade stats
+  (function () {
+    var strip = document.querySelector('.why-stats');
+    if (!strip) return;
+    var nums = strip.querySelectorAll('.why-num');
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      nums.forEach(function (n) { n.textContent = n.getAttribute('data-target'); });
+      return;
+    }
+    var shown = false;
+    new IntersectionObserver(function (entries) {
+      var vis = entries[0].isIntersecting;
+      if (vis && !shown) {
+        shown = true;
+        nums.forEach(function (n, i) {
+          countTo(n, parseInt(n.getAttribute('data-target'), 10) || 0, 1200 + i * 120);
+        });
+      } else if (!vis && shown) {
+        shown = false;
+        nums.forEach(function (n) { stopCount(n); n.textContent = '0'; });
+      }
+    }, { threshold: 0.35 }).observe(strip);
+  })();
+</script>
 </body>
 </html>

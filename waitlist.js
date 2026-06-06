@@ -48,18 +48,18 @@
     }
   }
 
-  function recordLocal(email) {
+  function recordLocal(name, email) {
     try {
       var prev = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
       if (!Array.isArray(prev)) return;
-      prev.push({ email: email, source: 'website', ts: new Date().toISOString() });
+      prev.push({ name: name, email: email, source: 'website', ts: new Date().toISOString() });
       localStorage.setItem(LS_KEY, JSON.stringify(prev));
     } catch (_) {
       /* ignore */
     }
   }
 
-  async function submitToFormSubmit(email) {
+  async function submitToFormSubmit(name, email) {
     var res = await fetch('https://formsubmit.co/ajax/' + encodeURIComponent(inbox()), {
       method: 'POST',
       headers: {
@@ -67,10 +67,13 @@
         Accept: 'application/json',
       },
       body: JSON.stringify({
+        name: name,
         email: email,
-        _subject: 'Regrade waitlist — ' + email,
+        _subject: 'Regrade waitlist — ' + name + ' (' + email + ')',
         message:
-          'New Regrade waitlist signup\n\nEmail: ' +
+          'New Regrade waitlist signup\n\nName: ' +
+          name +
+          '\nEmail: ' +
           email +
           '\nSource: regradeapp.tech\nTime: ' +
           new Date().toISOString(),
@@ -132,10 +135,19 @@
 
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
-      var input = document.getElementById('signupEmail');
-      var email = ((input && input.value) || '').trim().toLowerCase();
+      var nameInput = document.getElementById('signupName');
+      var emailInput = document.getElementById('signupEmail');
+      var name = ((nameInput && nameInput.value) || '').trim();
+      var email = ((emailInput && emailInput.value) || '').trim().toLowerCase();
+
+      if (!name) {
+        showError(form, 'Please enter your name.');
+        if (nameInput) nameInput.focus();
+        return;
+      }
       if (!email || email.indexOf('@') < 1 || email.indexOf('.') < 1) {
         showError(form, 'Enter a valid school email.');
+        if (emailInput) emailInput.focus();
         return;
       }
 
@@ -149,9 +161,9 @@
       }
 
       try {
-        var ok = await submitToFormSubmit(email);
+        var ok = await submitToFormSubmit(name, email);
         if (!ok) throw new Error('delivery failed');
-        recordLocal(email);
+        recordLocal(name, email);
         showSuccess(form);
       } catch (err) {
         console.error('Waitlist signup failed:', err);
@@ -159,7 +171,7 @@
           btn.disabled = false;
           btn.textContent = 'Reserve my spot';
         }
-        showError(form, 'Could not save your email. Please try again in a moment.');
+        showError(form, 'Could not save your spot. Please try again in a moment.');
       }
     });
   }

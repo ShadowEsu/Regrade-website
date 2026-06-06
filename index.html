@@ -425,7 +425,10 @@ Maya
     <span class="eyebrow"><span class="dot"></span>get started</span>
     <h2 class="t-display" style="margin-top:16px">Stop accepting grades that aren&rsquo;t yours.</h2>
     <form class="signup" id="signup" novalidate>
-      <input type="email" name="email" id="signupEmail" placeholder="you@school.edu" required aria-label="Email address" autocomplete="email" />
+      <div class="signup-fields">
+        <input type="text" name="name" id="signupName" placeholder="Your name" required aria-label="Your name" autocomplete="name" />
+        <input type="email" name="email" id="signupEmail" placeholder="you@school.edu" required aria-label="Email address" autocomplete="email" />
+      </div>
       <button class="btn btn-primary" type="submit">Reserve my spot</button>
     </form>
     <div class="cta-sub"><span class="live-dot"></span><span id="ctaCount">0</span>&nbsp;students waiting · one email when iOS opens</div>

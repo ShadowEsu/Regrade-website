@@ -549,15 +549,20 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* ---- Email signup pill (waitlist) --------------------------- */
 .signup {
   display: flex; align-items: center; gap: 8px;
-  width: min(440px, 100%); margin: var(--s-xl) auto 0;
+  width: min(560px, 100%); margin: var(--s-xl) auto 0;
   background: #fff; border: 1px solid var(--hairline);
   border-radius: var(--pill); padding: 6px 6px 6px 20px;
   box-shadow: var(--product-shadow);
   transition: box-shadow .25s ease, border-color .2s ease;
 }
+.signup-fields {
+  display: flex; flex: 1; align-items: center; gap: 10px; min-width: 0;
+}
+.signup-fields input:first-child { flex: 0 1 38%; min-width: 96px; }
+.signup-fields input:last-child { flex: 1 1 62%; min-width: 0; }
 .signup:focus-within { border-color: var(--primary-focus); box-shadow: 0 5px 30px rgba(0,102,204,0.18); }
 .signup input {
-  flex: 1; border: none; outline: none; background: transparent;
+  border: none; outline: none; background: transparent;
   font-family: var(--font-text); font-size: 16px; color: var(--ink);
   letter-spacing: -0.01em; min-width: 0;
 }
@@ -566,6 +571,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .signup.done { justify-content: center; padding: 16px; color: #1f8a4c; font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.02em; }
 .signup.done .ck { margin-right: 8px; }
 .signup.done .waitlist-success { margin: 0; text-align: center; width: 100%; outline: none; }
+@media (max-width: 640px) {
+  .signup { flex-direction: column; align-items: stretch; border-radius: 20px; padding: 14px 16px; gap: 12px; }
+  .signup-fields { flex-direction: column; align-items: stretch; gap: 10px; }
+  .signup-fields input:first-child,
+  .signup-fields input:last-child { flex: 1 1 auto; min-width: 0; }
+  .signup .btn-primary { width: 100%; justify-content: center; }
+}
 .cta-sub { margin-top: 14px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.02em; color: var(--ink-48); display: inline-flex; align-items: center; gap: 8px; }
 .cta-sub .live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--primary); box-shadow: 0 0 0 0 rgba(0,102,204,.5); animation: pulse 2.4s ease-out infinite; }
 

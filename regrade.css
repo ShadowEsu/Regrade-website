@@ -83,7 +83,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   position: absolute; left: -999px; top: 0; z-index: 200;
   background: var(--ink); color: #fff; padding: 10px 16px; border-radius: var(--r-sm);
 }
-.skip:focus { left: 12px; top: 12px; }
+.skip:focus-visible { left: 12px; top: 12px; }
 
 /* ---- Type helpers ------------------------------------------- */
 .t-hero {
@@ -565,6 +565,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .signup .btn-primary { padding: 11px 22px; white-space: nowrap; flex: none; }
 .signup.done { justify-content: center; padding: 16px; color: #1f8a4c; font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.02em; }
 .signup.done .ck { margin-right: 8px; }
+.signup.done .waitlist-success { margin: 0; text-align: center; width: 100%; outline: none; }
 .cta-sub { margin-top: 14px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.02em; color: var(--ink-48); display: inline-flex; align-items: center; gap: 8px; }
 .cta-sub .live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--primary); box-shadow: 0 0 0 0 rgba(0,102,204,.5); animation: pulse 2.4s ease-out infinite; }
 

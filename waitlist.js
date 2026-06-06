@@ -5,6 +5,11 @@
     return (typeof window !== 'undefined' && window.REGRADE_CONFIG) || {};
   }
 
+  function inbox() {
+    var email = String(cfg().waitlistEmail || '').trim();
+    return email && email.indexOf('@') > 0 ? email : 'prestonjaysusanto@gmail.com';
+  }
+
   function showError(form, message) {
     var old = form.querySelector('.waitlist-error');
     if (old) old.remove();
@@ -34,24 +39,29 @@
     }
   }
 
+  function buildMessage(email) {
+    return (
+      'New Regrade waitlist signup\n\n' +
+      'Email: ' +
+      email +
+      '\nNotify: ' +
+      inbox() +
+      '\nSource: regradeapp.tech\nTime: ' +
+      new Date().toISOString()
+    );
+  }
+
   async function submitToWeb3Forms(email) {
     var key = String(cfg().web3formsAccessKey || '').trim();
     if (!key) return false;
 
-    var notify = String(cfg().waitlistEmail || '').trim() || 'prestonjaysusanto@gmail.com';
     var fd = new FormData();
     fd.append('access_key', key);
+    fd.append('name', email.split('@')[0] || 'Waitlist');
     fd.append('email', email);
     fd.append('subject', 'Regrade waitlist — ' + email);
-    fd.append(
-      'message',
-      'New Regrade waitlist signup\n\nEmail: ' +
-        email +
-        '\nNotify: ' +
-        notify +
-        '\nSource: regradeapp.tech\nTime: ' +
-        new Date().toISOString()
-    );
+    fd.append('message', buildMessage(email));
+    fd.append('botcheck', '');
 
     var res = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
@@ -61,7 +71,43 @@
     var data = await res.json().catch(function () {
       return {};
     });
-    return !!(data && data.success);
+    return isOk(data);
+  }
+
+  function isOk(data) {
+    if (!data) return false;
+    return data.success === true || data.success === 'true';
+  }
+
+  async function submitToFormSubmit(email) {
+    var res = await fetch('https://formsubmit.co/ajax/' + encodeURIComponent(inbox()), {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        email: email,
+        _subject: 'Regrade waitlist — ' + email,
+        message: buildMessage(email),
+        _template: 'table',
+        _captcha: 'false',
+      }),
+    });
+    var data = await res.json().catch(function () {
+      return {};
+    });
+    return isOk(data);
+  }
+
+  async function submitWaitlist(email) {
+    var results = await Promise.allSettled([
+      submitToWeb3Forms(email),
+      submitToFormSubmit(email),
+    ]);
+    return results.some(function (r) {
+      return r.status === 'fulfilled' && r.value === true;
+    });
   }
 
   function initCounter() {
@@ -108,9 +154,9 @@
       }
 
       try {
-        var ok = await submitToWeb3Forms(email);
+        var ok = await submitWaitlist(email);
         if (!ok) {
-          throw new Error('Web3Forms submission failed');
+          throw new Error('Waitlist delivery failed');
         }
         recordLocal(email);
         showSuccess(form);
@@ -125,6 +171,14 @@
     });
   }
 
-  initCounter();
-  initForm();
+  function boot() {
+    initCounter();
+    initForm();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
 })();

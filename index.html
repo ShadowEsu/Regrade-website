@@ -11,6 +11,16 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="regrade.css?v=1" />
+  <script>
+    // Firebase verification / reset links must be handled by the app at /app/
+    (function () {
+      var search = window.location.search || '';
+      var hash = window.location.hash || '';
+      if (/[?&#](mode|oobCode)=/.test(search + hash)) {
+        window.location.replace('/app/' + search + hash);
+      }
+    })();
+  </script>
   <script type="module" crossorigin src="/assets/main-DQjP1BOY.js"></script>
   <link rel="modulepreload" crossorigin href="/assets/index.esm-BI2hndO1.js">
 </head>

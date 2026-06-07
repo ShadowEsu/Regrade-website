@@ -41,11 +41,11 @@
   function scrollToCta(form) {
     var section = document.getElementById('cta');
     var target = section || form;
-    try {
-      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    } catch (_) {
-      target.scrollIntoView();
+    if (typeof window.regradeScrollTo === 'function') {
+      window.regradeScrollTo(target, { block: 'center' });
+      return;
     }
+    target.scrollIntoView({ block: 'center' });
   }
 
   function recordLocal(name, email) {

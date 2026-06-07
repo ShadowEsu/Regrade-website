@@ -63,7 +63,7 @@
 
 /* ---- Reset --------------------------------------------------- */
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html { scroll-behavior: auto; -webkit-text-size-adjust: 100%; }
 body {
   font-family: var(--font-text);
   color: var(--ink);
@@ -476,6 +476,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   max-width: 20ch; margin: 28px auto 0; text-wrap: balance;
 }
 .quote-big .hl { color: var(--primary-on-dark); }
+.quote-big.review-body { max-width: 42ch; font-size: clamp(20px, 2.8vw, 32px); line-height: 1.35; }
+.review-stars .star.on { color: #f5b301; }
+.review-stars .star.off { color: rgba(255,255,255,0.22); }
 .quote-by { display: flex; align-items: center; justify-content: center; gap: 15px; margin-top: 40px; }
 .quote-by .avatar {
   width: 52px; height: 52px; border-radius: 50%; flex: none;

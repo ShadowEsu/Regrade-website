@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Montserrat:wght@600;700;800&family=Nunito:wght@700;800&family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="regrade.css?v=3" />
+<link rel="stylesheet" href="regrade.css?v=4" />
 </head>
 <body>
 <a class="skip" href="#main">Skip to main content</a>
@@ -424,8 +424,9 @@ Thanks so much for your time,
       <h2 class="t-display">Free while in beta.</h2>
       <p class="t-lead-airy muted">Later, a small monthly fee — always free for students on aid.</p>
     </div>
-    <div class="plan-chips">
-      <div class="plan reveal">
+    <p class="plan-hint reveal muted">Tap a plan to compare</p>
+    <div class="plan-chips" id="planPicker" role="radiogroup" aria-label="Pricing plans">
+      <div class="plan reveal" role="radio" aria-checked="false" tabindex="0" data-plan="student">
         <div class="name">Student</div>
         <div class="price">$0<span> / mo</span></div>
         <ul>
@@ -434,7 +435,8 @@ Thanks so much for your time,
         </ul>
         <a class="btn btn-ghost" href="#cta">Join waitlist</a>
       </div>
-      <div class="plan featured reveal" style="transition-delay:.08s">
+      <div class="plan is-selected reveal" style="transition-delay:.08s" role="radio" aria-checked="true" tabindex="0" data-plan="unlimited">
+        <span class="plan-badge">Most popular</span>
         <div class="name">Unlimited</div>
         <div class="price">$5<span> / mo</span></div>
         <ul>
@@ -443,7 +445,7 @@ Thanks so much for your time,
         </ul>
         <a class="btn btn-primary" href="#cta">Join waitlist</a>
       </div>
-      <div class="plan reveal" style="transition-delay:.16s">
+      <div class="plan reveal" style="transition-delay:.16s" role="radio" aria-checked="false" tabindex="0" data-plan="aid">
         <div class="name">On aid</div>
         <div class="price">$0</div>
         <ul>
@@ -517,6 +519,48 @@ Thanks so much for your time,
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
     document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+  })();
+
+  // Pricing — selectable plan showcase
+  (function () {
+    var picker = document.getElementById('planPicker');
+    if (!picker) return;
+    var plans = picker.querySelectorAll('.plan');
+
+    function selectPlan(plan) {
+      plans.forEach(function (p) {
+        p.classList.remove('is-selected');
+        p.setAttribute('aria-checked', 'false');
+        p.setAttribute('tabindex', '-1');
+        var btn = p.querySelector('.btn');
+        if (btn) {
+          btn.classList.remove('btn-primary');
+          btn.classList.add('btn-ghost');
+        }
+      });
+      plan.classList.add('is-selected');
+      plan.setAttribute('aria-checked', 'true');
+      plan.setAttribute('tabindex', '0');
+      var activeBtn = plan.querySelector('.btn');
+      if (activeBtn) {
+        activeBtn.classList.remove('btn-ghost');
+        activeBtn.classList.add('btn-primary');
+      }
+    }
+
+    plans.forEach(function (plan) {
+      plan.addEventListener('click', function (e) {
+        if (e.target.closest('a')) return;
+        selectPlan(plan);
+      });
+      plan.addEventListener('keydown', function (e) {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        e.preventDefault();
+        selectPlan(plan);
+      });
+      var cta = plan.querySelector('a.btn');
+      if (cta) cta.addEventListener('click', function (e) { e.stopPropagation(); });
+    });
   })();
 
   // Re-playable count helper

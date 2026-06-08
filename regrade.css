@@ -909,6 +909,71 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .diagram svg { width: 100%; max-width: 920px; height: auto; }
 .diagram .dlabel { font-family: var(--font-mono); letter-spacing: 0.06em; }
 
+/* ---- Platform logo marquee ---------------------------------- */
+.logo-marquee { margin-top: clamp(28px, 4vw, 44px); }
+.logo-marquee-label {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 18px;
+}
+.logo-marquee-viewport {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+}
+.logo-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: logoMarquee 42s linear infinite;
+  will-change: transform;
+}
+.logo-marquee-set {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 2vw, 28px);
+  padding-right: clamp(14px, 2vw, 28px);
+  flex: none;
+}
+.logo-marquee-item { flex: none; display: inline-flex; align-items: center; justify-content: center; }
+.logo-marquee-item.logo-img,
+.logo-marquee-item.logo-word {
+  padding: 12px 20px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 2px 14px rgba(0,0,0,0.14);
+}
+.logo-marquee-item.logo-img img {
+  display: block;
+  height: clamp(30px, 3.2vw, 38px);
+  width: auto;
+  max-width: min(200px, 34vw);
+  object-fit: contain;
+}
+.logo-marquee-item.logo-word {
+  font-size: clamp(18px, 2.2vw, 26px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  white-space: nowrap;
+}
+.lw-blackboard { font-family: "Montserrat", var(--font-display); font-weight: 800; color: #1a1a1a; letter-spacing: -0.03em; }
+.lw-classroom  { font-family: "Nunito", var(--font-display); font-weight: 800; color: #188038; }
+.lw-d2l        { font-family: "Roboto Condensed", var(--font-display); font-weight: 700; color: #7ab800; letter-spacing: 0.03em; text-transform: uppercase; font-size: clamp(17px, 2vw, 24px); }
+.lw-gradescope { font-family: "Montserrat", var(--font-display); font-weight: 700; color: #2e5aac; }
+.lw-moodle     { font-family: "Nunito", var(--font-display); font-weight: 800; color: #f98012; }
+.lw-schoology  { font-family: "Montserrat", var(--font-display); font-weight: 600; color: #47a4d8; }
+.lw-turnitin   { font-family: "Roboto Condensed", var(--font-display); font-weight: 700; color: #0065a1; letter-spacing: 0.01em; }
+.lw-powerschool{ font-family: "Montserrat", var(--font-display); font-weight: 700; color: #003da5; }
+.lw-sakai      { font-family: "Montserrat", var(--font-display); font-weight: 600; color: #8b1a1a; }
+@keyframes logoMarquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
 /* ---- One endpoint — kinetic model wall ---------------------- */
 .endpoint { position: relative; margin-top: clamp(40px, 6vw, 72px); }
 
@@ -1025,6 +1090,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 @media (prefers-reduced-motion: reduce) {
   .mlane.l, .mlane.r { animation: none; }
+  .logo-marquee-track { animation: none; }
 }
 
 /* ---- Reveal animation --------------------------------------- */

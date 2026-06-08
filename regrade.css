@@ -529,12 +529,29 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .code-body .hl { background: rgba(41,151,255,0.14); display: inline-block; border-radius: 4px; padding: 0 4px; }
 
 /* ---- Pricing chips ------------------------------------------ */
-.plan-chips { display: flex; gap: 14px; margin-top: clamp(40px, 5vw, 56px); flex-wrap: wrap; }
+.plan-hint { text-align: center; margin-top: 12px; font-size: 15px; }
+.plan-chips { display: flex; gap: 14px; margin-top: 20px; flex-wrap: wrap; align-items: stretch; }
 .plan {
-  flex: 1 1 240px; background: #fff; border: 1px solid var(--hairline); border-radius: var(--r-lg);
-  padding: var(--s-lg); transition: border-color .2s, transform .2s;
+  position: relative;
+  flex: 1 1 240px; background: #fff; border: 2px solid var(--hairline); border-radius: var(--r-lg);
+  padding: var(--s-lg); cursor: pointer;
+  transition: border-color .25s, transform .25s, box-shadow .25s, opacity .25s;
 }
-.plan.featured { border: 2px solid var(--primary-focus); }
+.plan:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,0,0,0.08); }
+.plan:focus-visible { outline: 3px solid rgba(0,113,227,0.35); outline-offset: 3px; }
+.plan.is-selected {
+  border-color: var(--primary-focus);
+  box-shadow: 0 12px 36px rgba(0,113,227,0.16);
+  transform: translateY(-5px) scale(1.02);
+  z-index: 1;
+}
+.plan:not(.is-selected) { opacity: 0.88; }
+.plan-badge {
+  position: absolute; top: 14px; right: 14px;
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--primary);
+  background: rgba(0,102,204,0.08); border-radius: var(--pill); padding: 4px 10px;
+}
 .plan .name { font-family: var(--font-display); font-size: 19px; font-weight: 600; }
 .plan .price { font-family: var(--font-display); font-size: 40px; font-weight: 600; letter-spacing: -0.02em; margin-top: 10px; }
 .plan .price span { font-size: 15px; font-weight: 400; color: var(--ink-48); letter-spacing: 0; }

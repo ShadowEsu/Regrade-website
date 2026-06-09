@@ -1,5 +1,6 @@
 (function () {
-  var DURATION = 1200;
+  var FAST = 450;
+  var NORMAL = 700;
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function ease(t) {
@@ -11,9 +12,10 @@
     return nav ? nav.offsetHeight : 0;
   }
 
-  function scrollToY(targetY) {
+  function scrollToY(targetY, duration) {
     var y = Math.max(0, targetY);
-    if (reduced) {
+    duration = duration || NORMAL;
+    if (reduced || duration <= 0) {
       window.scrollTo(0, y);
       return;
     }
@@ -23,7 +25,7 @@
     var start = null;
     function frame(t) {
       if (start === null) start = t;
-      var p = Math.min(1, (t - start) / DURATION);
+      var p = Math.min(1, (t - start) / duration);
       window.scrollTo(0, startY + delta * ease(p));
       if (p < 1) requestAnimationFrame(frame);
     }
@@ -38,9 +40,9 @@
     if (block === 'center') {
       y -= (window.innerHeight - rect.height) / 2;
     } else {
-      y -= navOffset() + 8;
+      y -= navOffset() + 12;
     }
-    scrollToY(y);
+    scrollToY(y, opts.duration);
   }
 
   window.regradeScrollTo = scrollToElement;
@@ -53,7 +55,18 @@
     var target = document.querySelector(hash);
     if (!target) return;
     e.preventDefault();
-    scrollToElement(target);
+
+    var instant = hash === '#cta' || a.classList.contains('scroll-cta');
+    var duration = instant ? FAST : NORMAL;
+    scrollToElement(target, { duration: duration });
+
+    if (hash === '#cta') {
+      setTimeout(function () {
+        var input = document.getElementById('signupName') || document.getElementById('signupEmail');
+        if (input) input.focus({ preventScroll: true });
+      }, instant ? 80 : 400);
+    }
+
     history.pushState(null, '', hash);
   });
 })();

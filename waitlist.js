@@ -137,8 +137,8 @@
       e.preventDefault();
       var nameInput = document.getElementById('signupName');
       var emailInput = document.getElementById('signupEmail');
-      var name = ((nameInput && nameInput.value) || '').trim();
       var email = ((emailInput && emailInput.value) || '').trim().toLowerCase();
+      var name = ((nameInput && nameInput.value) || '').trim();
 
       if (!name) {
         showError(form, 'Please enter your name.');
@@ -169,7 +169,7 @@
         console.error('Waitlist signup failed:', err);
         if (btn) {
           btn.disabled = false;
-          btn.textContent = 'Reserve my spot';
+          btn.textContent = 'Waitlist for free';
         }
         showError(form, 'Could not save your spot. Please try again in a moment.');
       }

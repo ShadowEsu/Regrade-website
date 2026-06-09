@@ -3,264 +3,344 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Regrade — Appeal an unfair grade in sixty seconds.</title>
-<meta name="description" content="Regrade reads your graded work against the rubric and drafts a professional grade appeal in sixty seconds." />
-<link rel="icon" type="image/png" href="/favicon.png" />
-<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<title>Regrade — Re-check your grade against the rubric</title>
+<meta name="description" content="Upload your rubric, exam, and feedback. Regrade checks where points may have been missed — and helps you draft a respectful email when you&rsquo;re ready." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Montserrat:wght@600;700;800&family=Nunito:wght@700;800&family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="regrade.css?v=4" />
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@500;600;700;800&family=Kalam:wght@400;700&family=Montserrat:wght@600;700;800&family=Nunito:wght@700;800&family=Orbitron:wght@600;700;800&family=Patrick+Hand&family=Poppins:wght@400;500;600;700&family=Roboto+Condensed:wght@700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/regrade.css?v=89" />
 </head>
 <body>
-<a class="skip" href="#main">Skip to main content</a>
 
-<!-- ============ NAV (single, frosted) ============ -->
-<header class="subnav" id="nav">
-  <div class="subnav-inner">
-    <a class="cat" href="#top" aria-label="Regrade home">
-      <img src="/logo-wordmark.png" alt="Regrade" class="nav-logo" width="160" height="44" />
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+<header class="topbar gradient-band" id="nav">
+  <div class="wrap topbar-inner">
+    <a class="topbar-logo" href="#top" aria-label="Regrade home">
+      <img class="brand-logo brand-logo--header" src="/assets/regrade-logo.png" alt="Regrade" width="320" height="120" decoding="async" />
     </a>
-    <div class="links">
+    <nav class="topbar-nav" aria-label="Site">
+      <a href="#top">Home</a>
+      <a href="#demo">Preview</a>
       <a href="#how">How it works</a>
-      <a href="#why">Why Regrade</a>
       <a href="#features">Features</a>
-      <a href="#pricing">Pricing</a>
-      <a class="btn btn-primary keep" href="#cta">Join waitlist</a>
-    </div>
+      <a href="#review">Reviews</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-join btn-anim btn-nav scroll-cta" href="#cta"><span class="btn-txt">Join early access</span><span class="btn-glow-ring" aria-hidden="true"></span></a>
   </div>
 </header>
 
-<main id="main">
+<main id="top">
 
-<!-- ============ HERO ============ -->
-<section class="tile light hero" id="top">
-  <div class="container">
-    <span class="eyebrow reveal"><span class="dot"></span>now in private beta · iOS first</span>
-    <h1 class="t-hero reveal" style="transition-delay:.06s">Appeal an unfair grade.<br />In sixty&nbsp;seconds.</h1>
-    <p class="t-lead reveal" style="transition-delay:.12s">Regrade reads your work against the rubric and writes the email that wins the points back.</p>
-    <div class="hero-ctas reveal" style="transition-delay:.18s">
-      <a class="btn btn-primary" href="#cta">Get early access</a>
-      <a class="text-link" href="#features" style="font-size:18px">Watch it work <span class="chev" aria-hidden="true">›</span></a>
+<!-- Above the fold: hero + logo marquee visible on load -->
+<div class="landing-atf">
+<!-- 1. Hero -->
+<section class="block hero">
+  <div class="world-globe" aria-hidden="true">
+    <div class="globe-orbit">
+      <svg class="globe-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <clipPath id="globeClip"><circle cx="50" cy="50" r="46"/></clipPath>
+        </defs>
+        <circle class="globe-sphere" cx="50" cy="50" r="46"/>
+        <g class="globe-graticule" clip-path="url(#globeClip)">
+          <ellipse cx="50" cy="50" rx="46" ry="46"/>
+          <ellipse cx="50" cy="50" rx="32" ry="46"/>
+          <ellipse cx="50" cy="50" rx="16" ry="46"/>
+          <ellipse cx="50" cy="50" rx="40" ry="46" transform="rotate(45 50 50)"/>
+          <ellipse cx="50" cy="50" rx="40" ry="46" transform="rotate(-45 50 50)"/>
+          <path d="M4 50 H96"/>
+          <ellipse cx="50" cy="32" rx="38" ry="11"/>
+          <ellipse cx="50" cy="68" rx="38" ry="11"/>
+          <ellipse cx="50" cy="20" rx="28" ry="7"/>
+          <ellipse cx="50" cy="80" rx="28" ry="7"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <div class="wrap hero-layout">
+    <div class="hero-copy">
+      <div class="hero-whale-mascot reveal reveal-pop" aria-hidden="true">
+        <div class="hero-whale-row">
+          <img src="/assets/whale-pixel.png?v=3" alt="" class="whale-pixel whale-pixel--hero-badge" width="160" height="160" decoding="async" />
+          <div class="whale-speech-bubble">
+            <p>Hi, I&rsquo;m Mr. Whale!<br />Moooo..</p>
+          </div>
+        </div>
+      </div>
+      <span class="badge reveal reveal-pop">Built for students · Private beta</span>
+      <h1 class="title">
+        <span class="reveal reveal-up d1">Think your grade</span>
+        <span class="reveal reveal-up d2">doesn&rsquo;t <span class="accent hand-draw">add up?</span></span>
+      </h1>
+      <p class="sub reveal reveal-up d3">Upload rubric, exam, and feedback. Regrade flags missed points — email draft optional.</p>
+      <p class="waitlist-perk reveal reveal-up d3b"><strong>First 100</strong> on the waitlist get <strong>Pro features</strong> and <strong>unlimited downloads</strong> free for the year.</p>
+      <div class="btns hero-btns reveal reveal-up d4">
+        <a class="btn btn-join btn-anim btn-hero scroll-cta" href="#cta"><span class="btn-txt">Waitlist for free →</span><span class="btn-glow-ring" aria-hidden="true"></span></a>
+        <a class="btn ghost btn-anim scroll-how" href="#how"><span class="play-icon" aria-hidden="true">▶</span><span class="btn-txt">See how it works</span></a>
+      </div>
+      <div class="proof reveal reveal-up d5">
+        <div class="faces" aria-hidden="true">
+          <span class="face f1 reveal reveal-pop">JK</span>
+          <span class="face f2 reveal reveal-pop">AM</span>
+          <span class="face f3 reveal reveal-pop">RS</span>
+          <span class="face f4 reveal reveal-pop">TL</span>
+        </div>
+        <span class="rating twinkle reveal reveal-up" aria-label="4 out of 5 stars">★★★★☆</span>
+        <span class="proof-txt reveal reveal-up">Students&rsquo; comments on Regrade <span class="heart-beat">💙</span></span>
+      </div>
     </div>
 
-    <div class="artifact-wrap reveal" style="transition-delay:.26s">
-      <div class="console" id="console">
-        <div class="console-bar">
-          <span class="dots"><i></i><i></i><i></i></span>
-          <span class="addr">regrade.app / appeal / draft</span>
-          <span class="live">live</span>
+    <div class="hero-visual reveal reveal-right">
+      <div class="hero-phone" aria-hidden="true">
+        <div class="phone-tilt">
+          <div class="phone-float">
+          <div class="phone-frame">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <img src="/assets/phone-app-screen-v1.4.png" alt="Regrade app — welcome dashboard with Mr. Whale" width="516" height="1024" loading="eager" decoding="async" />
+            </div>
+            <div class="phone-btn"></div>
+          </div>
+          <div class="phone-glow"></div>
+          </div>
         </div>
-        <div class="console-body">
-          <div class="console-left">
-            <div class="con-label">Teacher's feedback</div>
-            <div class="con-prompt">“<span id="typed"></span><span class="cursor" id="caret"></span>”</div>
-            <div class="con-meta">
-              <div>
-                <div class="k">Words</div>
-                <div class="v" id="tokCount">0</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trusted LMS band — pinned to bottom of first screen -->
+<section class="trust-band trust-band--light" aria-label="Works with your LMS">
+  <div class="logo-marquee logo-marquee--band">
+    <div class="logo-marquee-viewport">
+      <div class="logo-marquee-track">
+        <div class="logo-marquee-set">
+          <span class="logo-marquee-item logo-img"><img src="/assets/logos/canvas.png" alt="Canvas by Instructure" width="160" height="40" /></span>
+          <span class="logo-marquee-item logo-word lw-blackboard">Blackboard</span>
+          <span class="logo-marquee-item logo-img"><img src="/assets/logos/google-classroom.png" alt="Google Classroom" width="160" height="40" /></span>
+          <span class="logo-marquee-item logo-img"><img src="/assets/logos/d2l.png" alt="D2L Brightspace" width="160" height="40" /></span>
+          <span class="logo-marquee-item logo-word lw-gradescope">Gradescope</span>
+          <span class="logo-marquee-item logo-img"><img src="/assets/logos/impact.png" alt="Impact by Instructure" width="160" height="40" /></span>
+          <span class="logo-marquee-item logo-word lw-moodle">Moodle</span>
+          <span class="logo-marquee-item logo-img"><img src="/assets/logos/instructure.png" alt="Instructure" width="160" height="40" /></span>
+          <span class="logo-marquee-item logo-word lw-schoology">Schoology</span>
+          <span class="logo-marquee-item logo-img"><img src="/assets/logos/mastery.png" alt="Mastery by Instructure" width="160" height="40" /></span>
+          <span class="logo-marquee-item logo-word lw-turnitin">Turnitin</span>
+          <span class="logo-marquee-item logo-word lw-powerschool">PowerSchool</span>
+          <span class="logo-marquee-item logo-word lw-sakai">Sakai</span>
+        </div>
+        <div class="logo-marquee-set" aria-hidden="true">
+          <span class="logo-marquee-item logo-img"><img src="/assets/logos/canvas.png" alt="" width="160" height="40" /></span>
+          <span class="logo-marquee-item logo-word lw-blackboard">Blackboard</span>
+          <span class="logo-marquee-item logo-img"><img src="/assets/logos/google-classroom.png" alt="" width="160" height="40" /></span>
+          <span class="logo-marquee-item logo-img"><img src="/assets/logos/d2l.png" alt="" width="160" height="40" /></span>
+          <span class="logo-marquee-item logo-word lw-gradescope">Gradescope</span>
+          <span class="logo-marquee-item logo-img"><img src="/assets/logos/impact.png" alt="" width="160" height="40" /></span>
+          <span class="logo-marquee-item logo-word lw-moodle">Moodle</span>
+          <span class="logo-marquee-item logo-img"><img src="/assets/logos/instructure.png" alt="" width="160" height="40" /></span>
+          <span class="logo-marquee-item logo-word lw-schoology">Schoology</span>
+          <span class="logo-marquee-item logo-img"><img src="/assets/logos/mastery.png" alt="" width="160" height="40" /></span>
+          <span class="logo-marquee-item logo-word lw-turnitin">Turnitin</span>
+          <span class="logo-marquee-item logo-word lw-powerschool">PowerSchool</span>
+          <span class="logo-marquee-item logo-word lw-sakai">Sakai</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- 2. App preview -->
+<section class="block app" id="demo">
+  <div class="wrap">
+    <div class="app-panel reveal reveal-scale">
+      <div class="app-head reveal reveal-up">
+        <img class="app-brand-logo" src="/assets/regrade-logo.png" alt="Regrade" width="320" height="120" decoding="async" />
+      </div>
+      <nav class="tabs reveal reveal-up" aria-label="App navigation">
+        <span class="tab active" data-tab="0">New Appeal</span>
+        <span class="tab" data-tab="1">My Appeals</span>
+        <span class="tab" data-tab="2">Examples</span>
+        <span class="tab tab-break" data-tab="3">Resources</span>
+      </nav>
+
+      <div class="email-studio reveal reveal-up">
+        <div class="email-card glow-card">
+          <div class="email-card-top">
+            <span class="email-dot" aria-hidden="true"></span>
+            <span class="email-dot" aria-hidden="true"></span>
+            <span class="email-dot" aria-hidden="true"></span>
+            <span class="email-label">Email draft · optional</span>
+          </div>
+          <p class="email-body"><span id="emailType" class="typewriter" aria-live="polite"></span><span class="cursor-blink" id="emailCursor" aria-hidden="true"></span></p>
+        </div>
+
+        <div class="draft-panel">
+          <h2 class="draft-h">Your regrade review</h2>
+          <ul class="check-timeline">
+            <li class="check-row done step-anim reveal reveal-left" data-step="0">
+              <span class="check-node ok" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L19 7"/></svg></span>
+              <div class="check-copy"><strong>Exam &amp; rubric uploaded</strong><span>Essay 2 + Canvas rubric loaded</span></div>
+            </li>
+            <li class="check-row done step-anim reveal reveal-left" data-step="1">
+              <span class="check-node ok" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L19 7"/></svg></span>
+              <div class="check-copy"><strong>Grade re-check complete</strong><span>Feedback vs. rubric compared line by line</span></div>
+            </li>
+            <li class="check-row done step-anim reveal reveal-left" data-step="2">
+              <span class="check-node ok" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L19 7"/></svg></span>
+              <div class="check-copy"><strong>Possible points flagged</strong><span class="pill-ok pulse-badge">Evidence row may apply</span></div>
+            </li>
+            <li class="check-row current step-anim reveal reveal-left" id="draftReady" data-step="3">
+              <span class="check-node num" aria-hidden="true">4</span>
+              <div class="check-copy"><strong>Email draft ready</strong><span>Optional — only if you want to reach out</span></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Trust grid -->
+  <div class="wrap trust-wrap">
+    <div class="trust reveal reveal-up stagger-grid">
+      <div class="trust-item reveal reveal-up">
+        <span class="trust-icon bounce-icon"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 118 0v3"/></svg></span>
+        <div><h3>100% yours</h3><p>You stay in control. We don&rsquo;t send anything.</p></div>
+      </div>
+      <div class="trust-item reveal reveal-up">
+        <span class="trust-icon bounce-icon"><svg viewBox="0 0 24 24"><path d="M12 3l7 4v5c0 5-3.5 8-7 9-3.5-1-7-4-7-9V7l7-4z"/><path d="M9 12l2 2 4-4"/></svg></span>
+        <div><h3>Rubric-first</h3><p>We compare your work to the rubric — not vibes.</p></div>
+      </div>
+      <div class="trust-item reveal reveal-up">
+        <span class="trust-icon bounce-icon"><svg viewBox="0 0 24 24"><path d="M6 4h12v16H6z"/><path d="M9 8h6M9 12h6"/></svg></span>
+        <div><h3>Point by point</h3><p>See where feedback and the rubric disagree.</p></div>
+      </div>
+      <div class="trust-item reveal reveal-up">
+        <span class="trust-icon bounce-icon"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 10-14h-7l0-6z"/></svg></span>
+        <div><h3>Saves time &amp; stress</h3><p>Less overthinking. More confidence.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. How it works -->
+<section class="block" id="how">
+  <div class="wrap">
+    <p class="label reveal reveal-up hand-label">How it works</p>
+    <h2 class="heading reveal reveal-up">From confusing feedback to a <span class="hand-scribble-inline">fairer grade</span></h2>
+    <p class="sub reveal reveal-up">You just checked Canvas and the score feels off. Regrade re-checks your work against the rubric so you know what actually happened.</p>
+
+    <div class="step-row reveal reveal-up">
+      <article class="step-strip" data-step="1">
+        <div class="step-num-big">01</div>
+        <h3>Upload what you have</h3>
+        <p>Drop your rubric, exam, feedback, or assignment — PDF, doc, or a photo from your phone.</p>
+      </article>
+      <article class="step-strip" data-step="2">
+        <div class="step-num-big">02</div>
+        <h3>Re-check your grade</h3>
+        <p>Regrade compares your work to the rubric and flags where points may have been missed.</p>
+      </article>
+      <article class="step-strip" data-step="3">
+        <div class="step-num-big">03</div>
+        <h3>Decide what&rsquo;s next</h3>
+        <p>Review your case clearly. Draft a respectful email only when you&rsquo;re ready to reach out.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Features -->
+<section class="block tight-top" id="features">
+  <div class="wrap">
+    <p class="label reveal reveal-up hand-label">Features</p>
+    <h2 class="heading reveal reveal-up">Built for the moment after you check your grade</h2>
+    <p class="sub reveal reveal-up">Figure out if your score is fair first — then email only if you need to.</p>
+
+    <div class="felix-features">
+      <article class="felix-feature reveal reveal-up">
+        <div class="felix-feature-num">01</div>
+        <div class="felix-feature-body">
+          <h3>Grade re-check</h3>
+          <p class="felix-feature-lead">Rubric vs. feedback</p>
+          <p>We compare your exam to the rubric and feedback so you see what the grade is based on.</p>
+        </div>
+      </article>
+      <article class="felix-feature reveal reveal-up">
+        <div class="felix-feature-num">02</div>
+        <div class="felix-feature-body">
+          <h3>Missed points flagged</h3>
+          <p class="felix-feature-lead">Know where credit may apply</p>
+          <p>Spot rubric rows your work may already satisfy — before you argue or overthink.</p>
+        </div>
+      </article>
+      <article class="felix-feature reveal reveal-up">
+        <div class="felix-feature-num">03</div>
+        <div class="felix-feature-body">
+          <h3>Clear case summary</h3>
+          <p class="felix-feature-lead">See it in plain English</p>
+          <p>Get a simple breakdown of what matches, what doesn&rsquo;t, and what might change your score.</p>
+        </div>
+      </article>
+      <article class="felix-feature reveal reveal-up">
+        <div class="felix-feature-num">04</div>
+        <div class="felix-feature-body">
+          <h3>Email draft when ready</h3>
+          <p class="felix-feature-lead">Optional, professor-safe</p>
+          <p>If you want to reach out, Regrade drafts a respectful email you can edit. Nothing sends without you.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 5b. AI Coach -->
+<section class="block ai-coach-section" id="coach">
+  <div class="wrap ai-coach-wrap">
+    <div class="ai-coach-card reveal reveal-up">
+      <div class="ai-coach-layout">
+        <div class="ai-coach-visual reveal reveal-left">
+          <div class="ai-coach-phone phone-float">
+            <div class="phone-tilt">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen">
+                  <img src="/assets/phone-coach-screen.png?v=3" alt="Regrade Coach chat interface" width="390" height="844" loading="lazy" decoding="async" />
+                </div>
+                <div class="phone-btn"></div>
               </div>
-              <div>
-                <div class="k">Rubric scan</div>
-                <div class="v">2.1 ms</div>
-              </div>
-              <div>
-                <div class="k">Tone</div>
-                <div class="v">respectful</div>
-              </div>
-            </div>
-            <div class="route-row">
-              <button class="route-btn" id="routeBtn" type="button"><span class="rb-label">Draft appeal</span></button>
-              <span class="route-hint"><span class="kbd">⌘</span><span class="kbd">↵</span></span>
-            </div>
-          </div>
-          <div class="console-right idle" id="consoleRight">
-            <div class="con-label">Case strength <span class="tier-status" id="tierStatus">awaiting feedback</span></div>
-            <div class="tier-bar">
-              <i class="cheap" id="segCheap" style="flex:0"></i>
-              <i class="mid" id="segMid" style="flex:0"></i>
-              <i class="prem" id="segPrem" style="flex:0"></i>
-            </div>
-            <div class="tier-legend" id="tierLegend"><span>weak</span><span>fair</span><span>strong</span></div>
-
-            <div class="pick">
-              <div class="routed">Recommended outcome</div>
-              <div class="model" id="pickModel">—</div>
-              <div class="row">
-                <span id="pickCost">—</span>
-                <span id="pickLat">—</span>
-                <span class="delta" id="pickDelta">—</span>
-              </div>
-            </div>
-
-            <div class="con-foot">
-              <span class="ok" id="conFootOk">awaiting draft</span>
-              <span id="conFootReq">—</span>
+              <div class="phone-glow"></div>
             </div>
           </div>
         </div>
-        <div class="demo-cursor" id="demoCursor" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M5 3l14 7-6 1.5L9.5 18 5 3z" fill="#1d1d1f" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ ONE UPLOAD — kinetic platform wall (dark) ============ -->
-<section class="tile dark on-dark" id="how">
-  <div class="container">
-    <div class="section-head center reveal">
-      <span class="eyebrow"><span class="dot"></span>one upload</span>
-      <h2 class="t-display">Every gradebook. One photo.</h2>
-    </div>
-
-    <div class="logo-marquee reveal" style="transition-delay:.06s">
-      <p class="logo-marquee-label">Works with the gradebooks you already use</p>
-      <div class="logo-marquee-viewport">
-        <div class="logo-marquee-track">
-          <div class="logo-marquee-set">
-            <span class="logo-marquee-item logo-img"><img src="/assets/logos/canvas.png" alt="Canvas by Instructure" width="160" height="40" /></span>
-            <span class="logo-marquee-item logo-word lw-blackboard">Blackboard</span>
-            <span class="logo-marquee-item logo-word lw-classroom">Google Classroom</span>
-            <span class="logo-marquee-item logo-word lw-d2l">D2L Brightspace</span>
-            <span class="logo-marquee-item logo-word lw-gradescope">Gradescope</span>
-            <span class="logo-marquee-item logo-img"><img src="/assets/logos/impact.png" alt="Impact by Instructure" width="160" height="40" /></span>
-            <span class="logo-marquee-item logo-word lw-moodle">Moodle</span>
-            <span class="logo-marquee-item logo-img"><img src="/assets/logos/instructure.png" alt="Instructure" width="160" height="40" /></span>
-            <span class="logo-marquee-item logo-word lw-schoology">Schoology</span>
-            <span class="logo-marquee-item logo-img"><img src="/assets/logos/mastery.png" alt="Mastery by Instructure" width="160" height="40" /></span>
-            <span class="logo-marquee-item logo-word lw-turnitin">Turnitin</span>
-            <span class="logo-marquee-item logo-word lw-powerschool">PowerSchool</span>
-            <span class="logo-marquee-item logo-word lw-sakai">Sakai</span>
+        <div class="ai-coach-copy">
+          <div class="ai-brain-banner reveal reveal-up">
+            <p class="ai-brain-eyebrow">Dual-model AI</p>
+            <p class="ai-brain-headline">
+              <span class="ai-power-pair">
+                <span class="ai-power-tag">SuperBrain of</span>
+                <span class="ai-brand ai-brand--claude">Claude</span>
+              </span>
+              <span class="ai-brain-plus" aria-hidden="true">+</span>
+              <span class="ai-power-pair">
+                <span class="ai-power-tag">SuperSpeed of</span>
+                <span class="ai-brand ai-brand--gemini">Gemini</span>
+              </span>
+            </p>
+            <p class="ai-brain-sub">Dual-engine AI for a <span class="hand-scribble-inline">Guaranteed Win</span></p>
           </div>
-          <div class="logo-marquee-set" aria-hidden="true">
-            <span class="logo-marquee-item logo-img"><img src="/assets/logos/canvas.png" alt="" width="160" height="40" /></span>
-            <span class="logo-marquee-item logo-word lw-blackboard">Blackboard</span>
-            <span class="logo-marquee-item logo-word lw-classroom">Google Classroom</span>
-            <span class="logo-marquee-item logo-word lw-d2l">D2L Brightspace</span>
-            <span class="logo-marquee-item logo-word lw-gradescope">Gradescope</span>
-            <span class="logo-marquee-item logo-img"><img src="/assets/logos/impact.png" alt="" width="160" height="40" /></span>
-            <span class="logo-marquee-item logo-word lw-moodle">Moodle</span>
-            <span class="logo-marquee-item logo-img"><img src="/assets/logos/instructure.png" alt="" width="160" height="40" /></span>
-            <span class="logo-marquee-item logo-word lw-schoology">Schoology</span>
-            <span class="logo-marquee-item logo-img"><img src="/assets/logos/mastery.png" alt="" width="160" height="40" /></span>
-            <span class="logo-marquee-item logo-word lw-turnitin">Turnitin</span>
-            <span class="logo-marquee-item logo-word lw-powerschool">PowerSchool</span>
-            <span class="logo-marquee-item logo-word lw-sakai">Sakai</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="endpoint reveal" style="transition-delay:.1s">
-      <div class="mwall" aria-hidden="true">
-        <div class="mwall-lanes" id="mwallLanes"></div>
-        <div class="mwall-well"></div>
-      </div>
-
-      <div class="oneline">
-        <span class="ol-kicker">snap it — any format</span>
-        <div class="ol-code"><span class="k">input</span><span class="eq">=</span><span class="str">"a photo"</span><span class="ol-caret"></span></div>
-        <div class="ol-sub">screenshots · PDFs · handwriting · math · red pen</div>
-      </div>
-    </div>
-
-    <div class="endpoint-stats reveal" style="transition-delay:.2s" aria-hidden="true">
-      <div><span class="es-num accent" data-target="12" data-suffix="+">0</span><span class="es-lbl">platforms read</span></div>
-      <div class="es-div"></div>
-      <div><span class="es-num">30+</span><span class="es-lbl">languages supported</span></div>
-      <div class="es-div"></div>
-      <div><span class="es-num">60s</span><span class="es-lbl">to a first draft</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ RESULT (parchment) ============ -->
-<section class="tile parchment" id="savings">
-  <div class="container" style="text-align:center">
-    <span class="eyebrow reveal"><span class="dot"></span>average result</span>
-    <div class="bignum reveal" id="savBig" style="margin:18px auto 0"><span class="num" id="savNum" data-target="73">0</span><span class="unit">%</span></div>
-    <p class="t-lead reveal" style="margin:8px auto 0;color:var(--ink-80);max-width:18ch">of appeals win points back.</p>
-  </div>
-</section>
-
-<!-- ============ WHY REGRADE ============ -->
-<section class="tile dark on-dark" id="why">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow on-dark-eyebrow"><span class="dot"></span>Why Regrade</span>
-      <h2 class="t-display on-dark">Every student deserves an advocate in the room.</h2>
-      <p class="t-lead-airy muted" style="max-width:42rem;margin-top:1rem">
-        Well-funded students have parents and advisors who know how to write the appeal email.
-        Community college, first-gen, and international students often have nobody. Regrade is that advocate — rubric-aware, polite, and fast.
-      </p>
-    </div>
-    <div class="why-stats reveal" style="transition-delay:.12s">
-      <div class="why-stat">
-        <div class="why-stat-num"><span class="why-num" data-target="73">0</span><span class="why-suf">%</span></div>
-        <p class="why-stat-cap">of students never appeal a grade they believe is unfair.</p>
-      </div>
-      <div class="why-stat">
-        <div class="why-stat-num"><span class="why-num" data-target="9">0</span><span class="why-suf">%</span></div>
-        <p class="why-stat-cap">of those who appeal do it without help from a parent or advisor.</p>
-      </div>
-      <div class="why-stat">
-        <div class="why-stat-num"><span class="why-num" data-target="60">0</span><span class="why-suf">s</span></div>
-        <p class="why-stat-cap">is all Regrade needs to read your work and draft the email.</p>
-      </div>
-    </div>
-    <div class="reveal" style="margin-top:2.5rem;text-align:center">
-      <a class="btn btn-ghost" href="#cta">Join the waitlist</a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FEATURE 1 — recovery dashboard (light) ============ -->
-<section class="tile light" id="features">
-  <div class="container">
-    <div class="split reveal">
-      <div class="copy">
-        <span class="eyebrow"><span class="dot"></span>your record</span>
-        <h2 class="t-display">See every point.</h2>
-        <p class="t-lead-airy muted">Live recovery, win rate, and tone mix — down to a single appeal.</p>
-        <a class="text-link" href="#cta">Start your record <span class="chev" aria-hidden="true">›</span></a>
-      </div>
-      <div class="visual">
-        <div class="vcard cost-card" id="costCard">
-          <div class="vc-head cost-head">
-            <div>
-              <span class="vc-title">Points recovered</span>
-              <div class="cost-total"><span class="ct-cur">+</span><span id="costTotal">0</span></div>
-            </div>
-            <span class="cost-badge">▲ <span id="costBadge">0</span>% win rate</span>
-          </div>
-
-          <div class="chart2">
-            <div class="chart2-y"><span>120</span><span>80</span><span>40</span><span>0</span></div>
-            <div class="chart2-main">
-              <div class="chart2-plot" id="costPlot">
-                <span class="gridline" style="top:0"></span>
-                <span class="gridline" style="top:33.3%"></span>
-                <span class="gridline" style="top:66.6%"></span>
-                <span class="gridline" style="top:100%"></span>
-                <div class="c2col"><span class="c2base"></span><span class="c2spend" style="--h:18%"></span><span class="c2val">22</span></div>
-                <div class="c2col"><span class="c2base"></span><span class="c2spend" style="--h:33%"></span><span class="c2val">41</span></div>
-                <div class="c2col"><span class="c2base"></span><span class="c2spend" style="--h:46%"></span><span class="c2val">58</span></div>
-                <div class="c2col"><span class="c2base"></span><span class="c2spend" style="--h:56%"></span><span class="c2val">70</span></div>
-                <div class="c2col"><span class="c2base"></span><span class="c2spend" style="--h:77%"></span><span class="c2val">96</span></div>
-                <div class="c2col current"><span class="c2base"></span><span class="c2spend" style="--h:92%"></span><span class="c2val accent">125</span></div>
-              </div>
-              <div class="chart2-x"><span>Dec</span><span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span></div>
-            </div>
-          </div>
-
-          <div class="cost-foot">
-            <div class="cost-saved"><span class="cf-num"><span id="costSaved">0</span></span><span class="cf-lbl">appeals won this term</span></div>
-            <div class="chart-key">
-              <span class="k-spend"><i></i>recovered</span>
-              <span class="k-base"><i></i>at stake</span>
-            </div>
+          <p class="label reveal reveal-up hand-label">AI Coach</p>
+          <h2 class="heading reveal reveal-up">Your appeal co-pilot</h2>
+          <p class="sub reveal reveal-up">Draft appeals, tighten evidence, or get professor-safe wording — built into the app when you need a second pair of eyes.</p>
+          <div class="ai-connected reveal reveal-up" aria-label="Connected AI powered by Gemini 2.5 and Claude Opus 4.7">
+            <span class="ai-connected-status">
+              <span class="ai-connected-dot" aria-hidden="true"></span>
+              Connected AI
+            </span>
+            <span class="ai-model-chip ai-model-chip--gemini">Gemini 2.5</span>
+            <span class="ai-model-chip ai-model-chip--claude">Claude Opus 4.7</span>
           </div>
         </div>
       </div>
@@ -268,146 +348,21 @@
   </div>
 </section>
 
-<!-- ============ FEATURE 2 — appeal ledger (dark) ============ -->
-<section class="tile dark on-dark">
-  <div class="container">
-    <div class="split rev reveal">
-      <div class="copy">
-        <span class="eyebrow"><span class="dot"></span>transparency</span>
-        <h2 class="t-display">Replay any appeal.</h2>
-        <p class="t-lead-airy muted">Every appeal, its rubric basis, the email sent, and the points you won.</p>
-        <a class="text-link" href="#cta">See the appeal log <span class="chev" aria-hidden="true">›</span></a>
-      </div>
-      <div class="visual">
-        <div class="tilt-wrap">
-        <div class="vcard dark tilt" id="routeCard">
-          <div class="tilt-glare" aria-hidden="true"></div>
-          <div class="vc-head"><span class="vc-title">Recent appeals</span><span class="vc-title" style="color:#54c98a">live</span></div>
-          <div class="ledger">
-            <div class="lrow"><span class="task"><span class="tdot mid"></span>Calc II · PS4</span><span class="model">regraded</span><span class="delta">+<span class="dv" data-val="8">0</span> pts</span></div>
-            <div class="lrow"><span class="task"><span class="tdot prem"></span>Orgo · Exam 2</span><span class="model">partial</span><span class="delta">+<span class="dv" data-val="5">0</span> pts</span></div>
-            <div class="lrow"><span class="task"><span class="tdot cheap"></span>Stats · HW3</span><span class="model">regraded</span><span class="delta">+<span class="dv" data-val="6">0</span> pts</span></div>
-            <div class="lrow"><span class="task"><span class="tdot mid"></span>English · Essay</span><span class="model">second read</span><span class="delta">+<span class="dv" data-val="4">0</span> pts</span></div>
-            <div class="lrow"><span class="task"><span class="tdot cheap"></span>Discrete · PS2</span><span class="model">regraded</span><span class="delta">+<span class="dv" data-val="12">0</span> pts</span></div>
-          </div>
-        </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FEATURE 3 — tone guardrail (full-bleed scroll scene) ============ -->
-<section class="gr-scroll" id="grScroll">
-  <div class="gr-pin on-dark">
-    <div class="gr-bg"></div>
-    <div class="gr-grid"></div>
-    <div class="gr-glow" id="grGlow"></div>
-    <div class="gr-vignette"></div>
-
-    <div class="gr-head">
-      <span class="eyebrow on-dark-eyebrow"><span class="dot"></span>tone guardrail</span>
-    </div>
-
-    <!-- PROMPT — origin at the left edge -->
-    <div class="gr-prompt" id="grPrompt">
-      <div class="gr-prompt-head"><span class="gr-mono">YOUR FIRST INSTINCT</span><span class="gr-mono dim">38 words</span></div>
-      <p class="gr-prompt-text">“This grade is completely unfair and I demand you regrade it. I clearly answered the question and you took points for no reason.”</p>
-      <div class="gr-prompt-tags"><span class="gr-tag">draft</span><span class="gr-tag">emotional</span><span class="gr-tag warn">high-stakes</span></div>
-    </div>
-
-    <!-- SMALL MODEL carrier -->
-    <div class="gr-carrier sm" id="grSm">
-      <span class="gr-mono gr-carrier-cap">first draft</span>
-      <div class="gr-chip cheap">
-        <span class="gr-chip-node"><i></i><i></i></span>
-        <span class="gr-chip-text"><span class="gr-chip-name">angry-draft</span><span class="gr-mono gr-chip-tier">RAW · too hot to send</span></span>
-      </div>
-      <span class="gr-answer">unsent</span>
-    </div>
-
-    <!-- BIG MODEL carrier -->
-    <div class="gr-carrier lg" id="grLg">
-      <span class="gr-mono gr-carrier-cap">recalibrated</span>
-      <div class="gr-chip prem">
-        <span class="gr-chip-node big"><i></i><i></i><i></i><i></i></span>
-        <span class="gr-chip-text"><span class="gr-chip-name">calibrated-v3</span><span class="gr-mono gr-chip-tier">READY · respectful &amp; rubric-cited</span></span>
-      </div>
-      <span class="gr-answer">ready to send</span>
-    </div>
-
-    <!-- GUARDRAIL — full-height barrier near the right edge -->
-    <div class="gr-gate" id="grGate">
-      <div class="gr-gate-plate">
-        <span class="gr-mono gr-gate-title">TONE GUARDRAIL</span>
-        <span class="gr-mono gr-gate-thresh">send&nbsp;≥&nbsp;0.85</span>
-        <span class="gr-gate-score">
-          <span class="gr-gate-fail">0.62</span>
-          <span class="gr-gate-pass">0.94</span>
-        </span>
-      </div>
-      <span class="gr-beam top"></span>
-      <span class="gr-beam bot"></span>
-      <span class="gr-seam"></span>
-    </div>
-
-    <div class="gr-cap" id="grCap"><span class="gr-cap-text"></span></div>
-
-    <div class="gr-rail" aria-hidden="true"><span class="gr-rail-fill" id="grRailFill"></span></div>
-    <span class="gr-scrollhint" id="grHint">scroll to play <span class="gr-chev">↓</span></span>
-  </div>
-</section>
-
-<!-- ============ THE EMAIL, WRITTEN FOR YOU (darker) ============ -->
-<section class="tile darker on-dark" id="email">
-  <div class="container">
-    <div class="code-grid">
-      <div class="section-head reveal">
-        <span class="eyebrow"><span class="dot"></span>in your voice</span>
-        <h2 class="t-display">The email, written for you.</h2>
-        <p class="t-lead-airy muted">Polite, specific, rubric-cited. Yours to read and edit before it sends.</p>
-        <a class="btn btn-ghost" href="#cta" style="margin-top:24px">Get early access <span aria-hidden="true">›</span></a>
-      </div>
-      <div class="code-card reveal" style="transition-delay:.1s">
-        <div class="code-head"><i></i><i></i><i></i><span class="f">To: prof.ramirez@university.edu</span></div>
-        <pre class="code-body"><span class="cmt">Subject: Quick question on PS4 — Q2</span>
-
-Hi Professor Ramirez,
-
-Thank you for the detailed feedback on Problem
-Set 4. I wanted to ask about Q2.
-
-<span class="hl">The rubric awards full credit for a correct
-chain-rule setup, and I do show that work in
-step 3</span> — I think it may have been overlooked.
-
-Would you be open to a second look? Happy to
-stop by office hours.
-
-Thanks so much for your time,
-[Your name]
-
-<span class="cmt"># 142 words · tone: respectful · rubric §2 cited</span></pre>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ CUSTOMER REVIEW (dark) ============ -->
-<section class="tile dark on-dark" id="reviews">
-  <div class="container">
-    <div class="quote-block reveal">
-      <span class="eyebrow on-dark-eyebrow"><span class="dot"></span>customer review</span>
-      <span class="quote-mark" aria-hidden="true">&ldquo;</span>
-      <p class="quote-big review-body">
+<!-- 6. Giovanno review (dark) -->
+<section class="block review-dark" id="review">
+  <div class="wrap">
+    <div class="quote-block">
+      <span class="review-eyebrow reveal reveal-up"><span class="review-dot"></span>customer review</span>
+      <span class="quote-mark reveal reveal-scale" aria-hidden="true">&ldquo;</span>
+      <p class="quote-text reveal reveal-up" id="reviewQuote">
         This app is very useful for me to have a consistently good grade for applying to top universities, either my GPA or my AP classes &mdash; it&rsquo;s a really great app to have.
       </p>
-      <div class="quote-by">
-        <div class="avatar" aria-hidden="true">GV</div>
-        <div class="meta">
-          <span class="nm">Giovanno Valyno</span>
-          <span class="rl review-stars" aria-label="4 out of 5 stars">
-            <span class="star on" aria-hidden="true">★</span><span class="star on" aria-hidden="true">★</span><span class="star on" aria-hidden="true">★</span><span class="star on" aria-hidden="true">★</span><span class="star off" aria-hidden="true">★</span>
+      <div class="quote-by reveal reveal-up">
+        <div class="quote-avatar" aria-hidden="true">GV</div>
+        <div class="quote-meta">
+          <span class="quote-name">Giovanno Valyno</span>
+          <span class="quote-stars" aria-label="4 out of 5 stars">
+            <span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star off">★</span>
             4/5
           </span>
         </div>
@@ -416,93 +371,109 @@ Thanks so much for your time,
   </div>
 </section>
 
-<!-- ============ PRICING (light) ============ -->
-<section class="tile light" id="pricing">
-  <div class="container">
-    <div class="section-head center reveal">
-      <span class="eyebrow"><span class="dot"></span>pricing</span>
-      <h2 class="t-display">Free while in beta.</h2>
-      <p class="t-lead-airy muted">Later, a small monthly fee — always free for students on aid.</p>
-    </div>
-    <p class="plan-hint reveal muted">Tap a plan to compare</p>
-    <div class="plan-chips" id="planPicker" role="radiogroup" aria-label="Pricing plans">
-      <div class="plan reveal" role="radio" aria-checked="false" tabindex="0" data-plan="student">
-        <div class="name">Student</div>
-        <div class="price">$0<span> / mo</span></div>
-        <ul>
-          <li><span class="ck">✓</span> 10 appeals a month</li>
-          <li><span class="ck">✓</span> Every platform &amp; format</li>
-        </ul>
-        <a class="btn btn-ghost" href="#cta">Join waitlist</a>
+<!-- 7. FAQ -->
+<section class="block faq-section" id="faq">
+  <div class="wrap faq-wrap">
+    <p class="label reveal reveal-up hand-label">FAQ</p>
+    <h2 class="heading reveal reveal-up">Quick answers</h2>
+    <div class="faq faq-glass">
+      <div class="faq-row reveal reveal-up">
+        <button type="button" class="faq-btn btn-anim" aria-expanded="false"><span>What does Regrade actually do?</span><span class="plus">+</span></button>
+        <div class="faq-body"><p class="faq-answer" data-answer="Regrade re-checks your grade against the rubric. Upload your exam, rubric, and feedback — we compare them and flag where points may have been missed. If you want to reach out, we can draft an email later. We never contact your professor for you."></p></div>
       </div>
-      <div class="plan is-selected reveal" style="transition-delay:.08s" role="radio" aria-checked="true" tabindex="0" data-plan="unlimited">
-        <span class="plan-badge">Most popular</span>
-        <div class="name">Unlimited</div>
-        <div class="price">$5<span> / mo</span></div>
-        <ul>
-          <li><span class="ck">✓</span> Unlimited appeals</li>
-          <li><span class="ck">✓</span> Tone calibration &amp; rubric matching</li>
-        </ul>
-        <a class="btn btn-primary" href="#cta">Join waitlist</a>
+      <div class="faq-row reveal reveal-up">
+        <button type="button" class="faq-btn btn-anim" aria-expanded="false"><span>What should I upload?</span><span class="plus">+</span></button>
+        <div class="faq-body"><p class="faq-answer" data-answer="Your rubric, graded exam or assignment, and professor feedback — from Canvas, Blackboard, Gradescope, or anywhere else. The more we can compare your work to how you were scored, the better the re-check."></p></div>
       </div>
-      <div class="plan reveal" style="transition-delay:.16s" role="radio" aria-checked="false" tabindex="0" data-plan="aid">
-        <div class="name">On aid</div>
-        <div class="price">$0</div>
-        <ul>
-          <li><span class="ck">✓</span> Everything in Unlimited</li>
-          <li><span class="ck">✓</span> Free with financial-aid status</li>
-        </ul>
-        <a class="btn btn-ghost" href="#cta">Verify &amp; join</a>
+      <div class="faq-row reveal reveal-up">
+        <button type="button" class="faq-btn btn-anim" aria-expanded="false"><span>Do I have to email my professor?</span><span class="plus">+</span></button>
+        <div class="faq-body"><p class="faq-answer" data-answer="No. The main point is understanding whether your grade matches the rubric. Email drafting is optional — and if you do write one, Regrade keeps the tone respectful and professor-safe."></p></div>
+      </div>
+      <div class="faq-row reveal reveal-up">
+        <button type="button" class="faq-btn btn-anim" aria-expanded="false"><span>Is this only for big grade changes?</span><span class="plus">+</span></button>
+        <div class="faq-body"><p class="faq-answer" data-answer="Any time a score feels off — even a small rubric mismatch. Catching missed points early can matter for your GPA, especially in AP classes or competitive programs."></p></div>
+      </div>
+      <div class="faq-row reveal reveal-up">
+        <button type="button" class="faq-btn btn-anim" aria-expanded="false"><span>How do I get early access?</span><span class="plus">+</span></button>
+        <div class="faq-body"><p class="faq-answer" data-answer="Join the waitlist below with your school email. We&rsquo;ll send you one email when the iOS beta opens — no spam, no sharing your address with anyone else."></p></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ CTA BAND (parchment) ============ -->
-<section class="tile parchment cta-band" id="cta">
-  <div class="container reveal">
-    <span class="eyebrow"><span class="dot"></span>get started</span>
-    <h2 class="t-display" style="margin-top:16px">Stop accepting grades that aren&rsquo;t yours.</h2>
-    <form class="signup" id="signup" novalidate>
-      <div class="signup-fields">
-        <input type="text" name="name" id="signupName" placeholder="Your name" required aria-label="Your name" autocomplete="name" />
-        <input type="email" name="email" id="signupEmail" placeholder="you@school.edu" required aria-label="Email address" autocomplete="email" />
-      </div>
-      <button class="btn btn-primary" type="submit">Reserve my spot</button>
-    </form>
-    <div class="cta-sub"><span class="live-dot"></span><span id="ctaCount">0</span>&nbsp;students waiting · one email when iOS opens</div>
+<!-- 8. CTA -->
+<section class="block cta" id="cta">
+  <div class="cta-scene">
+    <div class="cta-whales" id="ctaWhales" aria-hidden="true"></div>
+    <div class="wrap center cta-content">
+      <h2 class="heading reveal reveal-scale">Re-check your grade — <span class="hand-scribble-inline">clearly</span></h2>
+      <p class="sub reveal reveal-up">Join early access and be first to try grade re-checks when we open the beta.</p>
+      <p class="waitlist-perk waitlist-perk--cta reveal reveal-up"><strong>First 100</strong> on the waitlist get <strong>Pro features</strong> and <strong>unlimited downloads</strong> free for the year.</p>
+      <form class="signup reveal reveal-up" id="signup" novalidate>
+        <div class="input-wrap">
+          <input type="text" name="name" id="signupName" placeholder="Your name" required aria-label="Your name" autocomplete="name" />
+          <span class="input-glow" aria-hidden="true"></span>
+        </div>
+        <div class="input-wrap">
+          <input type="email" name="email" id="signupEmail" placeholder="you@school.edu" required aria-label="Email address" autocomplete="email" />
+          <span class="input-glow" aria-hidden="true"></span>
+        </div>
+        <div class="cta-btn-crowd">
+          <button class="btn btn-join btn-anim btn-cta-submit" type="submit"><span class="btn-txt">Waitlist for free</span><span class="btn-glow-ring" aria-hidden="true"></span></button>
+        </div>
+      </form>
+      <p class="fine reveal reveal-up"><span id="ctaCount" class="count-up">2,843</span> students on the list · one email when we launch</p>
+    </div>
   </div>
 </section>
 
 </main>
 
-<!-- ============ FOOTER ============ -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer-cols">
-      <div class="brand">
-        <a href="#top" class="wordmark footer-logo-link" aria-label="Regrade home">
-          <img src="/logo-wordmark.png" alt="Regrade" class="footer-logo" width="140" height="36" />
-        </a>
-        <p>An advocate for every student. Snap your work, the rubric, and the feedback — Regrade writes the appeal a lawyer parent would.</p>
+<section class="privacy-note" id="privacy" aria-label="Student privacy protection">
+  <div class="wrap privacy-note-wrap">
+    <h2 class="privacy-note-title reveal reveal-up">Built for student privacy</h2>
+    <p class="privacy-note-text reveal reveal-up">Your uploads and reviews stay yours. We never sell your data, share it with your school, or contact your professor for you. <a href="/legal/privacy.html">How we protect you</a></p>
+  </div>
+</section>
+
+<footer class="foot gradient-band gradient-footer">
+  <div class="wrap foot-inner">
+    <div class="foot-top reveal reveal-up">
+      <div class="foot-brand">
+        <img class="brand-logo brand-logo--footer" src="/assets/regrade-logo.png" alt="Regrade" width="320" height="120" decoding="async" />
       </div>
-      <div>
-        <h4>Product</h4>
-        <ul><li><a href="#how">How it works</a></li><li><a href="#why">Why Regrade</a></li><li><a href="#features">Features</a></li><li><a href="#pricing">Pricing</a></li></ul>
+      <p class="foot-tag">Re-check your grade against the rubric — email only when you&rsquo;re ready.</p>
+    </div>
+    <div class="foot-grid reveal reveal-up">
+      <div class="foot-col">
+        <h4>App</h4>
+        <a href="#top">Home</a>
+        <a href="#demo">App preview</a>
+        <a href="#how">How it works</a>
+        <a href="#features">Features</a>
+        <a href="#cta">Join waitlist</a>
       </div>
-      <div>
-        <h4>Get started</h4>
-        <ul><li><a href="#cta">Join waitlist</a></li></ul>
+      <div class="foot-col">
+        <h4>Students</h4>
+        <a href="#faq">FAQ</a>
+        <a href="#review">Reviews</a>
+        <a href="/legal/privacy.html">Privacy policy</a>
+        <a href="/legal/privacy.html">How we protect you</a>
       </div>
-      <div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="mailto:regradeteam@gmail.com">regradeteam@gmail.com</a>
+        <a href="mailto:regradeteam@gmail.com">Support</a>
+        <a href="#cta">Early access</a>
+      </div>
+      <div class="foot-col">
         <h4>Legal</h4>
-        <ul><li><a href="/legal/privacy.html">Privacy</a></li><li><a href="/legal/terms.html">Terms</a></li></ul>
+        <a href="/legal/terms.html">Terms of service</a>
+        <a href="/legal/privacy.html">Privacy</a>
+        <a href="/legal/terms.html">Terms of use</a>
       </div>
     </div>
-    <div class="footer-legal">
-      <span>© 2026 Regrade, Inc. Beta software — figures are illustrative.</span>
-      <span class="links"><a href="/legal/privacy.html">Privacy</a><a href="/legal/terms.html">Terms</a></span>
-    </div>
+    <p class="foot-copy reveal reveal-up">© 2026 Regrade · Built for students</p>
   </div>
 </footer>
 
@@ -510,480 +481,6 @@ Thanks so much for your time,
 <script src="/visitors.js"></script>
 <script src="/scroll.js"></script>
 <script src="/waitlist.js"></script>
-<script>
-  // Reveal on scroll
-  (function () {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-    document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
-  })();
-
-  // Pricing — selectable plan showcase
-  (function () {
-    var picker = document.getElementById('planPicker');
-    if (!picker) return;
-    var plans = picker.querySelectorAll('.plan');
-
-    function selectPlan(plan) {
-      plans.forEach(function (p) {
-        p.classList.remove('is-selected');
-        p.setAttribute('aria-checked', 'false');
-        p.setAttribute('tabindex', '-1');
-        var btn = p.querySelector('.btn');
-        if (btn) {
-          btn.classList.remove('btn-primary');
-          btn.classList.add('btn-ghost');
-        }
-      });
-      plan.classList.add('is-selected');
-      plan.setAttribute('aria-checked', 'true');
-      plan.setAttribute('tabindex', '0');
-      var activeBtn = plan.querySelector('.btn');
-      if (activeBtn) {
-        activeBtn.classList.remove('btn-ghost');
-        activeBtn.classList.add('btn-primary');
-      }
-    }
-
-    plans.forEach(function (plan) {
-      plan.addEventListener('click', function (e) {
-        if (e.target.closest('a')) return;
-        selectPlan(plan);
-      });
-      plan.addEventListener('keydown', function (e) {
-        if (e.key !== 'Enter' && e.key !== ' ') return;
-        e.preventDefault();
-        selectPlan(plan);
-      });
-      var cta = plan.querySelector('a.btn');
-      if (cta) cta.addEventListener('click', function (e) { e.stopPropagation(); });
-    });
-  })();
-
-  // Re-playable count helper
-  function countTo(el, target, dur, fmt) {
-    if (!el) return;
-    fmt = fmt || function (v) { return String(v); };
-    if (el.__raf) cancelAnimationFrame(el.__raf);
-    var start = null;
-    function frame(t) {
-      if (start === null) start = t;
-      var p = Math.min(1, (t - start) / dur);
-      var eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = fmt(Math.round(eased * target));
-      if (p < 1) { el.__raf = requestAnimationFrame(frame); }
-      else { el.textContent = fmt(target); el.__raf = null; }
-    }
-    el.__raf = requestAnimationFrame(frame);
-  }
-  function stopCount(el) { if (el && el.__raf) { cancelAnimationFrame(el.__raf); el.__raf = null; } }
-
-  // One upload — drifting platform-name lanes + count the stat strip
-  (function () {
-    var lanes = document.getElementById('mwallLanes');
-    if (!lanes) return;
-
-    // Platforms & formats Regrade reads. tier just tints the dot for rhythm.
-    var PLATFORMS = [
-      ['Canvas','mid'], ['Gradescope','prem'], ['Google Classroom','cheap'], ['Moodle','mid'],
-      ['Blackboard','prem'], ['D2L Brightspace','mid'], ['Turnitin','prem'], ['Schoology','cheap'],
-      ['PowerSchool','mid'], ['Sakai','cheap'], ['SpeedGrader','mid'], ['Handwritten','cheap'],
-      ['Scanned PDF','mid'], ['Screenshot','cheap'], ['Math notation','prem'], ['Cursive','cheap'],
-      ['Red-pen markup','prem'], ['Voice comments','mid'], ['Rubric tiles','mid'], ['QuickMarks','prem'],
-      ['Marking guide','cheap'], ['Annotated PDF','mid'], ['Photo','cheap'], ['Exam booklet','prem'],
-      ['Problem set','mid'], ['Lab report','cheap'], ['Essay feedback','mid'], ['Margin notes','prem'],
-      ['Comment thread','cheap'], ['Outcome rubric','mid'], ['Competencies','prem'], ['Late penalty','cheap'],
-      ['Participation','mid'], ['Group grade','cheap'], ['Curve sheet','prem'], ['Answer key','mid'],
-      ['Email feedback','cheap'], ['Office-hours note','mid'], ['Peer review','prem'], ['Self-assessment','cheap']
-    ];
-
-    var LANE_CFG = [
-      { dir: 'l', dur: 96 }, { dir: 'r', dur: 118 }, { dir: 'l', dur: 104 }, { dir: 'r', dur: 126 }
-    ];
-    var NL = LANE_CFG.length;
-    var buckets = LANE_CFG.map(function () { return ''; });
-    PLATFORMS.forEach(function (m, i) {
-      buckets[i % NL] += '<span class="m-chip ' + m[1] + '"><i></i>' + m[0] + '</span>';
-    });
-    LANE_CFG.forEach(function (cfg, i) {
-      var row = document.createElement('div');
-      row.className = 'mlane ' + cfg.dir;
-      row.style.animationDuration = cfg.dur + 's';
-      row.innerHTML = buckets[i] + buckets[i];
-      lanes.appendChild(row);
-    });
-
-    var strip = document.querySelector('.endpoint-stats');
-    if (!strip) return;
-    var num = strip.querySelector('.es-num[data-target]');
-    var target = num ? parseInt(num.getAttribute('data-target'), 10) : 0;
-    var suffix = num ? (num.getAttribute('data-suffix') || '') : '';
-    var fmt = function (v) { return v + suffix; };
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      if (num) num.textContent = fmt(target);
-      return;
-    }
-    var shown = false;
-    new IntersectionObserver(function (entries) {
-      var vis = entries[0].isIntersecting;
-      if (vis && !shown) { shown = true; if (num) countTo(num, target, 1100, fmt); }
-      else if (!vis && shown) { shown = false; if (num) { stopCount(num); num.textContent = fmt(0); } }
-    }, { threshold: 0.5 }).observe(strip);
-  })();
-
-  // Appeal ledger — 3D mouse parallax tilt + animated point deltas
-  (function () {
-    var card = document.getElementById('routeCard');
-    if (!card) return;
-    var wrap = card.parentElement;
-    var hoverable = window.matchMedia('(hover: hover)').matches;
-    var MAX = 9;
-    if (hoverable) {
-      wrap.addEventListener('mousemove', function (e) {
-        var r = card.getBoundingClientRect();
-        var px = (e.clientX - r.left) / r.width - 0.5;
-        var py = (e.clientY - r.top) / r.height - 0.5;
-        card.classList.add('tilting');
-        card.style.transform = 'rotateX(' + (-py * MAX).toFixed(2) + 'deg) rotateY(' + (px * MAX).toFixed(2) + 'deg)';
-        card.style.setProperty('--gx', ((px + 0.5) * 100).toFixed(1) + '%');
-        card.style.setProperty('--gy', ((py + 0.5) * 100).toFixed(1) + '%');
-      });
-      wrap.addEventListener('mouseleave', function () {
-        card.classList.remove('tilting');
-        card.style.transform = '';
-      });
-    }
-
-    var dvs = card.querySelectorAll('.dv');
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      dvs.forEach(function (d) { d.textContent = d.getAttribute('data-val'); });
-      return;
-    }
-    var shown = false;
-    new IntersectionObserver(function (entries) {
-      var vis = entries[0].isIntersecting;
-      if (vis && !shown) {
-        shown = true;
-        dvs.forEach(function (d, i) { countTo(d, parseInt(d.getAttribute('data-val'), 10), 850 + i * 70); });
-      } else if (!vis && shown) {
-        shown = false;
-        dvs.forEach(function (d) { stopCount(d); d.textContent = '0'; });
-      }
-    }, { threshold: 0.4 }).observe(card);
-  })();
-
-  // Result figure — counts to 73% every time it enters view
-  (function () {
-    var num = document.getElementById('savNum');
-    var big = document.getElementById('savBig');
-    if (!num || !big) return;
-    var target = parseInt(num.getAttribute('data-target'), 10) || 73;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { num.textContent = String(target); return; }
-    var shown = false;
-    new IntersectionObserver(function (entries) {
-      var vis = entries[0].isIntersecting;
-      if (vis && !shown) { shown = true; countTo(num, target, 1300); }
-      else if (!vis && shown) { shown = false; stopCount(num); num.textContent = '0'; }
-    }, { threshold: 0.55 }).observe(big);
-  })();
-
-  // Recovery dashboard — bars grow + figures count on entry
-  (function () {
-    var card = document.getElementById('costCard');
-    if (!card) return;
-    var badge = document.getElementById('costBadge');
-    var total = document.getElementById('costTotal');
-    var saved = document.getElementById('costSaved');
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      card.classList.add('in-view'); badge.textContent = '73'; total.textContent = '412'; saved.textContent = '37'; return;
-    }
-    var comma = function (v) { return v.toLocaleString('en-US'); };
-    var shown = false;
-    new IntersectionObserver(function (entries) {
-      var vis = entries[0].isIntersecting;
-      if (vis && !shown) {
-        shown = true;
-        card.classList.add('in-view');
-        countTo(badge, 73, 1100); countTo(total, 412, 1200, comma); countTo(saved, 37, 1400);
-      } else if (!vis && shown) {
-        shown = false;
-        card.classList.remove('in-view');
-        stopCount(badge); stopCount(total); stopCount(saved);
-        badge.textContent = '0'; total.textContent = '0'; saved.textContent = '0';
-      }
-    }, { threshold: 0.35 }).observe(card);
-  })();
-
-  // Hero console — typewriter + animated appeal-drafting demo
-  (function () {
-    var typed = document.getElementById('typed');
-    var caret = document.getElementById('caret');
-    var tok = document.getElementById('tokCount');
-    var right = document.getElementById('consoleRight');
-    var btn = document.getElementById('routeBtn');
-    var status = document.getElementById('tierStatus');
-    var legend = document.getElementById('tierLegend');
-    var segC = document.getElementById('segCheap');
-    var segM = document.getElementById('segMid');
-    var segP = document.getElementById('segPrem');
-    var cursor = document.getElementById('demoCursor');
-    var consoleEl = document.getElementById('console');
-    if (!typed || !btn) return;
-
-    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    // tiers here = case strength distribution [weak, fair, strong]
-    var SCENES = [
-      { prompt: "Q2: −3. Show your work in step 3.",
-        tiers: [0.08, 0.22, 0.70], model: 'Partial regrade',
-        cost: '+3 pts', lat: 'respectful', delta: 'rubric §2 cited', req: 'draft_3b1f…a7' },
-      { prompt: "Marked late, but I submitted before midnight per the syllabus.",
-        tiers: [0.05, 0.18, 0.77], model: 'Full regrade',
-        cost: '+12 pts', lat: 'firm, kind', delta: 'syllabus cited', req: 'draft_8f2a…c4' },
-      { prompt: "Essay scored ‘off-topic’ — my thesis is in paragraph one.",
-        tiers: [0.12, 0.34, 0.54], model: 'Second read',
-        cost: '+5 pts', lat: 'respectful', delta: 'thesis quoted', req: 'draft_d70c…12' }
-    ];
-
-    var sleep = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
-    var pct = function (n) { return Math.round(n * 100); };
-
-    function tierLabels(t) {
-      legend.innerHTML =
-        '<span>weak · ' + pct(t[0]) + '%</span>' +
-        '<span>fair · ' + pct(t[1]) + '%</span>' +
-        '<span>strong · ' + pct(t[2]) + '%</span>';
-    }
-
-    function moveCursorTo(el, parkOffset) {
-      var cb = consoleEl.getBoundingClientRect();
-      var tb = el.getBoundingClientRect();
-      var x = tb.left - cb.left + tb.width / 2 - 4;
-      var y = tb.top - cb.top + tb.height / 2 - 2 + (parkOffset || 0);
-      cursor.style.left = x + 'px';
-      cursor.style.top = y + 'px';
-    }
-
-    function reset(scene) {
-      right.className = 'console-right idle';
-      typed.textContent = '';
-      tok.textContent = '0';
-      status.textContent = 'awaiting feedback';
-      segC.style.flex = '0'; segM.style.flex = '0'; segP.style.flex = '0';
-      legend.innerHTML = '<span>weak</span><span>fair</span><span>strong</span>';
-      document.getElementById('pickModel').textContent = '—';
-      document.getElementById('pickCost').textContent = '—';
-      document.getElementById('pickLat').textContent = '—';
-      document.getElementById('pickDelta').textContent = '—';
-      document.getElementById('conFootOk').textContent = 'awaiting draft';
-      document.getElementById('conFootReq').textContent = '—';
-      btn.querySelector('.rb-label').textContent = 'Draft appeal';
-      caret.style.display = 'inline-block';
-    }
-
-    function type(text) {
-      return new Promise(function (resolve) {
-        var i = 0;
-        (function step() {
-          if (i <= text.length) {
-            typed.textContent = text.slice(0, i);
-            tok.textContent = Math.max(0, text.slice(0, i).trim().split(/\s+/).filter(Boolean).length);
-            i++;
-            setTimeout(step, 22 + Math.random() * 34);
-          } else { resolve(); }
-        })();
-      });
-    }
-
-    function ripple() {
-      var r = document.createElement('span');
-      r.className = 'rb-ripple';
-      btn.appendChild(r);
-      btn.classList.add('rippling');
-      setTimeout(function () { btn.classList.remove('rippling'); r.remove(); }, 560);
-    }
-
-    async function runScene(scene) {
-      reset(scene);
-      moveCursorTo(btn, 60);
-      await sleep(450);
-      await type(scene.prompt);
-      caret.style.display = 'none';
-      await sleep(360);
-      cursor.classList.add('show');
-      moveCursorTo(btn);
-      await sleep(760);
-      cursor.classList.add('tap');
-      btn.classList.add('pressed');
-      ripple();
-      await sleep(150);
-      btn.classList.remove('pressed');
-      cursor.classList.remove('tap');
-      btn.querySelector('.rb-label').textContent = 'Reading…';
-      right.className = 'console-right scoring';
-      status.textContent = 'weighing rubric…';
-      cursor.classList.remove('show');
-      await sleep(720);
-      right.className = 'console-right done';
-      status.textContent = '✓ case built';
-      segC.style.flex = String(scene.tiers[0]);
-      segM.style.flex = String(scene.tiers[1]);
-      segP.style.flex = String(scene.tiers[2]);
-      tierLabels(scene.tiers);
-      document.getElementById('pickModel').textContent = scene.model;
-      document.getElementById('pickCost').textContent = scene.cost;
-      document.getElementById('pickLat').textContent = scene.lat;
-      document.getElementById('pickDelta').textContent = scene.delta;
-      document.getElementById('conFootOk').textContent = '✓ rubric-cited · ready to send';
-      document.getElementById('conFootReq').textContent = scene.req;
-      btn.querySelector('.rb-label').textContent = 'Drafted ✓';
-      await sleep(2800);
-    }
-
-    if (reduce) {
-      var s = SCENES[0];
-      typed.textContent = s.prompt;
-      caret.style.display = 'none';
-      tok.textContent = s.prompt.trim().split(/\s+/).length;
-      right.className = 'console-right done';
-      status.textContent = '✓ case built';
-      segC.style.flex = String(s.tiers[0]); segM.style.flex = String(s.tiers[1]); segP.style.flex = String(s.tiers[2]);
-      tierLabels(s.tiers);
-      document.getElementById('pickModel').textContent = s.model;
-      document.getElementById('pickCost').textContent = s.cost;
-      document.getElementById('pickLat').textContent = s.lat;
-      document.getElementById('pickDelta').textContent = s.delta;
-      document.getElementById('conFootOk').textContent = '✓ rubric-cited · ready to send';
-      document.getElementById('conFootReq').textContent = s.req;
-      btn.querySelector('.rb-label').textContent = 'Drafted ✓';
-      return;
-    }
-
-    var visible = false, running = false;
-    new IntersectionObserver(function (entries) {
-      visible = entries[0].isIntersecting;
-      if (visible && !running) loop();
-    }, { threshold: 0.25 }).observe(consoleEl);
-
-    async function loop() {
-      running = true;
-      var i = 0;
-      while (visible) {
-        await runScene(SCENES[i % SCENES.length]);
-        i++;
-      }
-      running = false;
-    }
-  })();
-
-  // Tone guardrail — scroll-scrubbed scene
-  (function () {
-    var scroll = document.getElementById('grScroll');
-    if (!scroll) return;
-    var pin = scroll.querySelector('.gr-pin');
-    var prompt = document.getElementById('grPrompt');
-    var sm = document.getElementById('grSm');
-    var lg = document.getElementById('grLg');
-    var cap = document.getElementById('grCap');
-    var capText = cap.querySelector('.gr-cap-text');
-    var railFill = document.getElementById('grRailFill');
-    var hint = document.getElementById('grHint');
-
-    var clamp = function (v, a, b) { return Math.max(a, Math.min(b, v)); };
-    var seg = function (p, a, b) { return clamp((p - a) / (b - a), 0, 1); };
-    var smooth = function (t) { return t * t * (3 - 2 * t); };
-    var lerp = function (a, b, t) { return a + (b - a) * t; };
-
-    var SM_STOP = 66, LG_STOP = 66, EXIT = 118;
-
-    var caps = [
-      { t: 'An unfair grade lights a fire', c: '' },
-      { t: 'The first thing you want to send is angry', c: '' },
-      { t: 'It scores 0.62 \u2014 too hot to send', c: 'warn' },
-      { t: 'So Regrade recalibrates the tone', c: '' },
-      { t: 'It clears the bar at 0.94 \u2014 sent', c: 'ok' }
-    ];
-    var lastCap = -1;
-    function setCap(i) {
-      if (i === lastCap) return;
-      lastCap = i;
-      cap.classList.remove('show');
-      clearTimeout(cap.__t);
-      cap.__t = setTimeout(function () {
-        capText.textContent = caps[i].t;
-        cap.className = 'gr-cap show' + (caps[i].c ? ' ' + caps[i].c : '');
-      }, 120);
-    }
-
-    function render(p) {
-      var ci = p < 0.16 ? 0 : p < 0.40 ? 1 : p < 0.58 ? 2 : p < 0.82 ? 3 : 4;
-      var phase = (p >= 0.82) ? 'pass' : (p >= 0.40) ? 'block' : 'idle';
-      if (pin.dataset.phase !== phase) pin.dataset.phase = phase;
-      setCap(ci);
-
-      var pLeft = lerp(-20, 6, smooth(seg(p, 0.0, 0.13)));
-      var pFade = seg(p, 0.24, 0.34);
-      var pOpa = seg(p, 0.02, 0.11) * (1 - pFade);
-      prompt.style.left = pLeft + '%';
-      prompt.style.opacity = pOpa;
-      prompt.style.transform = 'translateY(-50%) scale(' + lerp(1, 0.92, pFade) + ')';
-
-      var smTravel = smooth(seg(p, 0.22, 0.42));
-      var smX = lerp(18, SM_STOP, smTravel) + Math.sin(seg(p, 0.42, 0.54) * Math.PI) * -5;
-      var smOut = seg(p, 0.54, 0.62);
-      sm.style.left = smX + '%';
-      sm.style.opacity = seg(p, 0.18, 0.24) * (1 - smOut);
-      sm.style.transform = 'translate(-50%,-50%) scale(' + lerp(1, 0.86, smOut) + ')';
-
-      var lgX = lerp(40, LG_STOP, smooth(seg(p, 0.62, 0.82)));
-      lgX = lerp(lgX, EXIT, smooth(seg(p, 0.82, 1.0)));
-      lg.style.left = lgX + '%';
-      lg.style.opacity = seg(p, 0.60, 0.68);
-      lg.style.transform = 'translate(-50%,-50%) scale(1.06)';
-
-      railFill.style.width = (p * 100) + '%';
-      hint.style.opacity = String(clamp(1 - p / 0.05, 0, 1));
-    }
-
-    var ticking = false;
-    function onScroll() {
-      var total = scroll.offsetHeight - window.innerHeight;
-      var p = total > 0 ? clamp(-scroll.getBoundingClientRect().top / total, 0, 1) : 0;
-      render(p);
-    }
-    window.addEventListener('scroll', function () {
-      if (!ticking) { requestAnimationFrame(function () { onScroll(); ticking = false; }); ticking = true; }
-    }, { passive: true });
-    window.addEventListener('resize', onScroll);
-    onScroll();
-  })();
-
-  // Why Regrade stats
-  (function () {
-    var strip = document.querySelector('.why-stats');
-    if (!strip) return;
-    var nums = strip.querySelectorAll('.why-num');
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      nums.forEach(function (n) { n.textContent = n.getAttribute('data-target'); });
-      return;
-    }
-    var shown = false;
-    new IntersectionObserver(function (entries) {
-      var vis = entries[0].isIntersecting;
-      if (vis && !shown) {
-        shown = true;
-        nums.forEach(function (n, i) {
-          countTo(n, parseInt(n.getAttribute('data-target'), 10) || 0, 1200 + i * 120);
-        });
-      } else if (!vis && shown) {
-        shown = false;
-        nums.forEach(function (n) { stopCount(n); n.textContent = '0'; });
-      }
-    }, { threshold: 0.35 }).observe(strip);
-  })();
-</script>
+<script src="/landing.js"></script>
 </body>
 </html>

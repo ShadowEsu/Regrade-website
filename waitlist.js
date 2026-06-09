@@ -90,7 +90,8 @@
   function initCounter() {
     var el = document.getElementById('ctaCount');
     if (!el) return;
-    var target = 2843;
+    var target = 15;
+    var cap = 100;
     var shown = false;
     new IntersectionObserver(
       function (entries) {
@@ -101,9 +102,10 @@
           if (start === null) start = t;
           var p = Math.min(1, (t - start) / 1400);
           var eased = 1 - Math.pow(1 - p, 3);
-          el.textContent = Math.round(eased * target).toLocaleString('en-US');
+          var n = Math.round(eased * target);
+          el.textContent = '(' + n + '/' + cap + ')';
           if (p < 1) requestAnimationFrame(frame);
-          else el.textContent = target.toLocaleString('en-US');
+          else el.textContent = '(' + target + '/' + cap + ')';
         }
         requestAnimationFrame(frame);
       },

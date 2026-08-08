@@ -92,7 +92,7 @@ export function LaunchVideo({ ready }: Props) {
     >
       <video
         ref={videoRef}
-        src="/launch-video.mp4"
+        src="/regrade-logo-reveal.mp4"
         muted={muted}
         playsInline
         preload="auto"

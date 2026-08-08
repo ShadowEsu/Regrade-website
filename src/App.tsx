@@ -6,6 +6,7 @@ import { YCBanner } from "./components/YCBanner";
 import { Nav } from "./components/Nav";
 import { LaunchVideo } from "./components/LaunchVideo";
 import { Hero } from "./components/Hero";
+import { VideoSection } from "./components/VideoSection";
 import { HowSection } from "./components/HowSection";
 import { ProductShowcase } from "./components/ProductShowcase";
 import { ConnectionsSection } from "./components/ConnectionsSection";
@@ -39,6 +40,7 @@ export default function App() {
         >
           <LaunchVideo ready={ready} />
           <Hero ready={ready} />
+          <VideoSection />
           <ConnectionsSection />
           <HowSection />
           <ProductShowcase />

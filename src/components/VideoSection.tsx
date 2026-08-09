@@ -35,6 +35,42 @@ export function VideoSection() {
             </div>
           </div>
         </SectionReveal>
+
+        <SectionReveal delay={0.1}>
+          <div className="mx-auto mt-12 max-w-[1120px]">
+            <div className="mb-5 flex items-end justify-between gap-4">
+              <div>
+                <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.14em] text-blue">
+                  More from Regrade
+                </p>
+                <h3 className="mt-2 font-display text-[clamp(1.35rem,2.5vw,1.8rem)] font-semibold tracking-[-0.025em] text-ink">
+                  A closer product look.
+                </h3>
+              </div>
+              <p className="max-w-[330px] text-right text-[14px] leading-relaxed text-muted">
+                More walkthroughs will live here as Regrade grows.
+              </p>
+            </div>
+            <div className="grid gap-5 md:grid-cols-2">
+              <article className="overflow-hidden rounded-2xl border border-black/[0.08] bg-[#0a0f2e] shadow-[0_8px_32px_rgba(9,9,11,0.07)]">
+                <video
+                  controls
+                  playsInline
+                  preload="metadata"
+                  className="block aspect-video w-full"
+                  aria-label="Regrade product feature demo"
+                >
+                  <source src="/regrade-demo-product.mp4" type="video/mp4" />
+                  Your browser does not support this video format.
+                </video>
+                <div className="bg-white px-5 py-4">
+                  <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.12em] text-blue">Feature walkthrough</p>
+                  <h4 className="mt-1 font-display text-[18px] font-semibold tracking-[-0.02em] text-ink">From marked work to a clear next step.</h4>
+                </div>
+              </article>
+            </div>
+          </div>
+        </SectionReveal>
       </div>
     </section>
   );

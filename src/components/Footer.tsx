@@ -18,7 +18,7 @@ const columns = [
     title: "Support",
     links: [
       { label: "FAQ", href: "/#faq" },
-      { label: "Founder note", href: "/#proof" },
+      { label: "Founder case study", href: "/#case-study" },
       { label: "preston@regrade.org", href: "mailto:preston@regrade.org" },
     ],
   },

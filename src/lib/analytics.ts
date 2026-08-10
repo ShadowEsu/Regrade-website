@@ -2,6 +2,36 @@ import { REGRADE_CONFIG } from "./site-config";
 
 const VISITOR_KEY = "regrade_vid_v1";
 
+declare global {
+  interface Window {
+    dataLayer?: unknown[][];
+  }
+}
+const GA_SCRIPT_ID = "regrade-google-analytics";
+
+/**
+ * Loads GA only when the public Vite measurement ID is configured at build time.
+ * This keeps the site functional without analytics and avoids shipping a placeholder ID.
+ */
+export function initializeGoogleAnalytics(): void {
+  const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID?.trim();
+  if (!measurementId || document.getElementById(GA_SCRIPT_ID)) return;
+
+  const script = document.createElement("script");
+  script.id = GA_SCRIPT_ID;
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`;
+  document.head.appendChild(script);
+
+  const dataLayer = window.dataLayer ?? [];
+  window.dataLayer = dataLayer;
+  function gtag(...args: unknown[]) {
+    dataLayer.push(args);
+  }
+  gtag("js", new Date());
+  gtag("config", measurementId, { anonymize_ip: true });
+}
+
 function getVisitorId(): string {
   let id = localStorage.getItem(VISITOR_KEY);
   if (!id) {

@@ -1,8 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { motion } from "framer-motion";
-import { Check } from "lucide-react";
 import { joinWaitlist } from "../lib/waitlist";
-import { useTypewriter } from "../hooks/useTypewriter";
 import { cn } from "../lib/utils";
 
 type Props = {
@@ -25,23 +22,8 @@ export function WaitlistForm({
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
   const [honeypot, setHoneypot] = useState("");
-  const [position, setPosition] = useState<number | undefined>();
-  const [duplicate, setDuplicate] = useState(false);
-
-  const successMessage = duplicate
-    ? "You're already on the list — we'll email you when your invite is ready."
-    : position
-      ? `You're #${position} on the list — we'll email you when your invite is ready.`
-      : "You're on the list — we'll email you when your invite is ready.";
-
-  const { output: typedSuccess, done: typingDone } = useTypewriter(
-    success ? successMessage : "",
-    28,
-    200
-  );
 
   const large = size === "lg";
   // Always stack for large forms so the email field stays full width on laptops
@@ -53,7 +35,7 @@ export function WaitlistForm({
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     if (honeypot) {
-      setSuccess(true);
+      window.location.assign("/thanks.html");
       return;
     }
 
@@ -62,10 +44,10 @@ export function WaitlistForm({
     const result = await joinWaitlist(name, email, source);
 
     if (result.ok) {
-      setDuplicate(Boolean(result.duplicate));
-      setPosition(result.position);
-      setSuccess(true);
-      setLoading(false);
+      const params = new URLSearchParams({ source });
+      if (result.duplicate) params.set("status", "already-joined");
+      if (result.position) params.set("position", String(result.position));
+      window.location.assign(`/thanks.html?${params.toString()}`);
       return;
     }
 
@@ -96,31 +78,6 @@ export function WaitlistForm({
       ? "btn-pro shadow-[0_12px_32px_-10px_rgba(30,79,255,0.8)]"
       : "btn-pro"
   );
-
-  if (success) {
-    return (
-      <motion.div
-        initial={{ opacity: 0, y: 4 }}
-        animate={{ opacity: 1, y: 0 }}
-        className={cn(
-          "flex gap-3 rounded-2xl border px-5 py-5 text-left",
-          variant === "dark"
-            ? "border-emerald-400/25 bg-emerald-500/12"
-            : "border-emerald-200 bg-emerald-50"
-        )}
-      >
-        <Check className="mt-0.5 h-5 w-5 shrink-0 text-emerald-600" strokeWidth={2.5} />
-        <div>
-          <p className="text-[17px] font-semibold text-emerald-900">
-            {typingDone ? (duplicate ? "Already on the list" : "You're on the list") : "Submitting…"}
-          </p>
-          <p className="typewriter-cursor mt-1 text-[15px] leading-relaxed text-emerald-800/90">
-            {typedSuccess}
-          </p>
-        </div>
-      </motion.div>
-    );
-  }
 
   return (
     <div className="w-full">

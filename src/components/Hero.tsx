@@ -95,7 +95,8 @@ export function Hero({ ready }: { ready: boolean }) {
             size="lg"
           />
           <p className="mt-3 font-ui text-[14px] leading-relaxed text-muted">
-            Get a chance to see the app onboarding in its final production-ready private beta.
+            Get a chance to see the app onboarding in its final production-ready private beta. By
+            joining, you agree to the <a className="font-semibold text-blue hover:text-blue-deep" href="/privacy.html">privacy policy</a>.
           </p>
         </motion.div>
 

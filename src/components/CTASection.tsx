@@ -62,6 +62,11 @@ export function CTASection() {
             </div>
 
             <p className="mx-auto mt-5 max-w-[480px] font-ui text-[13px] leading-relaxed text-white/55">
+              We’ll use your details only for early-access updates — see our{" "}
+              <a href="/privacy.html" className="text-[#9db5ff] underline-offset-2 transition-colors hover:text-white hover:underline">
+                privacy policy
+              </a>.
+              <br />
               Questions?{" "}
               <a
                 href="mailto:preston@regrade.org"
@@ -69,6 +74,7 @@ export function CTASection() {
               >
                 preston@regrade.org
               </a>
+              {" — we reply within 2 business days."}
               {" · "}
               Updates and CS jobs on{" "}
               <a

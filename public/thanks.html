@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,follow" />
+    <title>You’re on the Regrade waitlist</title>
+    <meta name="description" content="Thanks for joining the Regrade private-beta waitlist." />
+    <link rel="canonical" href="https://regradeapp.tech/thanks.html" />
+    <meta property="og:title" content="You’re on the Regrade waitlist" />
+    <meta property="og:description" content="Thanks for joining the Regrade private-beta waitlist." />
+    <meta property="og:image" content="https://regradeapp.tech/logo.png" />
+    <meta property="og:url" content="https://regradeapp.tech/thanks.html" />
+    <meta property="og:type" content="website" />
+    <style>
+      :root { color: #141414; background: #fdfcf7; font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
+      body { min-height: 100vh; margin: 0; display: grid; place-items: center; padding: 24px; box-sizing: border-box; }
+      main { width: min(100%, 640px); padding: clamp(32px, 7vw, 64px); border: 1px solid #dbe3ff; border-radius: 28px; background: white; box-shadow: 0 24px 70px rgba(20, 47, 125, .12); text-align: center; }
+      img { width: 60px; height: 60px; border-radius: 16px; }
+      .eyebrow { margin: 20px 0 8px; color: #1e4fff; font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+      h1 { margin: 0; font-family: Georgia, serif; font-size: clamp(2rem, 6vw, 3.2rem); letter-spacing: -.04em; line-height: 1.08; }
+      p { max-width: 480px; margin: 18px auto 0; color: #555; font-size: 17px; line-height: 1.6; }
+      .position { display: none; color: #183ca8; font-weight: 700; }
+      nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 30px; }
+      a { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 20px; border-radius: 14px; color: #173dbb; font-weight: 750; text-decoration: none; }
+      a.primary { background: #1e4fff; color: white; box-shadow: 0 12px 28px rgba(30,79,255,.28); }
+      a.secondary { border: 1px solid #cbd6ff; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <a href="/" aria-label="Return to Regrade"><img src="/logo-mark.png" alt="Regrade" /></a>
+      <p class="eyebrow">Private beta</p>
+      <h1 id="heading">You’re on the list.</h1>
+      <p id="message">Thanks for joining Regrade. We’ll email you when early access is ready.</p>
+      <p id="position" class="position"></p>
+      <nav aria-label="Next steps">
+        <a class="primary" href="/#how">See how Regrade works</a>
+        <a class="secondary" href="/#faq">Read the FAQs</a>
+      </nav>
+    </main>
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("status") === "already-joined") {
+        document.getElementById("heading").textContent = "You’re already on the list.";
+        document.getElementById("message").textContent = "Your early-access spot is saved. We’ll email you when an invite is ready.";
+      }
+      const position = Number(params.get("position"));
+      if (Number.isInteger(position) && position > 0) {
+        const node = document.getElementById("position");
+        node.textContent = `Your waitlist position: #${position}`;
+        node.style.display = "block";
+      }
+    </script>
+  </body>
+</html>

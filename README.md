@@ -36,7 +36,14 @@ Unauthorized copying, forking, or use of this code is prohibited.
 
 View signups: [Supabase table editor](https://supabase.com/dashboard/project/lshqzxgzehgmzgeilvmy/editor)
 
-Copy `.env.example` → `.env` for local keys (optional; defaults are baked in for the publishable key).
+The public Supabase key is intentionally configured for the landing page. Server-side secrets must
+never be added to this static site.
+
+### Google Analytics
+
+Analytics is wired but intentionally disabled until a real Measurement ID is supplied. Set
+`VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX` in the production build environment, then redeploy. The
+loader sends no Analytics request when that variable is absent.
 
 ## Development
 

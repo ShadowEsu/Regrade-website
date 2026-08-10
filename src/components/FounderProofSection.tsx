@@ -4,21 +4,22 @@ import { REGRADE_CONFIG } from "../lib/site-config";
 export function FounderProofSection() {
   return (
     <section
-      id="proof"
+      id="case-study"
       className="scroll-mt-[var(--site-header)] border-b border-black/[0.07] bg-paper py-[clamp(56px,7vw,80px)]"
     >
       <div className="section-shell">
         <SectionReveal>
           <div className="glass-panel relative mx-auto max-w-[640px] overflow-hidden rounded-[28px] px-7 py-9 text-center sm:px-10 sm:py-11">
             <p className="relative mb-3 font-ui text-[11px] font-semibold uppercase tracking-[0.14em] text-blue">
-              Founder note
+              Founder case study
             </p>
             <h2 className="relative font-display text-[clamp(1.55rem,3vw,2.1rem)] font-semibold leading-[1.2] tracking-[-0.025em] text-ink">
-              Built from a confusing mark — not a pitch deck story.
+              A confusing mark became the first Regrade case study.
             </h2>
             <p className="relative mx-auto mt-4 max-w-[500px] text-[15px] leading-[1.65] text-muted sm:text-[16px]">
-              One rubric line was counted twice on my essay. Regrade surfaced the same gaps in
-              minutes. It does not promise a grade change — it helps you see what is visible.
+              One rubric line was counted twice on my essay. Regrade was built to make visible
+              what a student can actually point to: the marked work, the rubric, and the gap
+              between them. It does not promise a grade change.
             </p>
 
             <div className="relative mx-auto mt-8 flex max-w-[360px] flex-col items-center gap-3 sm:flex-row sm:items-center sm:justify-center sm:gap-4">

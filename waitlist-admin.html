@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Regrade · Waitlist export</title>
+    <script src="/site-config.js"></script>
+    <style>
+      :root {
+        --ink: #0c1020;
+        --muted: #5a6278;
+        --blue: #1e4fff;
+        --paper: #f8faff;
+        --line: rgba(30, 79, 255, 0.14);
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Source Sans 3", system-ui, sans-serif;
+        color: var(--ink);
+        background: var(--paper);
+      }
+      .wrap { max-width: 920px; margin: 0 auto; padding: 40px 20px 64px; }
+      h1 { margin: 0 0 8px; font-size: 1.85rem; letter-spacing: -0.03em; }
+      .sub { color: var(--muted); margin: 0 0 24px; line-height: 1.55; }
+      .card {
+        border: 1px solid var(--line);
+        background: #fff;
+        border-radius: 20px;
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+      label { display: block; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+      input {
+        width: 100%;
+        height: 52px;
+        border-radius: 14px;
+        border: 1px solid rgba(0,0,0,0.1);
+        padding: 0 16px;
+        font-size: 16px;
+      }
+      button {
+        margin-top: 12px;
+        height: 52px;
+        border: 0;
+        border-radius: 14px;
+        background: var(--blue);
+        color: #fff;
+        font-weight: 700;
+        font-size: 15px;
+        padding: 0 20px;
+        cursor: pointer;
+      }
+      button.secondary { background: #fff; color: var(--blue); border: 1px solid rgba(30,79,255,0.3); margin-left: 8px; }
+      .err { color: #e11d48; margin-top: 10px; font-weight: 600; }
+      .ok { color: #0d9f6e; margin-top: 10px; font-weight: 600; }
+      table { width: 100%; border-collapse: collapse; font-size: 14px; }
+      th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+      th { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+      code { background: rgba(30,79,255,0.08); padding: 2px 6px; border-radius: 6px; font-size: 13px; }
+      pre {
+        white-space: pre-wrap;
+        background: #0c1020;
+        color: #e8eeff;
+        padding: 14px;
+        border-radius: 14px;
+        font-size: 12px;
+        overflow: auto;
+      }
+      a { color: var(--blue); }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Waitlist export</h1>
+      <p class="sub">
+        Founder-only. Pull every signup from Supabase. First run the SQL migration in the
+        <a href="https://supabase.com/dashboard/project/lshqzxgzehgmzgeilvmy/sql" target="_blank" rel="noopener">Supabase SQL editor</a>
+        if export fails.
+      </p>
+
+      <div class="card">
+        <label for="secret">Export secret</label>
+        <input id="secret" type="password" value="regrade-waitlist-export-2026" autocomplete="off" />
+        <div>
+          <button id="load" type="button">Load waitlist</button>
+          <button id="copy" class="secondary" type="button">Copy CSV</button>
+        </div>
+        <p id="status" class="ok" hidden></p>
+        <p id="error" class="err" hidden></p>
+      </div>
+
+      <div class="card">
+        <div id="meta" class="sub">No rows loaded yet.</div>
+        <div style="overflow-x:auto; margin-top: 12px;">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Source</th>
+                <th>Joined</th>
+              </tr>
+            </thead>
+            <tbody id="rows"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <label>If export fails, paste this into Supabase SQL editor</label>
+        <pre id="sql"></pre>
+      </div>
+    </div>
+
+    <script>
+      const cfg = window.REGRADE_CONFIG || {};
+      const url = cfg.supabaseUrl || "https://lshqzxgzehgmzgeilvmy.supabase.co";
+      const key =
+        cfg.supabaseAnonKey ||
+        "sb_publishable_B6sDgM-4xMY2tub3oX7VHA_bHOLntBJ";
+
+      let entries = [];
+
+      async function loadSqlHint() {
+        try {
+          const res = await fetch("/waitlist-export.sql");
+          if (res.ok) document.getElementById("sql").textContent = await res.text();
+        } catch (_) {}
+      }
+
+      function toCsv(rows) {
+        const header = ["position", "name", "email", "source", "created_at"];
+        const lines = [header.join(",")];
+        rows.forEach((row, i) => {
+          const vals = [
+            i + 1,
+            row.name || "",
+            row.email || "",
+            row.source || "",
+            row.created_at || "",
+          ].map((v) => `"${String(v).replaceAll('"', '""')}"`);
+          lines.push(vals.join(","));
+        });
+        return lines.join("\n");
+      }
+
+      async function loadWaitlist() {
+        const status = document.getElementById("status");
+        const error = document.getElementById("error");
+        const rowsEl = document.getElementById("rows");
+        const meta = document.getElementById("meta");
+        status.hidden = true;
+        error.hidden = true;
+        rowsEl.innerHTML = "";
+
+        const secret = document.getElementById("secret").value.trim();
+        const res = await fetch(url + "/rest/v1/rpc/list_waitlist_entries", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            apikey: key,
+            Authorization: "Bearer " + key,
+          },
+          body: JSON.stringify({ p_secret: secret }),
+        });
+        const data = await res.json().catch(() => null);
+        if (!res.ok || !data || data.ok === false) {
+          error.hidden = false;
+          error.textContent =
+            (data && data.error) ||
+            "Export RPC missing. Run the SQL below in Supabase, then retry. Or open the waitlist table in the dashboard.";
+          meta.textContent = "Export unavailable until SQL is applied.";
+          return;
+        }
+
+        entries = data.entries || [];
+        meta.textContent = entries.length + " people on the waitlist";
+        status.hidden = false;
+        status.textContent = "Loaded " + entries.length + " signups from Supabase.";
+        entries.forEach((row, i) => {
+          const tr = document.createElement("tr");
+          tr.innerHTML =
+            "<td>" +
+            (i + 1) +
+            "</td><td>" +
+            (row.name || "—") +
+            "</td><td>" +
+            (row.email || "—") +
+            "</td><td>" +
+            (row.source || "—") +
+            "</td><td>" +
+            (row.created_at ? new Date(row.created_at).toLocaleString() : "—") +
+            "</td>";
+          rowsEl.appendChild(tr);
+        });
+      }
+
+      document.getElementById("load").addEventListener("click", () => {
+        loadWaitlist().catch((err) => {
+          const error = document.getElementById("error");
+          error.hidden = false;
+          error.textContent = String(err);
+        });
+      });
+      document.getElementById("copy").addEventListener("click", async () => {
+        if (!entries.length) return;
+        await navigator.clipboard.writeText(toCsv(entries));
+        const status = document.getElementById("status");
+        status.hidden = false;
+        status.textContent = "CSV copied.";
+      });
+
+      loadSqlHint();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Crawl hints for major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://regradeapp.tech/sitemap.xml

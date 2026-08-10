@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Regrade · Visitor stats</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap"
+      rel="stylesheet"
+    />
+    <script src="/site-config.js"></script>
+    <style>
+      :root {
+        --ink: #0c1020;
+        --muted: #5a6278;
+        --blue: #1e4fff;
+        --paper: #f8faff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "DM Sans", -apple-system, sans-serif;
+        color: var(--ink);
+        background:
+          radial-gradient(ellipse 80% 50% at 50% -10%, rgba(30, 79, 255, 0.12), transparent),
+          var(--paper);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .wrap {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 48px 24px 64px;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        color: #1236c9;
+        background: rgba(30, 79, 255, 0.08);
+        border: 1px solid rgba(30, 79, 255, 0.14);
+      }
+
+      .badge-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--blue);
+      }
+
+      h1 {
+        margin: 20px 0 8px;
+        font-size: clamp(1.75rem, 4vw, 2.25rem);
+        font-weight: 700;
+        letter-spacing: -0.03em;
+      }
+
+      .sub {
+        margin: 0 0 32px;
+        font-size: 15px;
+        line-height: 1.6;
+        color: var(--muted);
+      }
+
+      .grid {
+        display: grid;
+        gap: 16px;
+      }
+
+      @media (min-width: 560px) {
+        .grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      .card {
+        padding: 24px 20px;
+        border-radius: 18px;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.72);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(30, 79, 255, 0.12);
+        box-shadow: 0 12px 40px rgba(12, 16, 32, 0.06);
+      }
+
+      .value {
+        font-size: clamp(2rem, 5vw, 2.6rem);
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .label {
+        margin-top: 6px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--muted);
+      }
+
+      .meta {
+        margin-top: 28px;
+        font-size: 12px;
+        color: #8a92a8;
+      }
+
+      .error {
+        padding: 14px 16px;
+        border-radius: 12px;
+        font-size: 14px;
+        color: #be123c;
+        background: rgba(225, 29, 72, 0.08);
+        border: 1px solid rgba(225, 29, 72, 0.15);
+      }
+
+      .loading {
+        color: var(--muted);
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <span class="badge"><span class="badge-dot"></span> Private dashboard</span>
+      <h1>Site visitors</h1>
+      <p class="sub">
+        Unique browsers only — repeat visits from the same device are not counted again.
+        Waitlist numbers on the public site are illustrative.
+      </p>
+
+      <div id="status" class="loading">Loading stats…</div>
+      <div id="grid" class="grid" hidden></div>
+      <p id="meta" class="meta" hidden></p>
+    </div>
+
+    <script>
+      (async function () {
+        const cfg = window.REGRADE_CONFIG;
+        const statusEl = document.getElementById("status");
+        const gridEl = document.getElementById("grid");
+        const metaEl = document.getElementById("meta");
+
+        if (!cfg?.supabaseUrl || !cfg?.supabaseAnonKey) {
+          statusEl.className = "error";
+          statusEl.textContent = "Missing site-config.js — Supabase credentials not found.";
+          return;
+        }
+
+        try {
+          const res = await fetch(cfg.supabaseUrl + "/rest/v1/rpc/get_visitor_stats", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              apikey: cfg.supabaseAnonKey,
+              Authorization: "Bearer " + cfg.supabaseAnonKey,
+            },
+            body: "{}",
+          });
+
+          if (!res.ok) throw new Error("RPC failed");
+
+          const data = await res.json();
+          const cards = [
+            { value: data.total ?? 0, label: "Total unique visitors" },
+            { value: data.today ?? 0, label: "New today" },
+            { value: data.week ?? 0, label: "New this week" },
+          ];
+
+          statusEl.hidden = true;
+          gridEl.hidden = false;
+          metaEl.hidden = false;
+
+          gridEl.innerHTML = cards
+            .map(
+              (c) =>
+                '<div class="card"><div class="value">' +
+                Number(c.value).toLocaleString() +
+                '</div><div class="label">' +
+                c.label +
+                "</div></div>"
+            )
+            .join("");
+
+          if (data.updated_at) {
+            const when = new Date(data.updated_at).toLocaleString();
+            metaEl.textContent = "Last updated " + when + " UTC";
+          }
+        } catch (err) {
+          statusEl.className = "error";
+          statusEl.textContent =
+            "Could not load visitor stats. Confirm setup-visitors.sql has been run in Supabase.";
+        }
+      })();
+    </script>
+  </body>
+</html>
